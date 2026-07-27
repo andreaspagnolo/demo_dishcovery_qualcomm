@@ -1,0 +1,58 @@
+{
+  "schema_version": "dishcovery_evk_qairt_stack_v1",
+  "status": "joint_residency_all_40_available_images_validated",
+  "device": "Qualcomm Dragonwing IQ-9075 EVK",
+  "expected": {
+    "machine": "aarch64",
+    "onnxruntime": "1.24.4",
+    "onnxruntime_qnn": "2.1.0",
+    "onnxruntime_qnn_qairt": "2.45.40",
+    "geniex": "0.3.13",
+    "geniex_qairt": "2.45.0.260326"
+  },
+  "policy": {
+    "require_single_qairt_minor": true,
+    "expected_qairt_minor": "2.45",
+    "require_selected_qnn_stack_matches_geniex": true,
+    "fixed_image_resolution": [
+      384,
+      384
+    ],
+    "required_components": [
+      "onnxruntime",
+      "onnxruntime_qnn",
+      "onnxruntime_qnn_qairt",
+      "geniex",
+      "geniex_qairt"
+    ]
+  },
+  "previous_mixed_stack_blocker": {
+    "onnxruntime": "1.24.4",
+    "onnxruntime_qnn": "2.3.0",
+    "onnxruntime_qnn_qairt": "2.47.0",
+    "geniex": "0.3.13",
+    "geniex_qairt": "2.45.0.260326",
+    "qairt_runtime_minors": [
+      "2.45",
+      "2.47"
+    ]
+  },
+  "validation_evidence": {
+    "report": "reports/evk_qairt245_joint_soak40.json",
+    "report_sha256": "0840a04faef1565ae9985071d3460202519365264bd114aa9f75af719ac66063",
+    "image_list": "config/evk_qairt245_soak40_images.txt",
+    "completed_rows": 40,
+    "pair_scores": 125,
+    "siglip_guard_skips": 15,
+    "failure_event_count": 0,
+    "worker_restart_count": 0,
+    "average_latency_per_query_sec": 6.770086554874934,
+    "median_latency_per_query_sec": 9.653397671499079,
+    "p95_latency_per_query_sec": 10.89185922529923,
+    "throughput_images_per_second": 0.1472876017076534,
+    "caption_accuracy": 0.85,
+    "class_accuracy": 0.95,
+    "peak_parent_rss_bytes": 1290956800
+  },
+  "resolution_rule": "Run ORT-QNN 2.1.0 from .venv_ort_qnn_245, use GenieX's libQnnHtp.so via --siglip-qnn-backend-path, and use SigLIP contexts compiled with QAIRT 2.45."
+}

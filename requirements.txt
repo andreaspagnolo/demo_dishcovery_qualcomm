@@ -1,0 +1,12 @@
+# Verified against the original demo environment where possible.
+accelerate==1.13.0
+faster-whisper>=1.1.0
+huggingface_hub==1.15.0
+numpy==1.26.4
+open_clip_torch==3.3.0
+Pillow==12.2.0
+qwen-vl-utils==0.0.14
+sentence-transformers==5.5.1
+torch==2.8.0
+torchvision==0.23.0
+transformers==5.9.0

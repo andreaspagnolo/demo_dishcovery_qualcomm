@@ -1,0 +1,60 @@
+{
+  "schema_version": "friday_task2_quantized_candidate_selection_v1",
+  "selected_for_350": {
+    "name": "Qwen3-VL-Reranker-2B-Q8_0-F16Emb-F16Cls-HTP",
+    "path": "/home/ubuntu/models/Qwen3-VL-Reranker-2B-GGUF/Qwen3-VL-Reranker-2B-Q8_0-F16Emb-F16Cls-HTP.gguf",
+    "reason": "Only candidate within the observed 2-3 percentage-point FP16 accuracy budget that is already integrated and stable in the local jointly-resident EVK pipeline."
+  },
+  "evidence": {
+    "fp16_q8_40_image_comparison": {
+      "source": "reports/qwen3_vl_reranker_task2_benchmark/summary.json",
+      "fp16_caption_accuracy": 0.95,
+      "q8_caption_accuracy": 0.925,
+      "accuracy_loss_percentage_points": 2.5,
+      "q8_top1_prediction_agreement": 0.975,
+      "q8_reranked_top1_agreement": 0.96,
+      "q8_pairwise_order_agreement": 0.948
+    },
+    "jointly_resident_evk_soak": {
+      "source": "reports/evk_qairt245_joint_soak40.json",
+      "successful_rows": 40,
+      "failure_events": 0,
+      "worker_restarts": 0,
+      "caption_accuracy": 0.85,
+      "class_accuracy": 0.95,
+      "average_latency_sec": 6.770086554874934,
+      "median_latency_sec": 9.653397671499079,
+      "p95_latency_sec": 10.89185922529923
+    },
+    "split4_w8a16_research_candidate": {
+      "source": "reports/calibration/qwen3_vl_reranker_text_w8a16_aihub/holdout_split4/aihub_quality_report.json",
+      "linked_model_id": "mqe47l34m",
+      "top1_agreement": 1.0,
+      "pairwise_order_agreement": 0.95,
+      "mean_group_spearman": 0.95,
+      "pearson": 0.9604332235546326,
+      "promotion_status": "not_selected_for_friday_350",
+      "blocker": "No native split4 QAIRT worker or compatible local bundle is present in the current production runner."
+    }
+  },
+  "rejected": [
+    {
+      "candidate": "full_text_w4a16",
+      "reason": "Catastrophic paired quality loss: zero top1 agreement and negative correlation."
+    },
+    {
+      "candidate": "split4_text_w8a16",
+      "reason": "Best new quality result, but not deployable in the current 350-image local runtime before Friday."
+    },
+    {
+      "candidate": "Q4_GGUF",
+      "reason": "Observed caption accuracy loss was 7.5 percentage points versus FP16."
+    }
+  ],
+  "latency_target": {
+    "requested_average_sec": 5.0,
+    "selected_candidate_measured_average_sec": 6.770086554874934,
+    "target_met": false,
+    "note": "The selected fallback prioritizes a defensible accuracy comparison and deployment readiness."
+  }
+}

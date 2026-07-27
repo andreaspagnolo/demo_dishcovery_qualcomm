@@ -1,0 +1,169 @@
+[0;93m2026-07-21 19:46:00.704431281 [W:onnxruntime:Default, device_discovery.cc:325 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:92 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+{
+  "assessment": {
+    "compatible": true,
+    "manifest_status": "joint_residency_all_40_available_images_validated",
+    "policy_violations": [],
+    "version_mismatches": []
+  },
+  "manifest": "/home/ubuntu/Desktop/demo_dishcovery/config/evk_qairt_stack.json",
+  "manifest_sha256": "0278a72183947e0904ff2d5db05e3c54abae8183a54727696357b42c954a2829",
+  "observed": {
+    "fixed_image_resolution": [
+      384,
+      384
+    ],
+    "geniex": "0.3.13",
+    "geniex_llamacpp_hash": "be4a6a6",
+    "geniex_qairt": "2.45.0.260326",
+    "geniex_version_output": "A new version of geniex-cli is available: v0.3.13 → v0.3.14\nTo update, run: `geniex update`\n\nGenieX CLI Version:     v0.3.13\nQAIRT Runtime Version:  v2.45.0.260326\nLlamaCPP Runtime Hash:  be4a6a6",
+    "libraries": {
+      "geniex_libQnnHtp.so": {
+        "bytes": 3005096,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtp.so",
+        "sha256": "821f0aee4708cb8012324d5c5cb75d22d7dc73aeb2543d1e1b5a2a7159be5196"
+      },
+      "geniex_libQnnHtpV73Skel.so": {
+        "bytes": 10740984,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtpV73Skel.so",
+        "sha256": "d2fb5957e260e8d5fb12bf56fbf03a22bfce0b03165cd21588a652a23d811329"
+      },
+      "geniex_libQnnSystem.so": {
+        "bytes": 5123176,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnSystem.so",
+        "sha256": "ced8b05daa0dea696789ec6b60a773d534a54d3b2ed5adf1abf5a5cd1bfbdfb4"
+      },
+      "geniex_libggml-htp-v73.so": {
+        "bytes": 484616,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/llama_cpp/libggml-htp-v73.so",
+        "sha256": "115eab9dfdb541e2c4a2f4655ce33de3ad60c3aaf3c3e773c32a34b3a7b94680"
+      },
+      "ort_libQnnHtpV73Skel.so": {
+        "bytes": 10745080,
+        "exists": true,
+        "mtime_ns": 1784195361327151397,
+        "path": "/home/ubuntu/Desktop/demo_dishcovery/.venv_ort_qnn_245/lib/python3.13/site-packages/onnxruntime_qnn/libQnnHtpV73Skel.so",
+        "sha256": "cd0d8330eb3d9bc4b5d2fe0d65cd76e818fe766c75602c649afd7ff01b2c639f"
+      },
+      "ort_libQnnSystem.so": {
+        "bytes": 5123176,
+        "exists": true,
+        "mtime_ns": 1784195361530153195,
+        "path": "/home/ubuntu/Desktop/demo_dishcovery/.venv_ort_qnn_245/lib/python3.13/site-packages/onnxruntime_qnn/libQnnSystem.so",
+        "sha256": "afa33f741e0c013d46943b48663929abc0a94faca84330d4826386adb251a086"
+      },
+      "ort_qnn_ep": {
+        "bytes": 2618072,
+        "exists": true,
+        "mtime_ns": 1784195361545153328,
+        "path": "/home/ubuntu/Desktop/demo_dishcovery/.venv_ort_qnn_245/lib/python3.13/site-packages/onnxruntime_qnn/libonnxruntime_providers_qnn.so",
+        "sha256": "b03681bf0558f4320f3b53a76abc5f0b283233a30f6e86d23e8244a3faf68aed"
+      },
+      "ort_qnn_htp": {
+        "bytes": 3005096,
+        "exists": true,
+        "mtime_ns": 1784195360755146330,
+        "path": "/home/ubuntu/Desktop/demo_dishcovery/.venv_ort_qnn_245/lib/python3.13/site-packages/onnxruntime_qnn/libQnnHtp.so",
+        "sha256": "1a8195e22e8df2c0de8661a9eccf4712fa7d04d0a19bbe39f248ba4ce91e7a69"
+      },
+      "selected_libQnnHtp.so": {
+        "bytes": 3005096,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtp.so",
+        "sha256": "821f0aee4708cb8012324d5c5cb75d22d7dc73aeb2543d1e1b5a2a7159be5196"
+      },
+      "selected_libQnnHtpV73Skel.so": {
+        "bytes": 10740984,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtpV73Skel.so",
+        "sha256": "d2fb5957e260e8d5fb12bf56fbf03a22bfce0b03165cd21588a652a23d811329"
+      },
+      "selected_libQnnSystem.so": {
+        "bytes": 5123176,
+        "exists": true,
+        "mtime_ns": 315532800000000000,
+        "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnSystem.so",
+        "sha256": "ced8b05daa0dea696789ec6b60a773d534a54d3b2ed5adf1abf5a5cd1bfbdfb4"
+      }
+    },
+    "machine": "aarch64",
+    "onnxruntime": "1.24.4",
+    "onnxruntime_qnn": "2.1.0",
+    "onnxruntime_qnn_qairt": "2.45.40",
+    "platform": "Linux-6.8.0-1077-qcom-aarch64-with-glibc2.39",
+    "python": "3.13.13",
+    "qairt_runtime_minors": [
+      "2.45"
+    ],
+    "qairt_runtime_versions": [
+      "2.45.40",
+      "2.45.0.260326"
+    ],
+    "selected_qnn_backend_path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtp.so",
+    "selected_qnn_stack_comparison": {
+      "libQnnHtp.so": {
+        "geniex": {
+          "bytes": 3005096,
+          "exists": true,
+          "mtime_ns": 315532800000000000,
+          "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtp.so",
+          "sha256": "821f0aee4708cb8012324d5c5cb75d22d7dc73aeb2543d1e1b5a2a7159be5196"
+        },
+        "matches": true,
+        "selected": {
+          "bytes": 3005096,
+          "exists": true,
+          "mtime_ns": 315532800000000000,
+          "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtp.so",
+          "sha256": "821f0aee4708cb8012324d5c5cb75d22d7dc73aeb2543d1e1b5a2a7159be5196"
+        }
+      },
+      "libQnnHtpV73Skel.so": {
+        "geniex": {
+          "bytes": 10740984,
+          "exists": true,
+          "mtime_ns": 315532800000000000,
+          "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtpV73Skel.so",
+          "sha256": "d2fb5957e260e8d5fb12bf56fbf03a22bfce0b03165cd21588a652a23d811329"
+        },
+        "matches": true,
+        "selected": {
+          "bytes": 10740984,
+          "exists": true,
+          "mtime_ns": 315532800000000000,
+          "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnHtpV73Skel.so",
+          "sha256": "d2fb5957e260e8d5fb12bf56fbf03a22bfce0b03165cd21588a652a23d811329"
+        }
+      },
+      "libQnnSystem.so": {
+        "geniex": {
+          "bytes": 5123176,
+          "exists": true,
+          "mtime_ns": 315532800000000000,
+          "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnSystem.so",
+          "sha256": "ced8b05daa0dea696789ec6b60a773d534a54d3b2ed5adf1abf5a5cd1bfbdfb4"
+        },
+        "matches": true,
+        "selected": {
+          "bytes": 5123176,
+          "exists": true,
+          "mtime_ns": 315532800000000000,
+          "path": "/home/ubuntu/.local/share/geniex/qairt/htp-files/libQnnSystem.so",
+          "sha256": "ced8b05daa0dea696789ec6b60a773d534a54d3b2ed5adf1abf5a5cd1bfbdfb4"
+        }
+      }
+    },
+    "selected_qnn_stack_matches_geniex": true,
+    "single_qairt_minor": true
+  }
+}

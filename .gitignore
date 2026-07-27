@@ -1,0 +1,9 @@
+# Large Drive-delivered SigLIP and reranker assets stay outside Git; hashes are committed in config/checksums/model_and_input_sha256.txt.
+external_assets/models/*
+!external_assets/models/.gitkeep
+external_assets/images/
+run_outputs/
+.venv*/
+__pycache__/
+*.py[cod]
+config/google_drive.env

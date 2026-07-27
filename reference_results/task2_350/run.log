@@ -1,0 +1,1727 @@
+[0;93m2026-07-21 19:49:10.743606166 [W:onnxruntime:Default, device_discovery.cc:325 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:92 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+Using Hugging Face token from environment/file.
+Candidate captions: 4940
+Resolved Unicode-normalized image path: 'Bún_riêu/Bún_riêu_0097.jpg' -> 'Bún_riêu/Bún_riêu_0097.jpg'
+[0;93m2026-07-21 19:49:11.060667655 [W:onnxruntime:, qnn_execution_provider.cc:671 QnnEp] File mapped weights feature is only available on Windows arm64 devices for QNN API versions >= 2.32. Feature will be disabled by default[m
+[0;93m2026-07-21 19:49:11.079960906 [W:onnxruntime:Default, qnn_backend_manager.cc:327 operator()] Setting ADSP_LIBRARY_PATH = /home/ubuntu/.local/share/geniex/qairt/htp-files[m
+[0;93m2026-07-21 19:49:13.463451835 [W:onnxruntime:, qnn_execution_provider.cc:671 QnnEp] File mapped weights feature is only available on Windows arm64 devices for QNN API versions >= 2.32. Feature will be disabled by default[m
+Loading SigLIP visual ONNX stages: /home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage1/model.onnx, /home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage2/model.onnx
+SigLIP ONNX provider: QNNExecutionProvider/HTP (CPU fallback disabled)
+SigLIP ONNX IO (split): pixel_values (tensor(float)) -> output_0 -> output_0 (tensor(float))
+Loading Qwen mtmd caption reranker: /home/ubuntu/models/Qwen3-VL-Reranker-2B-GGUF/Qwen3-VL-Reranker-2B-Q8_0-F16Emb-F16Cls-HTP.gguf (text compute=hybrid, max candidate batch=4)
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[1/350] Abalone/Abalone_0091.jpg caption_top1=1 class_top1=1 time=11.140s rerank=10.044s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[2/350] Aburaage/Aburaage_0082.jpg caption_top1=1 class_top1=1 time=9.509s rerank=8.412s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[3/350] Aligot/Aligot_0081.jpg caption_top1=1 class_top1=1 time=9.323s rerank=8.240s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[4/350] Aloo_gobi/Aloo_gobi_0094.jpg caption_top1=0 class_top1=1 time=10.547s rerank=9.457s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[5/350] Andong_jjimdak/Andong_jjimdak_0094.jpg caption_top1=0 class_top1=0 time=11.149s rerank=9.922s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[6/350] Ants_climbing_a_tree/Ants_climbing_a_tree_0095.jpg caption_top1=0 class_top1=1 time=9.717s rerank=8.630s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[7/350] Anzac_biscuit/Anzac_biscuit_0082.jpg caption_top1=0 class_top1=1 time=9.235s rerank=8.119s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[8/350] Apple_dumpling/Apple_dumpling_0084.jpg caption_top1=0 class_top1=1 time=9.580s rerank=8.490s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[9/350] Apple_pie/Apple_pie_0064.jpg caption_top1=1 class_top1=1 time=8.432s rerank=7.346s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[10/350] Apple_sauce/Apple_sauce_0089.jpg caption_top1=1 class_top1=1 time=8.676s rerank=7.583s
+[11/350] Apple_strudel/Apple_strudel_0091.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[12/350] Applesauce_cake/Applesauce_cake_0086.jpg caption_top1=1 class_top1=1 time=8.961s rerank=7.880s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[13/350] Arab_salad/Arab_salad_0090.jpg caption_top1=1 class_top1=1 time=10.063s rerank=8.956s
+[14/350] Arancini/Arancini_0088.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[15/350] Asam_pedas/Asam_pedas_0081.jpg caption_top1=1 class_top1=1 time=9.145s rerank=8.062s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[16/350] Avocado_bread/Avocado_bread_0085.jpg caption_top1=1 class_top1=1 time=9.937s rerank=8.845s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[17/350] Avocado_key_lime_pie/Avocado_key_lime_pie_0100.jpg caption_top1=0 class_top1=0 time=10.443s rerank=9.352s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[18/350] Avocado_sauce/Avocado_sauce_0083.jpg caption_top1=1 class_top1=1 time=9.070s rerank=7.967s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[19/350] Avocado_toast/Avocado_toast_0086.jpg caption_top1=1 class_top1=1 time=9.649s rerank=8.546s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[20/350] Ayam_bakar/Ayam_bakar_0095.jpg caption_top1=0 class_top1=0 time=8.870s rerank=7.762s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[21/350] Ayam_goreng/Ayam_goreng_0098.jpg caption_top1=0 class_top1=0 time=9.044s rerank=7.960s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[22/350] BLT_sandwich/BLT_sandwich_0105.jpg caption_top1=0 class_top1=1 time=9.487s rerank=8.406s
+[23/350] Babi_panggang/Babi_panggang_0100.jpg caption_top1=1 class_top1=1 time=1.087s rerank=0.000s
+[24/350] Bacon_and_eggs/Bacon_and_eggs_0097.jpg caption_top1=1 class_top1=1 time=1.150s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[25/350] Bacon_explosion/Bacon_explosion_0113.jpg caption_top1=0 class_top1=1 time=8.675s rerank=7.591s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[26/350] Bacon_sandwich/Bacon_sandwich_0098.jpg caption_top1=0 class_top1=0 time=10.274s rerank=9.182s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[27/350] Baked_beans/Baked_beans_0081.jpg caption_top1=1 class_top1=1 time=10.034s rerank=8.945s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[28/350] Banana_bread/Banana_bread_0098.jpg caption_top1=0 class_top1=0 time=9.450s rerank=8.365s
+[29/350] Banana_pudding/Banana_pudding_0097.jpg caption_top1=0 class_top1=1 time=1.094s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[30/350] Banana_salad/Banana_salad_0091.jpg caption_top1=1 class_top1=1 time=9.736s rerank=8.652s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[31/350] Banana_split/Banana_split_0097.jpg caption_top1=1 class_top1=1 time=10.041s rerank=8.956s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[32/350] Bangers_and_mash/Bangers_and_mash_0081.jpg caption_top1=1 class_top1=1 time=9.828s rerank=8.741s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[33/350] Banh_bo/Banh_bo_0083.jpg caption_top1=1 class_top1=1 time=9.950s rerank=8.861s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[34/350] Bean_pie/Bean_pie_0086.jpg caption_top1=0 class_top1=1 time=9.466s rerank=8.204s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[35/350] Beef_Wellington/Beef_Wellington_0081.jpg caption_top1=1 class_top1=1 time=9.893s rerank=8.784s
+[36/350] Beef_bun/Beef_bun_0086.jpg caption_top1=1 class_top1=1 time=1.084s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[37/350] Beef_chow_fun/Beef_chow_fun_0099.jpg caption_top1=0 class_top1=1 time=10.394s rerank=9.311s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[38/350] Beef_noodle_soup/Beef_noodle_soup_0096.jpg caption_top1=1 class_top1=1 time=10.274s rerank=9.175s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[39/350] Bibimbap/Bibimbap_0084.jpg caption_top1=0 class_top1=1 time=11.446s rerank=10.351s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[40/350] Bibingka/Bibingka_0089.jpg caption_top1=1 class_top1=1 time=10.248s rerank=9.150s
+[41/350] Biryani/Biryani_0084.jpg caption_top1=1 class_top1=1 time=1.131s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[42/350] Black_Forest_gateau/Black_Forest_gateau_0099.jpg caption_top1=0 class_top1=1 time=11.074s rerank=9.974s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[43/350] Black_pepper_crab/Black_pepper_crab_0085.jpg caption_top1=1 class_top1=1 time=8.837s rerank=7.747s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[44/350] Blackberry_pie/Blackberry_pie_0094.jpg caption_top1=1 class_top1=1 time=10.111s rerank=8.933s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[45/350] Blancmange/Blancmange_0092.jpg caption_top1=1 class_top1=1 time=9.429s rerank=8.330s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[46/350] Blueberry_pie/Blueberry_pie_0088.jpg caption_top1=1 class_top1=1 time=9.951s rerank=8.837s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[47/350] Boiled_peanuts/Boiled_peanuts_0097.jpg caption_top1=0 class_top1=1 time=8.750s rerank=7.665s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[48/350] Bon_bon_chicken/Bon_bon_chicken_0095.jpg caption_top1=0 class_top1=1 time=10.359s rerank=9.255s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[49/350] Borscht/Borscht_0084.jpg caption_top1=1 class_top1=1 time=10.045s rerank=8.941s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[50/350] Botan-ebi/Botan-ebi_0096.jpg caption_top1=1 class_top1=1 time=10.044s rerank=8.960s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[51/350] Botifarra/Botifarra_0068.jpg caption_top1=1 class_top1=1 time=8.640s rerank=7.553s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[52/350] Bouillabaisse/Bouillabaisse_0087.jpg caption_top1=1 class_top1=1 time=10.671s rerank=9.580s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[53/350] Bourbon_chicken/Bourbon_chicken_0084.jpg caption_top1=0 class_top1=0 time=10.009s rerank=8.901s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[54/350] Broccoli_slaw/Broccoli_slaw_0085.jpg caption_top1=0 class_top1=1 time=9.870s rerank=8.746s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[55/350] Bubur_ayam/Bubur_ayam_0095.jpg caption_top1=1 class_top1=1 time=9.985s rerank=8.897s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[56/350] Bubur_kacang_hijau/Bubur_kacang_hijau_0092.jpg caption_top1=0 class_top1=0 time=10.655s rerank=9.560s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[57/350] Bun_bo_hue/Bun_bo_hue_0085.jpg caption_top1=1 class_top1=1 time=10.602s rerank=9.509s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[58/350] Butadon/Butadon_0085.jpg caption_top1=0 class_top1=1 time=10.280s rerank=9.197s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[59/350] Butter_pie/Butter_pie_0082.jpg caption_top1=1 class_top1=1 time=9.974s rerank=8.861s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[60/350] Buttercream/Buttercream_0088.jpg caption_top1=0 class_top1=0 time=9.861s rerank=8.747s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[61/350] Buttery_bread/Buttery_bread_0083.jpg caption_top1=1 class_top1=1 time=8.726s rerank=7.634s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[62/350] Bún_riêu/Bún_riêu_0097.jpg caption_top1=0 class_top1=1 time=12.000s rerank=10.902s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[63/350] Cabbage_soup/Cabbage_soup_0093.jpg caption_top1=1 class_top1=1 time=9.624s rerank=8.537s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[64/350] Caesar_salad/Caesar_salad_0089.jpg caption_top1=1 class_top1=1 time=9.153s rerank=8.069s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[65/350] Calamari/Calamari_0093.jpg caption_top1=1 class_top1=1 time=9.907s rerank=8.815s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[66/350] Caldo_verde/Caldo_verde_0094.jpg caption_top1=1 class_top1=1 time=10.376s rerank=9.295s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[67/350] Caprese_salad/Caprese_salad_0093.jpg caption_top1=0 class_top1=1 time=10.192s rerank=9.088s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[68/350] Carpaccio/Carpaccio_0301.jpg caption_top1=0 class_top1=1 time=10.798s rerank=9.714s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[69/350] Carrot_cake_cookie/Carrot_cake_cookie_0091.jpg caption_top1=1 class_top1=1 time=9.642s rerank=8.535s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[70/350] Carrot_chips/Carrot_chips_0097.jpg caption_top1=1 class_top1=1 time=8.498s rerank=7.398s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[71/350] Ceviche/Ceviche_0082.jpg caption_top1=0 class_top1=1 time=10.796s rerank=9.696s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[72/350] Chakli/Chakli_0081.jpg caption_top1=1 class_top1=1 time=8.559s rerank=7.473s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[73/350] Champurrado/Champurrado_0083.jpg caption_top1=1 class_top1=1 time=10.050s rerank=8.967s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[74/350] Charqui/Charqui_0097.jpg caption_top1=0 class_top1=0 time=10.705s rerank=9.607s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[75/350] Chazuke/Chazuke_0090.jpg caption_top1=0 class_top1=0 time=9.906s rerank=8.822s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[76/350] Cheese_and_tomato_sandwich/Cheese_and_tomato_sandwich_0098.jpg caption_top1=0 class_top1=0 time=10.338s rerank=9.242s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[77/350] Cheese_bun/Cheese_bun_0082.jpg caption_top1=0 class_top1=0 time=8.664s rerank=7.572s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[78/350] Cheese_maki/Cheese_maki_0096.jpg caption_top1=1 class_top1=1 time=9.280s rerank=8.189s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[79/350] Cheese_roll/Cheese_roll_0091.jpg caption_top1=1 class_top1=1 time=9.471s rerank=8.385s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[80/350] Cheesecake/Cheesecake_0092.jpg caption_top1=1 class_top1=1 time=9.903s rerank=8.804s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[81/350] Cherry_ice_cream/Cherry_ice_cream_0084.jpg caption_top1=1 class_top1=1 time=9.868s rerank=8.761s
+[82/350] Cherry_pie/Cherry_pie_0088.jpg caption_top1=1 class_top1=1 time=1.103s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[83/350] Chicken_Kiev/Chicken_Kiev_0089.jpg caption_top1=1 class_top1=1 time=10.231s rerank=9.150s
+[84/350] Chicken_and_waffles/Chicken_and_waffles_0081.jpg caption_top1=1 class_top1=1 time=1.091s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[85/350] Chicken_cacciatore/Chicken_cacciatore_0090.jpg caption_top1=0 class_top1=1 time=10.619s rerank=9.526s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[86/350] Chicken_fingers/Chicken_fingers_0085.jpg caption_top1=1 class_top1=1 time=9.215s rerank=8.110s
+[87/350] Chicken_marsala/Chicken_marsala_0081.jpg caption_top1=1 class_top1=1 time=1.116s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[88/350] Chicken_noodle_soup/Chicken_noodle_soup_0091.jpg caption_top1=0 class_top1=1 time=10.166s rerank=9.012s
+[89/350] Chicken_nugget/Chicken_nugget_0091.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[90/350] Chicken_parmigiana/Chicken_parmigiana_0095.jpg caption_top1=0 class_top1=1 time=9.706s rerank=8.557s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[91/350] Chicken_soup/Chicken_soup_0087.jpg caption_top1=1 class_top1=1 time=10.269s rerank=9.182s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[92/350] Chiles_en_nogada/Chiles_en_nogada_0097.jpg caption_top1=1 class_top1=1 time=11.122s rerank=10.011s
+[93/350] Chili_con_carne/Chili_con_carne_0082.jpg caption_top1=1 class_top1=1 time=1.089s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[94/350] Chilli_crab/Chilli_crab_0087.jpg caption_top1=0 class_top1=1 time=9.625s rerank=8.534s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[95/350] Chinese_chicken_salad/Chinese_chicken_salad_0103.jpg caption_top1=0 class_top1=0 time=10.748s rerank=9.663s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[96/350] Chocolate_covered_strawberries/Chocolate_covered_strawberries_0092.jpg caption_top1=0 class_top1=1 time=8.696s rerank=7.598s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[97/350] Chow_mein/Chow_mein_0094.jpg caption_top1=1 class_top1=1 time=9.344s rerank=8.254s
+[98/350] Ciambelle/Ciambelle_0100.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+[99/350] Clam_chowder/Clam_chowder_0084.jpg caption_top1=1 class_top1=1 time=1.094s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[100/350] Cobbler_food/Cobbler_food_0085.jpg caption_top1=1 class_top1=1 time=9.783s rerank=8.700s
+[101/350] Coconut_cake/Coconut_cake_0076.jpg caption_top1=1 class_top1=1 time=1.097s rerank=0.000s
+[102/350] Coconut_cream/Coconut_cream_0084.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[103/350] Coconut_shrimp/Coconut_shrimp_0097.jpg caption_top1=1 class_top1=1 time=9.558s rerank=8.451s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[104/350] Coda_alla_vaccinara/Coda_alla_vaccinara_0082.jpg caption_top1=1 class_top1=1 time=10.180s rerank=8.976s
+[105/350] Colcannon/Colcannon_0085.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[106/350] Coleslaw/Coleslaw_0095.jpg caption_top1=1 class_top1=1 time=10.250s rerank=9.157s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[107/350] Congee/Congee_0091.jpg caption_top1=0 class_top1=1 time=9.304s rerank=8.213s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[108/350] Corn_soup/Corn_soup_0092.jpg caption_top1=1 class_top1=1 time=10.674s rerank=9.583s
+[109/350] Corn_stew/Corn_stew_0096.jpg caption_top1=1 class_top1=1 time=1.120s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[110/350] Corn_tortilla/Corn_tortilla_0097.jpg caption_top1=1 class_top1=1 time=8.485s rerank=7.394s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[111/350] Corned_beef_sandwich/Corned_beef_sandwich_0084.jpg caption_top1=0 class_top1=1 time=9.101s rerank=8.008s
+[112/350] Cotoletta/Cotoletta_0089.jpg caption_top1=1 class_top1=1 time=1.084s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[113/350] Crab_cake/Crab_cake_0082.jpg caption_top1=0 class_top1=0 time=9.533s rerank=8.441s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[114/350] Crab_dip/Crab_dip_0099.jpg caption_top1=1 class_top1=1 time=8.377s rerank=7.292s
+[115/350] Cream_of_broccoli_soup/Cream_of_broccoli_soup_0082.jpg caption_top1=1 class_top1=1 time=1.108s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[116/350] Cream_of_mushroom_soup/Cream_of_mushroom_soup_0087.jpg caption_top1=1 class_top1=1 time=9.991s rerank=8.886s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[117/350] Creamed_eggs_on_toast/Creamed_eggs_on_toast_0094.jpg caption_top1=0 class_top1=1 time=9.079s rerank=7.990s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[118/350] Crudo/Crudo_0101.jpg caption_top1=1 class_top1=1 time=9.946s rerank=8.833s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[119/350] Crumble/Crumble_0085.jpg caption_top1=1 class_top1=1 time=10.517s rerank=9.127s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[120/350] Curry_Mee/Curry_Mee_0083.jpg caption_top1=0 class_top1=1 time=10.534s rerank=9.441s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[121/350] Curry_goat/Curry_goat_0091.jpg caption_top1=1 class_top1=1 time=8.649s rerank=7.549s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[122/350] Curry_rice/Curry_rice_0093.jpg caption_top1=0 class_top1=0 time=10.683s rerank=9.539s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[123/350] Currywurst/Currywurst_0084.jpg caption_top1=1 class_top1=1 time=10.469s rerank=9.373s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[124/350] Denver_omelette/Denver_omelette_0085.jpg caption_top1=1 class_top1=1 time=10.734s rerank=9.631s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[125/350] Denver_sandwich/Denver_sandwich_0139.jpg caption_top1=1 class_top1=1 time=9.659s rerank=8.550s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[126/350] Dhokla/Dhokla_0084.jpg caption_top1=0 class_top1=0 time=8.717s rerank=7.630s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[127/350] Di_san_xian/Di_san_xian_0113.jpg caption_top1=1 class_top1=1 time=11.363s rerank=10.017s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[128/350] Dinuguan/Dinuguan_0093.jpg caption_top1=0 class_top1=1 time=10.106s rerank=9.020s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[129/350] Dirty_Rice/Dirty_Rice_0093.jpg caption_top1=1 class_top1=1 time=9.165s rerank=8.073s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[130/350] Dong'an_chicken/Dong'an_chicken_0074.jpg caption_top1=0 class_top1=0 time=9.974s rerank=8.886s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[131/350] Doufunao/Doufunao_0092.jpg caption_top1=1 class_top1=1 time=10.771s rerank=9.681s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[132/350] Drunken_shrimp/Drunken_shrimp_0083.jpg caption_top1=0 class_top1=0 time=10.520s rerank=9.408s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[133/350] Edamame/Edamame_0086.jpg caption_top1=1 class_top1=1 time=8.789s rerank=7.688s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[134/350] Eisbein/Eisbein_0085.jpg caption_top1=1 class_top1=1 time=11.567s rerank=10.474s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[135/350] Es_campur/Es_campur_0102.jpg caption_top1=1 class_top1=1 time=10.657s rerank=9.571s
+[136/350] Filet_mignon/Filet_mignon_0094.jpg caption_top1=1 class_top1=1 time=1.092s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[137/350] Fish_ball/Fish_ball_0090.jpg caption_top1=1 class_top1=1 time=9.994s rerank=8.902s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[138/350] Fish_head_casserole/Fish_head_casserole_0100.jpg caption_top1=1 class_top1=1 time=10.579s rerank=9.492s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[139/350] Fish_head_curry/Fish_head_curry_0094.jpg caption_top1=1 class_top1=1 time=9.712s rerank=8.610s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[140/350] Fish_soup/Fish_soup_0091.jpg caption_top1=0 class_top1=1 time=10.821s rerank=9.731s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[141/350] Fish_steak/Fish_steak_0108.jpg caption_top1=1 class_top1=1 time=9.224s rerank=8.130s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[142/350] Fishcake/Fishcake_0086.jpg caption_top1=1 class_top1=1 time=9.341s rerank=8.249s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[143/350] Fondue/Fondue_0088.jpg caption_top1=1 class_top1=1 time=10.945s rerank=9.842s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[144/350] Francesinha/Francesinha_0090.jpg caption_top1=0 class_top1=1 time=9.770s rerank=8.676s
+[145/350] Frappe/Frappe_0093.jpg caption_top1=1 class_top1=1 time=1.094s rerank=0.000s
+[146/350] French_toast/French_toast_0086.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+[147/350] Fried_Tofu/Fried_Tofu_0081.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[148/350] Fried_aubergine/Fried_aubergine_0082.jpg caption_top1=1 class_top1=1 time=9.042s rerank=7.957s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[149/350] Fried_cheese/Fried_cheese_0095.jpg caption_top1=0 class_top1=0 time=9.957s rerank=8.867s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[150/350] Fried_chicken/Fried_chicken_0092.jpg caption_top1=1 class_top1=1 time=9.293s rerank=8.205s
+[151/350] Fried_noodles/Fried_noodles_0088.jpg caption_top1=1 class_top1=1 time=1.103s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[152/350] Fruit_curd/Fruit_curd_0097.jpg caption_top1=1 class_top1=1 time=9.305s rerank=8.220s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[153/350] Garlic_bread/Garlic_bread_0089.jpg caption_top1=1 class_top1=1 time=9.701s rerank=8.616s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[154/350] Ginger_beef/Ginger_beef_0091.jpg caption_top1=0 class_top1=1 time=9.104s rerank=8.012s
+[155/350] Gravlax/Gravlax_0092.jpg caption_top1=1 class_top1=1 time=1.126s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[156/350] Greek_salad/Greek_salad_0095.jpg caption_top1=1 class_top1=1 time=11.394s rerank=10.179s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[157/350] Green_bean_casserole/Green_bean_casserole_0081.jpg caption_top1=0 class_top1=1 time=10.599s rerank=9.510s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[158/350] Green_papaya_salad/Green_papaya_salad_0088.jpg caption_top1=1 class_top1=1 time=11.540s rerank=10.451s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[159/350] Grits/Grits_0093.jpg caption_top1=0 class_top1=1 time=9.824s rerank=8.733s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[160/350] Gyutan/Gyutan_0086.jpg caption_top1=0 class_top1=1 time=9.789s rerank=8.695s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[161/350] Hainanese_chicken_rice/Hainanese_chicken_rice_0087.jpg caption_top1=0 class_top1=1 time=11.240s rerank=10.149s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[162/350] Ham_and_cheese_sandwich/Ham_and_cheese_sandwich_0081.jpg caption_top1=0 class_top1=0 time=8.979s rerank=7.887s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[163/350] Har_gow/Har_gow_0100.jpg caption_top1=1 class_top1=1 time=9.914s rerank=8.827s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[164/350] Hiyayakko/Hiyayakko_0095.jpg caption_top1=0 class_top1=1 time=11.151s rerank=10.065s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[165/350] Hokkien_mee/Hokkien_mee_0081.jpg caption_top1=0 class_top1=1 time=12.007s rerank=10.908s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[166/350] Hongshao_rou/Hongshao_rou_0094.jpg caption_top1=0 class_top1=1 time=10.645s rerank=9.550s
+[167/350] Hoppin'_John/Hoppin'_John_0093.jpg caption_top1=1 class_top1=1 time=1.108s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[168/350] Hot_and_sour_soup/Hot_and_sour_soup_0097.jpg caption_top1=0 class_top1=1 time=10.383s rerank=9.300s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[169/350] Huangqiao_sesame_cake/Huangqiao_Sesame_Cake_0286.jpg caption_top1=1 class_top1=1 time=9.816s rerank=8.722s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[170/350] Huevos_rancheros/Huevos_rancheros_0100.jpg caption_top1=1 class_top1=1 time=10.996s rerank=9.903s
+[171/350] Hummus/Hummus_0224.jpg caption_top1=1 class_top1=1 time=1.104s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[172/350] Israeli_salad/Israeli_salad_0099.jpg caption_top1=1 class_top1=1 time=9.597s rerank=8.515s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[173/350] Jajangmyeon/Jajangmyeon_0089.jpg caption_top1=0 class_top1=1 time=11.183s rerank=10.090s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[174/350] Jambalaya/Jambalaya_0091.jpg caption_top1=1 class_top1=1 time=11.064s rerank=9.973s
+[175/350] Jambonneau/Jambonneau_0093.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[176/350] Japchae/Japchae_0082.jpg caption_top1=0 class_top1=1 time=10.652s rerank=9.560s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[177/350] Jiuniang/Jiuniang_0098.jpg caption_top1=1 class_top1=1 time=10.289s rerank=9.029s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[178/350] Kachori/Kachori_0092.jpg caption_top1=1 class_top1=1 time=10.604s rerank=9.514s
+[179/350] Kadhi/Kadhi_0095.jpg caption_top1=1 class_top1=1 time=1.086s rerank=0.000s
+[180/350] Katsudon/Katsudon_0089.jpg caption_top1=1 class_top1=1 time=1.084s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[181/350] Kedgeree/Kedgeree_0093.jpg caption_top1=0 class_top1=1 time=10.592s rerank=9.495s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[182/350] Key_lime_pie/Key_lime_pie_0094.jpg caption_top1=0 class_top1=1 time=10.043s rerank=8.959s
+[183/350] Konnyaku/Konnyaku_0106.jpg caption_top1=1 class_top1=1 time=1.096s rerank=0.000s
+[184/350] Kung_Pao_chicken/Kung_Pao_chicken_0103.jpg caption_top1=1 class_top1=1 time=1.082s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[185/350] Kwetiau_goreng/Kwetiau_goreng_0102.jpg caption_top1=0 class_top1=0 time=10.647s rerank=9.561s
+[186/350] Laksa/Laksa_0095.jpg caption_top1=1 class_top1=1 time=1.102s rerank=0.000s
+[187/350] Lamb_chop/Lamb_chop_0105.jpg caption_top1=1 class_top1=1 time=1.082s rerank=0.000s
+[188/350] Lasagna/Lasagna_0101.jpg caption_top1=1 class_top1=1 time=1.086s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[189/350] Lebkuchen/Lebkuchen_0093.jpg caption_top1=1 class_top1=1 time=9.227s rerank=8.144s
+[190/350] Lemon_chicken/Lemon_chicken_0160.jpg caption_top1=1 class_top1=1 time=1.088s rerank=0.000s
+[191/350] Lemon_meringue_pie/Lemon_meringue_pie_0106.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[192/350] Lemon_tart/Lemon_tart_0096.jpg caption_top1=1 class_top1=1 time=9.903s rerank=8.670s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[193/350] Lentil_soup/Lentil_soup_0105.jpg caption_top1=0 class_top1=0 time=10.691s rerank=9.587s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[194/350] Lettuce_soup/Lettuce_soup_0096.jpg caption_top1=1 class_top1=1 time=9.154s rerank=8.069s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[195/350] Lo_mein/Lo_mein_0084.jpg caption_top1=0 class_top1=0 time=10.543s rerank=9.459s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[196/350] Lobster_bisque/Lobster_bisque_0099.jpg caption_top1=1 class_top1=1 time=9.775s rerank=8.687s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[197/350] Lohikeitto/Lohikeitto_0095.jpg caption_top1=1 class_top1=1 time=10.327s rerank=9.180s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[198/350] Macaron/Macaron_0094.jpg caption_top1=1 class_top1=1 time=9.006s rerank=7.918s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[199/350] Mango_pomelo_sago/Mango_pomelo_sago_0093.jpg caption_top1=0 class_top1=1 time=10.404s rerank=9.297s
+[200/350] Mango_pudding/Mango_pudding_0100.jpg caption_top1=1 class_top1=1 time=1.084s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[201/350] Mapo_doufu/Mapo_doufu_0084.jpg caption_top1=0 class_top1=1 time=10.286s rerank=9.205s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[202/350] Meatloaf/Meatloaf_0097.jpg caption_top1=0 class_top1=0 time=10.938s rerank=9.851s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[203/350] Mee_pok/Mee_pok_0093.jpg caption_top1=1 class_top1=1 time=11.305s rerank=10.221s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[204/350] Mee_siam/Mee_siam_0090.jpg caption_top1=1 class_top1=1 time=10.416s rerank=9.331s
+[205/350] Melt_sandwich/Melt_sandwich_0085.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[206/350] Michigan_hot_dog/Michigan_hot_dog_0099.jpg caption_top1=1 class_top1=1 time=9.701s rerank=8.616s
+[207/350] Mie_goreng/Mie_goreng_0081.jpg caption_top1=0 class_top1=1 time=1.118s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[208/350] Minestrone/Minestrone_0090.jpg caption_top1=0 class_top1=0 time=9.788s rerank=8.550s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[209/350] Mirchi_ka_salan/Mirchi_ka_salan_0086.jpg caption_top1=0 class_top1=1 time=9.923s rerank=8.841s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[210/350] Mission_burrito/Mission_burrito_0089.jpg caption_top1=0 class_top1=0 time=10.721s rerank=9.581s
+[211/350] Mozzarella_sticks/Mozzarella_sticks_0092.jpg caption_top1=1 class_top1=1 time=1.100s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[212/350] Mushroom_gravy/Mushroom_gravy_0054.jpg caption_top1=1 class_top1=1 time=9.299s rerank=8.209s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[213/350] Mutton_korma/Mutton_korma_0095.jpg caption_top1=0 class_top1=1 time=9.923s rerank=8.818s
+[214/350] Nachos/Nachos_0099.jpg caption_top1=1 class_top1=1 time=1.132s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[215/350] Naengmyeon/Naengmyeon_0091.jpg caption_top1=1 class_top1=1 time=10.072s rerank=8.989s
+[216/350] Nasi_goreng/Nasi_goreng_0091.jpg caption_top1=1 class_top1=1 time=1.105s rerank=0.000s
+[217/350] Nasi_kuning/Nasi_kuning_0092.jpg caption_top1=1 class_top1=1 time=1.083s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[218/350] Nasi_liwet/Nasi_liwet_0096.jpg caption_top1=1 class_top1=1 time=9.778s rerank=8.697s
+[219/350] Nuomici/Nuomici_0096.jpg caption_top1=1 class_top1=1 time=1.096s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[220/350] Okinawa_soba/Okinawa_soba_0090.jpg caption_top1=1 class_top1=1 time=10.217s rerank=9.129s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[221/350] Olivier_salad/Olivier_salad_0093.jpg caption_top1=1 class_top1=1 time=8.558s rerank=7.475s
+[222/350] Onion_ring/Onion_ring_0097.jpg caption_top1=1 class_top1=1 time=1.120s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[223/350] Orange_chicken/Orange_chicken_0095.jpg caption_top1=1 class_top1=1 time=9.335s rerank=8.246s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[224/350] Oysters_Rockefeller/Oysters_Rockefeller_0085.jpg caption_top1=1 class_top1=1 time=9.517s rerank=8.414s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[225/350] Paella/Paella_0096.jpg caption_top1=0 class_top1=1 time=8.516s rerank=7.417s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[226/350] Pakora/Pakora_0086.jpg caption_top1=0 class_top1=1 time=9.084s rerank=7.978s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[227/350] Panzanella/Panzanella_0096.jpg caption_top1=1 class_top1=1 time=11.083s rerank=9.966s
+[228/350] Pasta/Pasta_0098.jpg caption_top1=1 class_top1=1 time=1.086s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[229/350] Pasta_al_pomodoro/Pasta_al_pomodoro_0100.jpg caption_top1=1 class_top1=1 time=11.039s rerank=9.946s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[230/350] Pasteis_de_Bacalhau/Pasteis_de_Bacalhau_0100.jpg caption_top1=1 class_top1=1 time=10.426s rerank=9.334s
+[231/350] Pea_soup/Pea_soup_0091.jpg caption_top1=1 class_top1=1 time=1.091s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[232/350] Peanut_butter_cookie/Peanut_butter_cookie_0091.jpg caption_top1=0 class_top1=1 time=8.705s rerank=7.621s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[233/350] Peanut_soup/Peanut_soup_0084.jpg caption_top1=0 class_top1=1 time=10.320s rerank=9.234s
+[234/350] Pickled_cucumber/Pickled_cucumber_0083.jpg caption_top1=1 class_top1=1 time=1.093s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[235/350] Pig's_ear/Pig's_ear_0100.jpg caption_top1=1 class_top1=1 time=9.632s rerank=8.545s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[236/350] Pig's_organ_soup/Pig's_organ_soup_0089.jpg caption_top1=0 class_top1=1 time=11.173s rerank=10.067s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[237/350] Pig's_trotters/Pig's_trotters_0083.jpg caption_top1=1 class_top1=1 time=10.148s rerank=9.044s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[238/350] Pineapple_tart/Pineapple_tart_0082.jpg caption_top1=1 class_top1=1 time=9.093s rerank=7.997s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[239/350] Pizza_carbonara/Pizza_carbonara_0084.jpg caption_top1=1 class_top1=1 time=10.140s rerank=9.038s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[240/350] Plum_cake/Plum_cake_0084.jpg caption_top1=0 class_top1=0 time=9.703s rerank=8.619s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[241/350] Pommes_dauphine/Pommes_dauphine_0081.jpg caption_top1=0 class_top1=0 time=9.820s rerank=8.730s
+[242/350] Poori/Poori_0089.jpg caption_top1=1 class_top1=1 time=1.086s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[243/350] Pork_Knuckles_and_Ginger_Stew/Pork_Knuckles_and_Ginger_Stew_0092.jpg caption_top1=1 class_top1=1 time=10.665s rerank=9.580s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[244/350] Pork_blood_soup/Pork_blood_soup_0108.jpg caption_top1=1 class_top1=1 time=10.942s rerank=9.850s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[245/350] Pork_knuckle/Pork_knuckle_0083.jpg caption_top1=0 class_top1=0 time=11.080s rerank=9.969s
+[246/350] Pork_ribs/Pork_ribs_0092.jpg caption_top1=1 class_top1=1 time=1.107s rerank=0.000s
+[247/350] Pork_tenderloin/Pork_tenderloin_0085.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[248/350] Pork_tenderloin_sandwich/Pork_tenderloin_sandwich_0094.jpg caption_top1=1 class_top1=1 time=10.043s rerank=8.952s
+[249/350] Pot_roast/Pot_roast_0097.jpg caption_top1=1 class_top1=1 time=1.111s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[250/350] Potato_salad/Potato_salad_0082.jpg caption_top1=1 class_top1=1 time=10.677s rerank=9.592s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[251/350] Poutine/Poutine_0097.jpg caption_top1=0 class_top1=1 time=9.221s rerank=8.137s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[252/350] Prawn_cocktail/Prawn_cocktail_0094.jpg caption_top1=1 class_top1=1 time=10.043s rerank=8.948s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[253/350] Prawn_soup/Prawn_soup_0090.jpg caption_top1=1 class_top1=1 time=9.800s rerank=8.694s
+[254/350] Profiterole/Profiterole_0094.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[255/350] Pudding_corn/Pudding_corn_0092.jpg caption_top1=1 class_top1=1 time=9.298s rerank=8.216s
+[256/350] Pulled_pork/Pulled_pork_0087.jpg caption_top1=1 class_top1=1 time=1.089s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[257/350] Pumpkin_bread/Pumpkin_bread_0093.jpg caption_top1=1 class_top1=1 time=9.955s rerank=8.871s
+[258/350] Pumpkin_pie/Pumpkin_pie_0097.jpg caption_top1=1 class_top1=1 time=1.266s rerank=0.000s
+[259/350] Quesadilla/Quesadilla_0096.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[260/350] Queso_flameado/Queso_flameado_0086.jpg caption_top1=0 class_top1=1 time=10.374s rerank=9.289s
+[261/350] Rack_of_lamb/Rack_of_lamb_0082.jpg caption_top1=1 class_top1=1 time=1.092s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[262/350] Raita/Raita_0088.jpg caption_top1=1 class_top1=1 time=10.386s rerank=9.299s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[263/350] Red_bean_ice/Red_bean_ice_0088.jpg caption_top1=1 class_top1=1 time=9.980s rerank=8.896s
+[264/350] Red_slaw/Red_slaw_0087.jpg caption_top1=1 class_top1=1 time=1.150s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[265/350] Refried_beans/Refried_beans_0098.jpg caption_top1=1 class_top1=1 time=10.270s rerank=9.177s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[266/350] Rendang/Rendang_0095.jpg caption_top1=0 class_top1=1 time=9.180s rerank=8.098s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[267/350] Rice_ball/Rice_ball_0088.jpg caption_top1=1 class_top1=1 time=9.083s rerank=7.999s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[268/350] Rice_cakes/Rice_cakes_0082.jpg caption_top1=1 class_top1=1 time=9.862s rerank=8.759s
+[269/350] Rice_pudding/Rice_pudding_0096.jpg caption_top1=1 class_top1=1 time=1.093s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[270/350] Rou_jia_mo/Rou_jia_mo_0083.jpg caption_top1=1 class_top1=1 time=10.168s rerank=9.086s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[271/350] Samosa/Samosa_0082.jpg caption_top1=0 class_top1=1 time=10.242s rerank=9.153s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[272/350] Sapo_tahu/Sapo_tahu_0091.jpg caption_top1=0 class_top1=0 time=10.412s rerank=9.328s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[273/350] Sauerbraten/Sauerbraten_0092.jpg caption_top1=1 class_top1=1 time=11.392s rerank=10.300s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[274/350] Sausage_bun/Sausage_bun_0092.jpg caption_top1=0 class_top1=0 time=9.741s rerank=8.647s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[275/350] Sausage_roll/Sausage_roll_0100.jpg caption_top1=0 class_top1=1 time=8.910s rerank=7.818s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[276/350] Sausage_sandwich/Sausage_sandwich_0091.jpg caption_top1=1 class_top1=1 time=9.904s rerank=8.786s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[277/350] Sauteed_mushrooms/Sauteed_mushrooms_0094.jpg caption_top1=1 class_top1=1 time=10.158s rerank=9.063s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[278/350] Schweinshaxe/Schweinshaxe_0097.jpg caption_top1=0 class_top1=1 time=10.346s rerank=9.245s
+[279/350] Seafood_boil/Seafood_boil_0083.jpg caption_top1=1 class_top1=1 time=1.097s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[280/350] Seafood_pizza/Seafood_pizza_0095.jpg caption_top1=0 class_top1=0 time=8.609s rerank=7.527s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[281/350] Sesame_chicken/Sesame_chicken_0098.jpg caption_top1=0 class_top1=1 time=9.781s rerank=8.665s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[282/350] Shaker_Lemon_Pie/Shaker_Lemon_Pie_0100.jpg caption_top1=0 class_top1=0 time=9.793s rerank=8.708s
+[283/350] Shanghai_fried_noodles/Shanghai_fried_noodles_0096.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[284/350] She-crab_soup/She-crab_soup_0095.jpg caption_top1=1 class_top1=1 time=9.777s rerank=8.693s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[285/350] Sheep's_trotters/Sheep's_trotters_0097.jpg caption_top1=0 class_top1=1 time=9.773s rerank=8.650s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[286/350] Shrimp_ball/Shrimp_ball_0089.jpg caption_top1=1 class_top1=1 time=9.807s rerank=8.716s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[287/350] Shrimp_toast/Shrimp_toast_0098.jpg caption_top1=1 class_top1=1 time=9.081s rerank=7.989s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[288/350] Shuizhu/Shuizhu_0097.jpg caption_top1=0 class_top1=0 time=10.474s rerank=9.390s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[289/350] Sliced_fish_soup/Sliced_fish_soup_0095.jpg caption_top1=0 class_top1=0 time=10.018s rerank=8.926s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[290/350] Smoked_salmon/Smoked_salmon_0093.jpg caption_top1=1 class_top1=1 time=8.928s rerank=7.823s
+[291/350] Soba/Soba_0087.jpg caption_top1=1 class_top1=1 time=1.089s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[292/350] Sopa_de_Mandioca/Sopa_de_Mandioca_0101.jpg caption_top1=1 class_top1=1 time=10.650s rerank=9.558s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[293/350] Soused_herring/Soused_herring_0094.jpg caption_top1=0 class_top1=1 time=10.150s rerank=9.057s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[294/350] Spanish_rice/Spanish_rice_0084.jpg caption_top1=0 class_top1=1 time=9.665s rerank=8.582s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[295/350] Spatzle/Spatzle_0093.jpg caption_top1=1 class_top1=1 time=10.152s rerank=8.955s
+[296/350] Spiced_beef/Spiced_beef_0094.jpg caption_top1=1 class_top1=1 time=1.095s rerank=0.000s
+[297/350] Spinach_salad/Spinach_salad_0096.jpg caption_top1=1 class_top1=1 time=1.100s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[298/350] Spinach_soup/Spinach_soup_0087.jpg caption_top1=1 class_top1=1 time=10.783s rerank=9.687s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[299/350] Steak_tartare/Steak_tartare_0086.jpg caption_top1=1 class_top1=1 time=9.693s rerank=8.607s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[300/350] Steamed_clams/Steamed_clams_0091.jpg caption_top1=1 class_top1=1 time=10.699s rerank=9.596s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[301/350] Steamed_meatball/Steamed_meatball_0081.jpg caption_top1=1 class_top1=1 time=10.373s rerank=9.256s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[302/350] Steamed_rice/Steamed_rice_0096.jpg caption_top1=0 class_top1=0 time=9.644s rerank=8.548s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[303/350] Stew_peas/Stew_peas_0093.jpg caption_top1=0 class_top1=0 time=9.907s rerank=8.816s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[304/350] Stinky_tofu/Stinky_tofu_0085.jpg caption_top1=1 class_top1=1 time=10.033s rerank=8.947s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[305/350] Stir-fried_tomato_and_scrambled_eggs/Stir-fried_tomato_and_scrambled_eggs_0091.jpg caption_top1=1 class_top1=1 time=9.735s rerank=8.642s
+[306/350] Strawberry_cheesecake/Strawberry_cheesecake_0088.jpg caption_top1=1 class_top1=1 time=1.104s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[307/350] Strawberry_ice_cream/Strawberry_ice_cream_0084.jpg caption_top1=1 class_top1=1 time=9.896s rerank=8.803s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[308/350] Strawberry_jam/Strawberry_jam_0093.jpg caption_top1=1 class_top1=1 time=10.087s rerank=8.983s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[309/350] Strawberry_pie/Strawberry_pie_0081.jpg caption_top1=1 class_top1=1 time=9.308s rerank=8.221s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[310/350] Strawberry_sundae/Strawberry_sundae_0084.jpg caption_top1=1 class_top1=1 time=9.539s rerank=8.456s
+[311/350] Strawberry_tart/Strawberry_tart_0082.jpg caption_top1=1 class_top1=1 time=1.118s rerank=0.000s
+[312/350] Stuffed_eggplant/Stuffed_eggplant_0085.jpg caption_top1=1 class_top1=1 time=1.105s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[313/350] Stuffed_peppers/Stuffed_peppers_0091.jpg caption_top1=1 class_top1=1 time=10.084s rerank=8.963s
+[314/350] Stuffed_tomatoes/Stuffed_tomatoes_0114.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[315/350] Suanmeitang/Suanmeitang_0082.jpg caption_top1=1 class_top1=1 time=10.499s rerank=9.415s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[316/350] Succotash/Succotash_0095.jpg caption_top1=0 class_top1=1 time=10.649s rerank=9.444s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[317/350] Suckling_pig/Suckling_pig_0084.jpg caption_top1=0 class_top1=0 time=10.074s rerank=8.962s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[318/350] Sweet_saffron_rice/Sweet_saffron_rice_0083.jpg caption_top1=1 class_top1=1 time=10.094s rerank=9.008s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[319/350] Syrniki/Syrniki_0086.jpg caption_top1=1 class_top1=1 time=9.122s rerank=8.039s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[320/350] Tabbouleh/Tabbouleh_0091.jpg caption_top1=0 class_top1=0 time=10.506s rerank=9.421s
+[321/350] Tacos/Tacos_0090.jpg caption_top1=1 class_top1=1 time=1.105s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[322/350] Tafelspitz/Tafelspitz_0093.jpg caption_top1=0 class_top1=1 time=11.021s rerank=9.941s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[323/350] Takoyaki/Takoyaki_0097.jpg caption_top1=1 class_top1=1 time=9.758s rerank=8.674s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[324/350] Taro_dumpling/Taro_dumpling_0092.jpg caption_top1=1 class_top1=1 time=9.318s rerank=8.233s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[325/350] Toad_in_the_hole/Toad_in_the_hole_0081.jpg caption_top1=1 class_top1=1 time=10.436s rerank=9.333s
+[326/350] Tobiko/Tobiko_0088.jpg caption_top1=1 class_top1=1 time=1.089s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[327/350] Tomato_and_egg_soup/Tomato_and_egg_soup_0049.jpg caption_top1=1 class_top1=1 time=9.523s rerank=8.404s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[328/350] Tomato_bredie/Tomato_bredie_0092.jpg caption_top1=1 class_top1=1 time=9.357s rerank=8.271s
+[329/350] Tomato_omelette/Tomato_omelette_0093.jpg caption_top1=1 class_top1=1 time=1.088s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[330/350] Tomato_soup/Tomato_soup_0097.jpg caption_top1=1 class_top1=1 time=9.697s rerank=8.602s
+[331/350] Torta_caprese/Torta_caprese_0084.jpg caption_top1=1 class_top1=1 time=1.097s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[332/350] Tsukemono/Tsukemono_0093.jpg caption_top1=0 class_top1=1 time=10.256s rerank=9.167s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[333/350] Tuna_fish_sandwich/Tuna_fish_sandwich_0096.jpg caption_top1=0 class_top1=1 time=9.920s rerank=8.835s
+[334/350] Tuna_salad/Tuna_salad_0091.jpg caption_top1=1 class_top1=1 time=1.085s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[335/350] Turnip_cake/Turnip_cake_0085.jpg caption_top1=1 class_top1=1 time=9.327s rerank=8.225s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[336/350] Twix/Twix_0089.jpg caption_top1=1 class_top1=1 time=9.080s rerank=7.985s
+[337/350] Vegetarian_chili/Vegetarian_chili_0094.jpg caption_top1=1 class_top1=1 time=1.169s rerank=0.000s
+[338/350] Vichyssoise/Vichyssoise_0096.jpg caption_top1=1 class_top1=1 time=1.090s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[339/350] Vindaloo/Vindaloo_0091.jpg caption_top1=0 class_top1=0 time=10.492s rerank=9.371s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[340/350] Vitello_tonnato/Vitello_tonnato_0095.jpg caption_top1=1 class_top1=1 time=13.343s rerank=12.230s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[341/350] Wakame/Wakame_0095.jpg caption_top1=0 class_top1=1 time=10.794s rerank=9.709s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[342/350] Wenchang_chicken/Wenchang_chicken_0099.jpg caption_top1=0 class_top1=0 time=10.390s rerank=9.304s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[343/350] White_boiled_shrimp/White_boiled_shrimp_0096.jpg caption_top1=0 class_top1=0 time=10.194s rerank=9.091s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[344/350] White_cut_chicken/White_cut_chicken_0093.jpg caption_top1=1 class_top1=1 time=9.950s rerank=8.860s
+[345/350] Whitebait/Whitebait_0083.jpg caption_top1=1 class_top1=1 time=1.088s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[346/350] Wonton_noodles/Wonton_noodles_0067.jpg caption_top1=0 class_top1=1 time=9.045s rerank=7.952s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[347/350] Wotou/Wotou_0091.jpg caption_top1=1 class_top1=1 time=9.305s rerank=8.207s
+[348/350] Youtiao/Youtiao_0086.jpg caption_top1=1 class_top1=1 time=1.095s rerank=0.000s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[349/350] kebab/kebab_0091.jpg caption_top1=1 class_top1=1 time=8.430s rerank=7.341s
+Reranked image-caption pairs 1/5
+Reranked image-caption pairs 2/5
+Reranked image-caption pairs 3/5
+Reranked image-caption pairs 4/5
+Reranked image-caption pairs 5/5
+[350/350] Æbleflæsk/Æbleflæsk_0092.jpg caption_top1=1 class_top1=1 time=10.739s rerank=9.647s
+Final metrics: caption_accuracy=0.6771 class_accuracy=0.8771 siglip_top1_caption=0.5457 truth_caption_in_candidates=0.8657 qwen_pairs=1355 siglip_guard_skips=79 rows=350
+Benchmark summary:
+- latency/query avg=7.967s median=9.738s p95=11.081s
+- power avg=unavailable energy/query=unavailable throughput=0.124 img/s
+- task metric top1_caption_accuracy=0.6771
+Planned Evaluation JSON: reports/friday_task2_q8_350/eval_first_350_caption_alignment.json
+Planned Predictions CSV: reports/friday_task2_q8_350/eval_first_350_caption_alignment.csv
+Evaluation JSON written: reports/friday_task2_q8_350/eval_first_350_caption_alignment.json
+Predictions CSV written: reports/friday_task2_q8_350/eval_first_350_caption_alignment.csv
+/prj/qct/webtech_scratch20/mlg_user_admin/qaisw_source_repo/rel/qairt-2.45.0/release/SNPE_SRC/avante-tools/prebuilt/dsp/hexagon-sdk-5.5.5/ipc/fastrpc/rpcmem/src/rpcmem_android.c:38:dummy call to rpcmem_init, rpcmem APIs will be used from libxdsprpc
+/prj/qct/webtech_scratch20/mlg_user_admin/qaisw_source_repo/rel/qairt-2.45.0/release/SNPE_SRC/avante-tools/prebuilt/dsp/hexagon-sdk-5.5.5/ipc/fastrpc/rpcmem/src/rpcmem_android.c:42:dummy call to rpcmem_deinit, rpcmem APIs will be used from libxdsprpc
