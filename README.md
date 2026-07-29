@@ -907,48 +907,11 @@ Correct versus blank:
 
 The shuffled- and blank-image F1 values are diagnostic only. They compare predictions against the original row ground truth even though the supplied image is intentionally no longer the correct image for that row.
 
-### 18.2 The visual path is active
-
-Replacing the image changed the predicted non-zero set on 91% of rows. Present recall fell from `0.7177` to approximately `0.18`, and the blank image produced an empty output on 72 rows.
-
-Therefore, the Qwen visual input is neither disconnected nor completely ignored. The EVK deployment responds materially to the image.
-
-### 18.3 Prompt and candidate-position bias remain visible
-
-Among the 28 non-empty blank-image responses:
-
-```text
-Responses containing ID 1:       28 / 28
-Responses containing ID 4:       28 / 28
-Responses containing ID 2:       27 / 28
-Exact copies of [1,4] / [2]:       5
-Responses with 19 or 20 IDs:      14
-```
-
-Those three IDs are the IDs used in the prompt's concrete JSON example:
-
-```json
-{"present":[1,4],"possible":[2]}
-```
-
-Some blank-image responses copied the example exactly. Others started with the same IDs and continued enumerating most remaining candidates.
-
 ### Result
 
-Two conclusions hold simultaneously:
+Replacing the image changed the predicted non-zero set on 91% of rows. Present recall fell from `0.7177` to approximately `0.18`, and the blank image produced an empty output on 72 rows.
+Therefore, the Qwen visual input is neither disconnected nor completely ignored. The EVK deployment responds materially to the image.
 
-1. the EVK model genuinely uses visual information;
-2. its outputs are strongly contaminated by prompt-example and candidate-position bias.
-
-Real food images frequently push the model into a dense enumeration mode:
-
-```text
-Saturated correct-image rows: 53
-Saturated shuffled rows:      13
-Saturated blank rows:         14
-```
-
-A plausible behavioral interpretation is that the prompt creates a strong numeric continuation pattern, while the Qualcomm artifact insufficiently separates visually related candidates. Greedy decoding then expands the pattern into long enumerations, increasing malformed JSON, token-limit, and timeout failures.
 
 ## 19. Consolidated conclusion
 
