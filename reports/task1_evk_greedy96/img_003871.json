@@ -1,0 +1,512 @@
+{
+  "artifacts": {
+    "siglip_contexts": [
+      {
+        "bytes": 228,
+        "exists": true,
+        "mtime_ns": 1784199205380193686,
+        "path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage1/model.onnx",
+        "sha256": "65ae9eec84d1e99e4f44a5e5a0ce9a769c043df037fb59173aad328d1c44a820"
+      },
+      {
+        "bytes": 211,
+        "exists": true,
+        "mtime_ns": 1784199205381193695,
+        "path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage2/model.onnx",
+        "sha256": "838fe9931a8f84d3c342b60a75b10f88fed1526edcb4aa5603950afe0706d5cc"
+      }
+    ],
+    "siglip_text_embeddings": {
+      "bytes": 1491756,
+      "exists": true,
+      "mtime_ns": 1782979899379580934,
+      "path": "/home/ubuntu/Desktop/demo_dishcovery/embeddings/orin_siglip2_text_feats_cache.npz",
+      "sha256": "b464b0362216bcd84645d2c9f45b7337b51f7c73c15b18e91d7721c04b9dddcf"
+    }
+  },
+  "candidate_list_policy": {
+    "effective_k": 20,
+    "mode": "fixed_topk",
+    "top_k": 20
+  },
+  "fusion_mode": "visual_row_z_w0.25+qwen_present_max_row_z_w0.75",
+  "image": "dataset/images_full_difficulty_subset_qwen3_350/img_003871.jpg",
+  "label_count": 295,
+  "models": {
+    "device": "cpu",
+    "geniex_image_max_side": 512,
+    "geniex_image_min_side": 512,
+    "geniex_padding_mode": "white",
+    "qwen_model": "local/qwen3vl-4b-qairt-w4a16",
+    "siglip_backend": "onnx",
+    "siglip_context_mode": "split",
+    "siglip_model": "hf-hub:timm/ViT-gopt-16-SigLIP2-384",
+    "siglip_onnx_path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage1/model.onnx",
+    "siglip_onnx_provider": "qnn",
+    "siglip_onnx_stage2_path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage2/model.onnx",
+    "siglip_pretrained": "",
+    "torch_dtype": "float32",
+    "vlm_backend": "geniex",
+    "vlm_family": "qwen",
+    "vlm_model": "local/qwen3vl-4b-qairt-w4a16"
+  },
+  "profiling": {
+    "peak_memory": {
+      "peak_rss_bytes": 1298751488,
+      "rss_bytes": 113553408
+    },
+    "siglip": {
+      "backend_placement": {
+        "visual_encoder": "QNNExecutionProvider/HTP (CPU fallback disabled)"
+      },
+      "context_mode": "split",
+      "cpu_fallback_disabled": true,
+      "fallback_operations": [],
+      "input_shape": [
+        1,
+        3,
+        384,
+        384
+      ],
+      "intermediate_bytes": 3538944,
+      "intermediate_transfer_accounting": "included_in_qnn_stage1_sec",
+      "io_binding": false,
+      "peak_memory": {
+        "peak_rss_bytes": 1298751488,
+        "rss_bytes": 161927168
+      },
+      "preprocessing_semantics": {
+        "color_mode": "RGB",
+        "mean": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "pixel_scale": "uint8_div_255",
+        "resize": "bicubic_square",
+        "std": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "provider": "QNNExecutionProvider/HTP (CPU fallback disabled)",
+      "qnn_provider_options": {
+        "backend_path": "/home/ubuntu/Desktop/demo_dishcovery/.venv_ort_qnn/lib/python3.13/site-packages/onnxruntime_qnn/libQnnHtp.so",
+        "htp_performance_mode": "sustained_high_performance"
+      },
+      "reusable_input_buffer": false,
+      "reusable_output_buffer_count": 0,
+      "timings_sec": {
+        "cosine_recall_sec": 0.00019437700029811822,
+        "image_decode_preprocess_sec": 0.18715984899972682,
+        "intermediate_transfer_sec": 0.0,
+        "normalization_sec": 0.00015505400006077252,
+        "qnn_stage1_sec": 0.5403319960023509,
+        "qnn_stage2_sec": 0.5384134349988017,
+        "topk_selection_sec": 0.00013651200060849078,
+        "total_siglip_sec": 1.2707484530001238
+      },
+      "visual_tokens": 576
+    }
+  },
+  "qwen": {
+    "count_parsed": null,
+    "count_raw_text": "",
+    "parse_warnings": [],
+    "parsed": {
+      "possible": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        16,
+        19
+      ],
+      "present": [
+        1,
+        2,
+        4,
+        13,
+        15,
+        17,
+        18,
+        20
+      ]
+    },
+    "possible_candidate_ranks": [
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      16,
+      19
+    ],
+    "prompt": "Classify each candidate ingredient by direct visual evidence in this meal image.\n\nUse this confidence scale:\n2 = clearly visible as a physical food item or ingredient\n1 = possibly visible, partially hidden, ambiguous, or only weakly supported\n0 = not visible\n\nRules:\n- Choose only from the candidate IDs below. Do not invent labels or use synonyms.\n- Do not infer recipe ingredients, fillings, sauces, seasonings, or cuisine context unless they are directly visible.\n- For dish names, preparations, or specific variants, use 2 only when that exact visual form is clear.\n- If two candidates are similar and the image does not clearly distinguish them, put the uncertain candidate in possible, not present.\n- Return IDs using the 1-based numbers in the candidate list.\n- Omit all 0 items.\n\nReturn only valid JSON with exactly these two keys and no markdown. Replace IDs with integer arrays:\n{\"present\":[1,4],\"possible\":[2]}\nIf nothing is visible, return: {\"present\":[],\"possible\":[]}\n\nCandidate ingredients:\n1. roti\n2. dal\n3. naan\n4. lentil\n5. batter\n6. litti\n7. dosa\n8. coconut chutney\n9. chokha\n10. hummus\n11. curry sauce\n12. milk\n13. tortilla\n14. coconut milk\n15. yogurt\n16. turmeric\n17. spicy sauce\n18. soy milk\n19. peanut sauce\n20. fried bread",
+    "prompt_mode": "present_possible",
+    "raw_text": "{\"present\":[1,2,4,13,15,17,18,20],\"possible\":[3,5,6,7,8,9,10,11,12,14,16,19]}",
+    "selected_candidate_ranks": [
+      1,
+      2,
+      4,
+      13,
+      15,
+      17,
+      18,
+      20
+    ],
+    "skip_reason": null,
+    "skipped": false,
+    "timed_out": false,
+    "timeout_fallback": false,
+    "unlisted_visible": [],
+    "visible_ingredient_count": 8,
+    "visual_guard": {
+      "accepted_qwen_candidate_ranks": [],
+      "applied": false,
+      "core_candidate_ranks": [],
+      "core_ratio": 0.85,
+      "final_candidate_ranks": [],
+      "removed_qwen_candidate_ranks": [],
+      "selected_min_ratio": 0.82
+    }
+  },
+  "schema_version": "orin_cuda_siglip2_qwen3vl_v1",
+  "selected_label_ids": [
+    234,
+    86,
+    154
+  ],
+  "selected_labels": [
+    "roti",
+    "dal",
+    "lentil"
+  ],
+  "settings": {
+    "candidate_list_mode": "fixed_topk",
+    "count_select_max_count": 0,
+    "count_select_min_count": 1,
+    "dynamic_candidate_max_k": 50,
+    "dynamic_candidate_min_k": 5,
+    "dynamic_candidate_relative_delta": 0.4,
+    "effective_candidate_k": 20,
+    "final_rank_depth": 20,
+    "final_selection_scope": "global",
+    "legacy_keep_candidate_list": true,
+    "max_dish_ingredients": 10,
+    "qwen_possible_weight": 0.0,
+    "qwen_reducer": "max",
+    "qwen_weight": 0.75,
+    "selector": "threshold_ratio",
+    "selector_delta": 0.9,
+    "selector_k": 1,
+    "selector_max_labels": 7,
+    "selector_ratio": 0.85,
+    "selector_score_mode": "row_z",
+    "selector_threshold": 3.5,
+    "siglip_io_binding": false,
+    "skip_vlm_rel_gap_threshold": 0.25,
+    "skip_vlm_visual_selector": "top_ratio",
+    "skip_vlm_visual_selector_delta": 0.0,
+    "skip_vlm_visual_selector_k": 1,
+    "skip_vlm_visual_selector_max_labels": 3,
+    "skip_vlm_visual_selector_ratio": 0.85,
+    "skip_vlm_visual_selector_score_mode": "raw",
+    "skip_vlm_visual_selector_threshold": 0.0,
+    "task1_logic": "legacy_siglip_qwen",
+    "top_k": 20,
+    "visual_weight": 0.25,
+    "vlm_max_new_tokens": 96,
+    "vlm_prompt_mode": "present_possible",
+    "vlm_selected_min_visual_ratio": 0.82,
+    "vlm_timeout_sec": 15.0,
+    "vlm_visual_core_ratio": 0.85
+  },
+  "siglip2_top_candidates": [
+    {
+      "fused_score": 3.546268939971924,
+      "label": "roti",
+      "label_id": 234,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 91.37518310546875,
+      "qwen_score": 99.99999237060547,
+      "rank": 1,
+      "selector_score": 4.049264907836914,
+      "visual_score": 16.269519805908203
+    },
+    {
+      "fused_score": 3.5404858589172363,
+      "label": "dal",
+      "label_id": 86,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 87.71382904052734,
+      "qwen_score": 99.99998474121094,
+      "rank": 2,
+      "selector_score": 4.042661666870117,
+      "visual_score": 16.213224411010742
+    },
+    {
+      "fused_score": 2.0156843662261963,
+      "label": "naan",
+      "label_id": 177,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99999237060547,
+      "qwen_score": 91.37518310546875,
+      "rank": 3,
+      "selector_score": 2.3015847206115723,
+      "visual_score": 13.234789848327637
+    },
+    {
+      "fused_score": 3.166750431060791,
+      "label": "lentil",
+      "label_id": 154,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 86.75464630126953,
+      "qwen_score": 100.0,
+      "rank": 4,
+      "selector_score": 3.6159160137176514,
+      "visual_score": 12.574529647827148
+    },
+    {
+      "fused_score": 0.7913004755973816,
+      "label": "batter",
+      "label_id": 13,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99999237060547,
+      "qwen_score": 83.46250915527344,
+      "rank": 5,
+      "selector_score": 0.9035360813140869,
+      "visual_score": 12.201382637023926
+    },
+    {
+      "fused_score": -1.655808925628662,
+      "label": "litti",
+      "label_id": 156,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 66.27986907958984,
+      "rank": 6,
+      "selector_score": -1.890667200088501,
+      "visual_score": 12.018232345581055
+    },
+    {
+      "fused_score": 1.6986916065216064,
+      "label": "dosa",
+      "label_id": 89,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99999237060547,
+      "qwen_score": 90.04484558105469,
+      "rank": 7,
+      "selector_score": 1.939630150794983,
+      "visual_score": 11.978987693786621
+    },
+    {
+      "fused_score": 0.45295578241348267,
+      "label": "coconut chutney",
+      "label_id": 61,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0000228881836,
+      "qwen_score": 81.470458984375,
+      "rank": 8,
+      "selector_score": 0.5172011852264404,
+      "visual_score": 11.64815902709961
+    },
+    {
+      "fused_score": -0.16229921579360962,
+      "label": "chokha",
+      "label_id": 56,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 77.18077850341797,
+      "rank": 9,
+      "selector_score": -0.18532058596611023,
+      "visual_score": 11.560285568237305
+    },
+    {
+      "fused_score": 1.1761997938156128,
+      "label": "hummus",
+      "label_id": 140,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0000228881836,
+      "qwen_score": 86.75464630126953,
+      "rank": 10,
+      "selector_score": 1.3430289030075073,
+      "visual_score": 11.419054985046387
+    },
+    {
+      "fused_score": 1.7638397216796875,
+      "label": "curry sauce",
+      "label_id": 84,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99996948242188,
+      "qwen_score": 90.93489837646484,
+      "rank": 11,
+      "selector_score": 2.0140187740325928,
+      "visual_score": 11.388632774353027
+    },
+    {
+      "fused_score": 2.092902660369873,
+      "label": "milk",
+      "label_id": 172,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99998474121094,
+      "qwen_score": 93.2978515625,
+      "rank": 12,
+      "selector_score": 2.3897554874420166,
+      "visual_score": 11.341157913208008
+    },
+    {
+      "fused_score": 3.027661085128784,
+      "label": "tortilla",
+      "label_id": 279,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 86.03795623779297,
+      "qwen_score": 99.99998474121094,
+      "rank": 13,
+      "selector_score": 3.4570984840393066,
+      "visual_score": 11.220381736755371
+    },
+    {
+      "fused_score": 1.2942914962768555,
+      "label": "coconut milk",
+      "label_id": 62,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0000228881836,
+      "qwen_score": 87.78897094726562,
+      "rank": 14,
+      "selector_score": 1.4778705835342407,
+      "visual_score": 11.145649909973145
+    },
+    {
+      "fused_score": 3.012075424194336,
+      "label": "yogurt",
+      "label_id": 293,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 86.01244354248047,
+      "qwen_score": 100.0,
+      "rank": 15,
+      "selector_score": 3.4393022060394287,
+      "visual_score": 11.068618774414062
+    },
+    {
+      "fused_score": 0.4798910319805145,
+      "label": "turmeric",
+      "label_id": 282,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.00001525878906,
+      "qwen_score": 82.31033325195312,
+      "rank": 16,
+      "selector_score": 0.5479568839073181,
+      "visual_score": 10.754805564880371
+    },
+    {
+      "fused_score": 2.9559221267700195,
+      "label": "spicy sauce",
+      "label_id": 257,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 90.93489837646484,
+      "qwen_score": 100.00001525878906,
+      "rank": 17,
+      "selector_score": 3.3751842975616455,
+      "visual_score": 10.521893501281738
+    },
+    {
+      "fused_score": 2.9375851154327393,
+      "label": "soy milk",
+      "label_id": 255,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 93.2978515625,
+      "qwen_score": 100.00001525878906,
+      "rank": 18,
+      "selector_score": 3.3542463779449463,
+      "visual_score": 10.343364715576172
+    },
+    {
+      "fused_score": 1.2323887348175049,
+      "label": "peanut sauce",
+      "label_id": 197,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 87.97785949707031,
+      "rank": 19,
+      "selector_score": 1.4071877002716064,
+      "visual_score": 10.283073425292969
+    },
+    {
+      "fused_score": 2.927000045776367,
+      "label": "fried bread",
+      "label_id": 111,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 84.56047821044922,
+      "qwen_score": 100.0,
+      "rank": 20,
+      "selector_score": 3.3421597480773926,
+      "visual_score": 10.24032974243164
+    }
+  ],
+  "skip_vlm": {
+    "enabled": true,
+    "rel_gap_threshold": 0.25,
+    "skipped": false,
+    "top1_visual_score": 16.269519805908203,
+    "top2_visual_score": 16.213224411010742,
+    "visual_gap": 0.05629539489746094,
+    "visual_rel_gap": 0.0034601755656622096
+  },
+  "text_cache": {
+    "backend": "npz",
+    "enabled": true,
+    "hit": true,
+    "path": "/home/ubuntu/Desktop/demo_dishcovery/embeddings/orin_siglip2_text_feats_cache.npz",
+    "shape": [
+      295,
+      1536
+    ]
+  },
+  "timing_summary_sec": {
+    "model_load_sec": {
+      "load_models_and_text_sec": 3.8136888569970324,
+      "load_qwen_sec": 0.0024956490015028976,
+      "load_siglip2_sec": 3.7922415129978617,
+      "text_embeddings_sec": 0.0189516949976678
+    },
+    "per_image_averages_sec": {
+      "fusion_and_selection_avg_sec": 0.0027889849989151116,
+      "qwen_avg_sec": 4.753703409998707,
+      "siglip2_image_and_topk_avg_sec": 1.2707484530001238,
+      "total_image_avg_sec": 6.027271629001916
+    },
+    "per_image_totals_sec": {
+      "fusion_and_selection_sec": 0.0027889849989151116,
+      "qwen_sec": 4.753703409998707,
+      "siglip2_image_and_topk_sec": 1.2707484530001238,
+      "total_image_sec": 6.027271629001916
+    },
+    "total_eval_wall_accounted_sec": 9.840960485998949,
+    "total_fusion_and_selection_sec": 0.0027889849989151116,
+    "total_qwen_sec": 4.75619905900021,
+    "total_siglip2_sec": 5.081941660995653
+  },
+  "timings_sec": {
+    "fusion_and_selection_sec": 0.0027889849989151116,
+    "load_models_and_text_sec": 3.8136888569970324,
+    "load_qwen_sec": 0.0024956490015028976,
+    "load_siglip2_sec": 3.7922415129978617,
+    "qwen_sec": 4.753703409998707,
+    "siglip2_image_and_topk_sec": 1.2707484530001238,
+    "text_embeddings_sec": 0.0189516949976678,
+    "total_image_sec": 6.027271629001916
+  }
+}

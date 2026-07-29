@@ -1,0 +1,518 @@
+{
+  "artifacts": {
+    "siglip_contexts": [
+      {
+        "bytes": 228,
+        "exists": true,
+        "mtime_ns": 1784199205380193686,
+        "path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage1/model.onnx",
+        "sha256": "65ae9eec84d1e99e4f44a5e5a0ce9a769c043df037fb59173aad328d1c44a820"
+      },
+      {
+        "bytes": 211,
+        "exists": true,
+        "mtime_ns": 1784199205381193695,
+        "path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage2/model.onnx",
+        "sha256": "838fe9931a8f84d3c342b60a75b10f88fed1526edcb4aa5603950afe0706d5cc"
+      }
+    ],
+    "siglip_text_embeddings": {
+      "bytes": 1491756,
+      "exists": true,
+      "mtime_ns": 1782979899379580934,
+      "path": "/home/ubuntu/Desktop/demo_dishcovery/embeddings/orin_siglip2_text_feats_cache.npz",
+      "sha256": "b464b0362216bcd84645d2c9f45b7337b51f7c73c15b18e91d7721c04b9dddcf"
+    }
+  },
+  "candidate_list_policy": {
+    "effective_k": 20,
+    "mode": "fixed_topk",
+    "top_k": 20
+  },
+  "fusion_mode": "visual_row_z_w0.25+qwen_present_max_row_z_w0.75",
+  "image": "dataset/images_full_difficulty_subset_qwen3_350/img_011027.jpg",
+  "label_count": 295,
+  "models": {
+    "device": "cpu",
+    "geniex_image_max_side": 512,
+    "geniex_image_min_side": 512,
+    "geniex_padding_mode": "white",
+    "qwen_model": "local/qwen3vl-4b-qairt-w4a16",
+    "siglip_backend": "onnx",
+    "siglip_context_mode": "split",
+    "siglip_model": "hf-hub:timm/ViT-gopt-16-SigLIP2-384",
+    "siglip_onnx_path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage1/model.onnx",
+    "siglip_onnx_provider": "qnn",
+    "siglip_onnx_stage2_path": "/home/ubuntu/models/siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage2/model.onnx",
+    "siglip_pretrained": "",
+    "torch_dtype": "float32",
+    "vlm_backend": "geniex",
+    "vlm_family": "qwen",
+    "vlm_model": "local/qwen3vl-4b-qairt-w4a16"
+  },
+  "profiling": {
+    "peak_memory": {
+      "peak_rss_bytes": 1298644992,
+      "rss_bytes": 113487872
+    },
+    "siglip": {
+      "backend_placement": {
+        "visual_encoder": "QNNExecutionProvider/HTP (CPU fallback disabled)"
+      },
+      "context_mode": "split",
+      "cpu_fallback_disabled": true,
+      "fallback_operations": [],
+      "input_shape": [
+        1,
+        3,
+        384,
+        384
+      ],
+      "intermediate_bytes": 3538944,
+      "intermediate_transfer_accounting": "included_in_qnn_stage1_sec",
+      "io_binding": false,
+      "peak_memory": {
+        "peak_rss_bytes": 1298644992,
+        "rss_bytes": 160489472
+      },
+      "preprocessing_semantics": {
+        "color_mode": "RGB",
+        "mean": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "pixel_scale": "uint8_div_255",
+        "resize": "bicubic_square",
+        "std": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "provider": "QNNExecutionProvider/HTP (CPU fallback disabled)",
+      "qnn_provider_options": {
+        "backend_path": "/home/ubuntu/Desktop/demo_dishcovery/.venv_ort_qnn/lib/python3.13/site-packages/onnxruntime_qnn/libQnnHtp.so",
+        "htp_performance_mode": "sustained_high_performance"
+      },
+      "reusable_input_buffer": false,
+      "reusable_output_buffer_count": 0,
+      "timings_sec": {
+        "cosine_recall_sec": 0.00028802299857488833,
+        "image_decode_preprocess_sec": 0.16862814699925366,
+        "intermediate_transfer_sec": 0.0,
+        "normalization_sec": 0.0001905229983094614,
+        "qnn_stage1_sec": 0.5365467720002925,
+        "qnn_stage2_sec": 0.5381994439994742,
+        "topk_selection_sec": 0.0001864080004452262,
+        "total_siglip_sec": 1.2483185259989114
+      },
+      "visual_tokens": 576
+    }
+  },
+  "qwen": {
+    "count_parsed": null,
+    "count_raw_text": "",
+    "parse_warnings": [],
+    "parsed": {
+      "possible": [
+        2,
+        3,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20
+      ],
+      "present": [
+        1,
+        4,
+        5,
+        9,
+        13,
+        18
+      ]
+    },
+    "possible_candidate_ranks": [
+      2,
+      3,
+      6,
+      7,
+      8,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20
+    ],
+    "prompt": "Classify each candidate ingredient by direct visual evidence in this meal image.\n\nUse this confidence scale:\n2 = clearly visible as a physical food item or ingredient\n1 = possibly visible, partially hidden, ambiguous, or only weakly supported\n0 = not visible\n\nRules:\n- Choose only from the candidate IDs below. Do not invent labels or use synonyms.\n- Do not infer recipe ingredients, fillings, sauces, seasonings, or cuisine context unless they are directly visible.\n- For dish names, preparations, or specific variants, use 2 only when that exact visual form is clear.\n- If two candidates are similar and the image does not clearly distinguish them, put the uncertain candidate in possible, not present.\n- Return IDs using the 1-based numbers in the candidate list.\n- Omit all 0 items.\n\nReturn only valid JSON with exactly these two keys and no markdown. Replace IDs with integer arrays:\n{\"present\":[1,4],\"possible\":[2]}\nIf nothing is visible, return: {\"present\":[],\"possible\":[]}\n\nCandidate ingredients:\n1. sweet bun\n2. mascarpone cheese\n3. steamed bun\n4. coffee\n5. red bean paste\n6. yogurt\n7. burger bun\n8. red bean\n9. cream cheese frosting\n10. soft serve ice cream\n11. toast\n12. raspberry\n13. breadstick\n14. cherry\n15. mozzarella cheese\n16. bagel\n17. strawberry\n18. custard\n19. blackberry\n20. meringue",
+    "prompt_mode": "present_possible",
+    "raw_text": "{\"present\":[1,4,5,9,13,18],\"possible\":[2,3,6,7,8,10,11,12,14,15,16,17,19,20]}",
+    "selected_candidate_ranks": [
+      1,
+      4,
+      5,
+      9,
+      13,
+      18
+    ],
+    "skip_reason": null,
+    "skipped": false,
+    "timed_out": false,
+    "timeout_fallback": false,
+    "unlisted_visible": [],
+    "visible_ingredient_count": 6,
+    "visual_guard": {
+      "accepted_qwen_candidate_ranks": [],
+      "applied": false,
+      "core_candidate_ranks": [],
+      "core_ratio": 0.85,
+      "final_candidate_ranks": [],
+      "removed_qwen_candidate_ranks": [],
+      "selected_min_ratio": 0.82
+    }
+  },
+  "schema_version": "orin_cuda_siglip2_qwen3vl_v1",
+  "selected_label_ids": [
+    267,
+    63,
+    228,
+    73,
+    31,
+    85
+  ],
+  "selected_labels": [
+    "sweet bun",
+    "coffee",
+    "red bean paste",
+    "cream cheese frosting",
+    "breadstick",
+    "custard"
+  ],
+  "settings": {
+    "candidate_list_mode": "fixed_topk",
+    "count_select_max_count": 0,
+    "count_select_min_count": 1,
+    "dynamic_candidate_max_k": 50,
+    "dynamic_candidate_min_k": 5,
+    "dynamic_candidate_relative_delta": 0.4,
+    "effective_candidate_k": 20,
+    "final_rank_depth": 20,
+    "final_selection_scope": "global",
+    "legacy_keep_candidate_list": true,
+    "max_dish_ingredients": 10,
+    "qwen_possible_weight": 0.0,
+    "qwen_reducer": "max",
+    "qwen_weight": 0.75,
+    "selector": "threshold_ratio",
+    "selector_delta": 0.9,
+    "selector_k": 1,
+    "selector_max_labels": 7,
+    "selector_ratio": 0.85,
+    "selector_score_mode": "row_z",
+    "selector_threshold": 3.5,
+    "siglip_io_binding": false,
+    "skip_vlm_rel_gap_threshold": 0.25,
+    "skip_vlm_visual_selector": "top_ratio",
+    "skip_vlm_visual_selector_delta": 0.0,
+    "skip_vlm_visual_selector_k": 1,
+    "skip_vlm_visual_selector_max_labels": 3,
+    "skip_vlm_visual_selector_ratio": 0.85,
+    "skip_vlm_visual_selector_score_mode": "raw",
+    "skip_vlm_visual_selector_threshold": 0.0,
+    "task1_logic": "legacy_siglip_qwen",
+    "top_k": 20,
+    "visual_weight": 0.25,
+    "vlm_max_new_tokens": 96,
+    "vlm_prompt_mode": "present_possible",
+    "vlm_selected_min_visual_ratio": 0.82,
+    "vlm_timeout_sec": 15.0,
+    "vlm_visual_core_ratio": 0.85
+  },
+  "siglip2_top_candidates": [
+    {
+      "fused_score": 3.540003538131714,
+      "label": "sweet bun",
+      "label_id": 267,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 90.7010726928711,
+      "qwen_score": 100.00001525878906,
+      "rank": 1,
+      "selector_score": 3.8651559352874756,
+      "visual_score": 9.590418815612793
+    },
+    {
+      "fused_score": 1.7397105693817139,
+      "label": "mascarpone cheese",
+      "label_id": 164,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.00001525878906,
+      "qwen_score": 88.00542449951172,
+      "rank": 2,
+      "selector_score": 1.899504542350769,
+      "visual_score": 8.836877822875977
+    },
+    {
+      "fused_score": 2.08756422996521,
+      "label": "steamed bun",
+      "label_id": 264,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0000228881836,
+      "qwen_score": 90.5521469116211,
+      "rank": 3,
+      "selector_score": 2.279309034347534,
+      "visual_score": 8.617488861083984
+    },
+    {
+      "fused_score": 3.395817279815674,
+      "label": "coffee",
+      "label_id": 63,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 77.74357604980469,
+      "qwen_score": 100.0,
+      "rank": 4,
+      "selector_score": 3.707726240158081,
+      "visual_score": 7.999774932861328
+    },
+    {
+      "fused_score": 3.386645793914795,
+      "label": "red bean paste",
+      "label_id": 228,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 90.43849182128906,
+      "qwen_score": 100.0000228881836,
+      "rank": 5,
+      "selector_score": 3.6977121829986572,
+      "visual_score": 7.898558139801025
+    },
+    {
+      "fused_score": 0.9976692795753479,
+      "label": "yogurt",
+      "label_id": 293,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 83.4859390258789,
+      "rank": 6,
+      "selector_score": 1.089306116104126,
+      "visual_score": 7.850179195404053
+    },
+    {
+      "fused_score": 2.016019344329834,
+      "label": "burger bun",
+      "label_id": 35,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 90.7010726928711,
+      "rank": 7,
+      "selector_score": 2.201192617416382,
+      "visual_score": 7.5909624099731445
+    },
+    {
+      "fused_score": 1.9748506546020508,
+      "label": "red bean",
+      "label_id": 227,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.00001525878906,
+      "qwen_score": 90.43849182128906,
+      "rank": 8,
+      "selector_score": 2.1562423706054688,
+      "visual_score": 7.555078029632568
+    },
+    {
+      "fused_score": 3.3475756645202637,
+      "label": "cream cheese frosting",
+      "label_id": 73,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 88.00542449951172,
+      "qwen_score": 100.00001525878906,
+      "rank": 9,
+      "selector_score": 3.6550536155700684,
+      "visual_score": 7.467546463012695
+    },
+    {
+      "fused_score": 0.8881980180740356,
+      "label": "soft serve ice cream",
+      "label_id": 253,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 83.17570495605469,
+      "rank": 10,
+      "selector_score": 0.9697798490524292,
+      "visual_score": 7.13668966293335
+    },
+    {
+      "fused_score": 1.126673936843872,
+      "label": "toast",
+      "label_id": 275,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0000228881836,
+      "qwen_score": 85.12188720703125,
+      "rank": 11,
+      "selector_score": 1.2301599979400635,
+      "visual_score": 6.667299747467041
+    },
+    {
+      "fused_score": 0.7756232023239136,
+      "label": "raspberry",
+      "label_id": 226,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 82.7060775756836,
+      "rank": 12,
+      "selector_score": 0.8468649387359619,
+      "visual_score": 6.6428751945495605
+    },
+    {
+      "fused_score": 3.2708029747009277,
+      "label": "breadstick",
+      "label_id": 31,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 83.15667724609375,
+      "qwen_score": 100.0,
+      "rank": 13,
+      "selector_score": 3.5712292194366455,
+      "visual_score": 6.62061071395874
+    },
+    {
+      "fused_score": 0.6173377633094788,
+      "label": "cherry",
+      "label_id": 44,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99998474121094,
+      "qwen_score": 81.8790283203125,
+      "rank": 14,
+      "selector_score": 0.6740408539772034,
+      "visual_score": 6.214151382446289
+    },
+    {
+      "fused_score": 0.6593098640441895,
+      "label": "mozzarella cheese",
+      "label_id": 174,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99998474121094,
+      "qwen_score": 82.27066040039062,
+      "rank": 15,
+      "selector_score": 0.7198681235313416,
+      "visual_score": 6.053319454193115
+    },
+    {
+      "fused_score": 1.4877783060073853,
+      "label": "bagel",
+      "label_id": 7,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 88.00979614257812,
+      "rank": 16,
+      "selector_score": 1.62443208694458,
+      "visual_score": 6.050583362579346
+    },
+    {
+      "fused_score": 0.8227784633636475,
+      "label": "strawberry",
+      "label_id": 265,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 83.43648529052734,
+      "rank": 17,
+      "selector_score": 0.8983514904975891,
+      "visual_score": 5.999555587768555
+    },
+    {
+      "fused_score": 3.2100043296813965,
+      "label": "custard",
+      "label_id": 85,
+      "qwen_confidence": 2,
+      "qwen_possible_score": 85.25296020507812,
+      "qwen_score": 100.0,
+      "rank": 18,
+      "selector_score": 3.5048460960388184,
+      "visual_score": 5.949877738952637
+    },
+    {
+      "fused_score": 0.8293527364730835,
+      "label": "blackberry",
+      "label_id": 26,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 100.0,
+      "qwen_score": 83.60220336914062,
+      "rank": 19,
+      "selector_score": 0.9055296182632446,
+      "visual_score": 5.808093547821045
+    },
+    {
+      "fused_score": 1.138335943222046,
+      "label": "meringue",
+      "label_id": 171,
+      "qwen_confidence": 1,
+      "qwen_possible_score": 99.99998474121094,
+      "qwen_score": 85.7712631225586,
+      "rank": 20,
+      "selector_score": 1.2428932189941406,
+      "visual_score": 5.761500358581543
+    }
+  ],
+  "skip_vlm": {
+    "enabled": true,
+    "rel_gap_threshold": 0.25,
+    "skipped": false,
+    "top1_visual_score": 9.590418815612793,
+    "top2_visual_score": 8.836877822875977,
+    "visual_gap": 0.7535409927368164,
+    "visual_rel_gap": 0.07857227168328497
+  },
+  "text_cache": {
+    "backend": "npz",
+    "enabled": true,
+    "hit": true,
+    "path": "/home/ubuntu/Desktop/demo_dishcovery/embeddings/orin_siglip2_text_feats_cache.npz",
+    "shape": [
+      295,
+      1536
+    ]
+  },
+  "timing_summary_sec": {
+    "model_load_sec": {
+      "load_models_and_text_sec": 3.9678318519981985,
+      "load_qwen_sec": 0.001900540002679918,
+      "load_siglip2_sec": 3.9436720329977106,
+      "text_embeddings_sec": 0.022259278997807996
+    },
+    "per_image_averages_sec": {
+      "fusion_and_selection_avg_sec": 0.0017551730015838984,
+      "qwen_avg_sec": 10.859635718003119,
+      "siglip2_image_and_topk_avg_sec": 1.2483185259989114,
+      "total_image_avg_sec": 12.109740979998605
+    },
+    "per_image_totals_sec": {
+      "fusion_and_selection_sec": 0.0017551730015838984,
+      "qwen_sec": 10.859635718003119,
+      "siglip2_image_and_topk_sec": 1.2483185259989114,
+      "total_image_sec": 12.109740979998605
+    },
+    "total_eval_wall_accounted_sec": 16.077572831996804,
+    "total_fusion_and_selection_sec": 0.0017551730015838984,
+    "total_qwen_sec": 10.861536258005799,
+    "total_siglip2_sec": 5.21424983799443
+  },
+  "timings_sec": {
+    "fusion_and_selection_sec": 0.0017551730015838984,
+    "load_models_and_text_sec": 3.9678318519981985,
+    "load_qwen_sec": 0.001900540002679918,
+    "load_siglip2_sec": 3.9436720329977106,
+    "qwen_sec": 10.859635718003119,
+    "siglip2_image_and_topk_sec": 1.2483185259989114,
+    "text_embeddings_sec": 0.022259278997807996,
+    "total_image_sec": 12.109740979998605
+  }
+}
