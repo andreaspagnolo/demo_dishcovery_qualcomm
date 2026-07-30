@@ -1315,6 +1315,21 @@ Correct versus blank:
 reports/task1_qwen_same_pixel_100/visual_conditioning/correct_vs_blank_comparison.json
 ```
 
+## Ownership and license
+
+Except where otherwise stated, the original material in this repository is
+licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+International License (CC BY-NC-SA 4.0).
+
+Copyright © 2026 Andrea Spagnolo, Danilo Pau, and
+STMicroelectronics S.r.l.
+
+See [`LICENSE.md`](LICENSE.md) for the complete license terms.
+
+Third-party software, models, datasets, images, trademarks, and external assets
+retain their respective licenses and are not covered by this repository's
+license unless explicitly stated.
+
 ---
 
 # Final optimization acceptance rule
