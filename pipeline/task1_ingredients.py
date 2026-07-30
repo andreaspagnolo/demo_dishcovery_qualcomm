@@ -87,7 +87,6 @@ SERVER_REQUEST_ARG_FIELDS = (
     "geniex_image_max_side",
     "geniex_image_min_side",
     "geniex_padding_mode",
-    "vlm_timeout_sec",
     "qwen_max_new_tokens",
     "qwen_min_pixels",
     "qwen_max_pixels",
@@ -324,7 +323,6 @@ def parse_args() -> argparse.Namespace:
         default="white",
         help="Fixed-512 preprocessing: white/gray/black letterbox, or stretch the full image to 512x512 without padding.",
     )
-    parser.add_argument("--vlm-timeout-sec", type=float, default=15.0, help="Maximum VLM scoring time per image; timeout falls back to SigLIP top-1. Use 0 to disable.")
     parser.add_argument("--device", default="cpu", choices=("cuda", "cpu"))
     parser.add_argument("--torch-dtype", default="float32", choices=("float16", "bfloat16", "float32"))
     parser.add_argument(
@@ -1461,10 +1459,6 @@ def resolve_vlm_backend(model_id: str, backend: str) -> str:
     return "geniex" if is_geniex_model_id(model_id) else "transformers"
 
 
-class VLMTimeoutError(TimeoutError):
-    """Raised when a VLM request exceeds the configured per-image deadline."""
-
-
 def geniex_model_name(vlm_model: str, override: str = "") -> str:
     if override:
         return override
@@ -1489,7 +1483,6 @@ class GenieXVLMScorer:
         self.image_max_side = int(args.geniex_image_max_side or 0)
         self.image_min_side = int(args.geniex_image_min_side or 0)
         self.padding_mode = str(args.geniex_padding_mode)
-        self.timeout_sec = max(0.0, float(args.vlm_timeout_sec))
         self.moe_tracker = None
         self.server_proc: subprocess.Popen[str] | None = None
         if args.geniex_start_server and not self._server_ready():
@@ -1573,10 +1566,8 @@ class GenieXVLMScorer:
         max_new_tokens: int | None = None,
         min_pixels: int | None = None,
         max_pixels: int | None = None,
-        timeout_sec: float | None = None,
     ) -> str:
         del min_pixels, max_pixels
-        request_timeout = self.timeout_sec if timeout_sec is None else max(0.0, float(timeout_sec))
         request_image, delete_after = self._prepare_image(image_path)
         payload = {
             "model": self.model,
@@ -1600,16 +1591,12 @@ class GenieXVLMScorer:
             method="POST",
         )
         try:
-            with urllib_request.urlopen(request, timeout=(request_timeout if request_timeout > 0 else 900)) as response:
+            with urllib_request.urlopen(request) as response:
                 data = json.loads(response.read().decode("utf-8"))
-        except TimeoutError as exc:
-            raise VLMTimeoutError(f"GenieX VLM timeout after {request_timeout:.1f}s for {image_path.name}") from exc
         except urllib_error.HTTPError as exc:
             detail = exc.read().decode("utf-8", errors="replace")
             raise RuntimeError(f"GenieX HTTP {exc.code} for {image_path.name}: {detail}") from exc
         except urllib_error.URLError as exc:
-            if isinstance(exc.reason, TimeoutError):
-                raise VLMTimeoutError(f"GenieX VLM timeout after {request_timeout:.1f}s for {image_path.name}") from exc
             raise RuntimeError(f"GenieX request failed for {image_path.name}: {exc}") from exc
         except (http.client.RemoteDisconnected, urllib_error.URLError, OSError) as exc:
             raise RuntimeError(
@@ -1733,23 +1720,16 @@ class VisionLanguageScorer:
         max_new_tokens: int | None = None,
         min_pixels: int | None = None,
         max_pixels: int | None = None,
-        timeout_sec: float | None = None,
     ) -> str:
-        started = time.perf_counter()
         if self.family == "qwen":
-            result = self._score_qwen(
+            return self._score_qwen(
                 image_path,
                 prompt,
                 max_new_tokens=max_new_tokens,
                 min_pixels=min_pixels,
                 max_pixels=max_pixels,
-                timeout_sec=timeout_sec,
             )
-        else:
-            result = self._score_generic(image_path, prompt, max_new_tokens=max_new_tokens, timeout_sec=timeout_sec)
-        if timeout_sec and float(timeout_sec) > 0 and time.perf_counter() - started > float(timeout_sec):
-            raise VLMTimeoutError(f"VLM timeout after {float(timeout_sec):.1f}s for {image_path.name}")
-        return result
+        return self._score_generic(image_path, prompt, max_new_tokens=max_new_tokens)
 
     def _score_qwen(
         self,
@@ -1759,7 +1739,6 @@ class VisionLanguageScorer:
         max_new_tokens: int | None = None,
         min_pixels: int | None = None,
         max_pixels: int | None = None,
-        timeout_sec: float | None = None,
     ) -> str:
         if self.process_vision_info is None:
             raise RuntimeError("Qwen preprocessing was not initialized")
@@ -1785,11 +1764,11 @@ class VisionLanguageScorer:
         inputs = self.processor(text=[text], images=image_inputs, videos=video_inputs, padding=True, return_tensors="pt")
         inputs = inputs.to(self.model.device)
         with self.torch.inference_mode():
-            generated = self.model.generate(**inputs, max_new_tokens=effective_max_new_tokens, do_sample=False, **({"max_time": float(timeout_sec)} if timeout_sec and float(timeout_sec) > 0 else {}))
+            generated = self.model.generate(**inputs, max_new_tokens=effective_max_new_tokens, do_sample=False)
         trimmed = [out[len(inp) :] for inp, out in zip(inputs.input_ids, generated)]
         return self.processor.batch_decode(trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
 
-    def _score_generic(self, image_path: Path, prompt: str, *, max_new_tokens: int | None = None, timeout_sec: float | None = None) -> str:
+    def _score_generic(self, image_path: Path, prompt: str, *, max_new_tokens: int | None = None) -> str:
         effective_max_new_tokens = self.max_new_tokens if max_new_tokens is None else int(max_new_tokens)
         image = Image.open(image_path).convert("RGB")
         messages = [
@@ -1809,7 +1788,7 @@ class VisionLanguageScorer:
             return_tensors="pt",
         ).to(self.model.device)
         with self.torch.inference_mode():
-            generated = self.model.generate(**inputs, max_new_tokens=effective_max_new_tokens, do_sample=False, **({"max_time": float(timeout_sec)} if timeout_sec and float(timeout_sec) > 0 else {}))
+            generated = self.model.generate(**inputs, max_new_tokens=effective_max_new_tokens, do_sample=False)
         input_len = int(inputs["input_ids"].shape[-1])
         trimmed = generated[:, input_len:]
         return self.processor.batch_decode(trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
@@ -2258,15 +2237,17 @@ def run_one(
     removed_qwen_candidate_ranks: list[int] = []
     final_candidate_ranks: list[int] = []
     unlisted_visible: list[str] = []
-    vlm_timed_out = False
 
-    def score_vlm(prompt_text: str) -> tuple[str, bool]:
+    def score_vlm(prompt_text: str) -> str:
         if args.mock_qwen_json:
-            return args.mock_qwen_json, False
-        try:
-            return qwen.score(image_path, prompt_text, max_new_tokens=args.qwen_max_new_tokens, min_pixels=args.qwen_min_pixels, max_pixels=args.qwen_max_pixels, timeout_sec=args.vlm_timeout_sec), False  # type: ignore[union-attr]
-        except (VLMTimeoutError, TimeoutError):
-            return "{}", True
+            return args.mock_qwen_json
+        return qwen.score(  # type: ignore[union-attr]
+            image_path,
+            prompt_text,
+            max_new_tokens=args.qwen_max_new_tokens,
+            min_pixels=args.qwen_min_pixels,
+            max_pixels=args.qwen_max_pixels,
+        )
 
     t0 = time.perf_counter()
     if skip_vlm:
@@ -2275,11 +2256,11 @@ def run_one(
         parse_warnings: list[str] = []
         confidences = {idx: 0 for idx in range(1, len(candidates) + 1)}
     elif prompt_mode == "confidence":
-        raw_qwen, vlm_timed_out = score_vlm(prompt)
+        raw_qwen = score_vlm(prompt)
         confidences, parse_warnings, parsed_qwen = parse_qwen_confidences(raw_qwen, len(candidates))
     elif prompt_mode == "present_possible":
         prompt = build_present_possible_prompt(candidates)
-        raw_qwen, vlm_timed_out = score_vlm(prompt)
+        raw_qwen = score_vlm(prompt)
         confidences, selected_candidate_ranks, possible_candidate_ranks, parse_warnings, parsed_qwen = parse_present_possible_confidences(raw_qwen, candidates)
         visible_count = len(selected_candidate_ranks)
     elif prompt_mode in ("count_select", "aligned_count_select"):
@@ -2290,7 +2271,7 @@ def run_one(
             prompt = build_aligned_count_select_prompt(candidates, min_count, max_count)
         else:
             prompt = build_count_select_prompt(candidates, min_count, max_count)
-        raw_qwen, vlm_timed_out = score_vlm(prompt)
+        raw_qwen = score_vlm(prompt)
         raw_count = raw_qwen
         visible_count, count_warnings, parsed_count = parse_visible_ingredient_count(raw_qwen, min_count, max_count)
         selected_candidate_ranks, select_warnings, parsed_qwen = parse_selected_candidate_ranks(
@@ -2322,8 +2303,6 @@ def run_one(
         confidences = {idx: (2 if idx in selected_rank_set else 0) for idx in range(1, len(candidates) + 1)}
     else:
         raise ValueError(f"Unsupported VLM prompt mode: {prompt_mode}")
-    if vlm_timed_out:
-        parse_warnings.append(f"vlm_timeout_fallback_{float(args.vlm_timeout_sec):.1f}s")
     timings["qwen_sec"] = time.perf_counter() - t0
 
     t0 = time.perf_counter()
@@ -2421,9 +2400,6 @@ def run_one(
             max_labels=args.selector_max_labels,
         )
         selected_ids = clip_selected_ids_by_siglip(candidates, selected_ids, MAX_DISH_INGREDIENTS)
-    if vlm_timed_out:
-        selected_ids = [candidates[0].label_id] if candidates else []
-        fusion_mode = "siglip_top1_vlm_timeout"
     for candidate in candidates:
         candidate.qwen_score = float(qwen_scores[candidate.label_id])
         candidate.qwen_possible_score = float(qwen_possible_scores[candidate.label_id])
@@ -2479,7 +2455,6 @@ def run_one(
             "vlm_visual_core_ratio": args.vlm_visual_core_ratio,
             "vlm_selected_min_visual_ratio": args.vlm_selected_min_visual_ratio,
             "vlm_max_new_tokens": args.qwen_max_new_tokens,
-            "vlm_timeout_sec": args.vlm_timeout_sec,
             "skip_vlm_rel_gap_threshold": args.skip_vlm_rel_gap_threshold,
             "skip_vlm_visual_selector": args.skip_vlm_visual_selector,
             "skip_vlm_visual_selector_score_mode": args.skip_vlm_visual_selector_score_mode,
@@ -2524,8 +2499,6 @@ def run_one(
             "parse_warnings": parse_warnings,
             "skipped": skip_vlm,
             "skip_reason": "visual_rel_gap" if skip_vlm else None,
-            "timed_out": vlm_timed_out,
-            "timeout_fallback": vlm_timed_out,
         },
         "skip_vlm": {
             "enabled": skip_vlm_threshold is not None,
