@@ -2,15 +2,14 @@
 
 ## Reproduction baseline and optimization targets
 
-This repository is the fixed Qualcomm baseline for the Dishcovery Task 1 and Task 2 pipelines. It has three purposes:
+This repository is the fixed Qualcomm baseline for the Dishcovery Task 1 and Task 2 pipelines. It has four purposes:
 
-1. provide everything required to reproduce the current 350-image Qualcomm results;
-2. document the current latency bottlenecks in SigLIP2 and Qwen3-VL-Reranker-2B, including how the deployed artifacts were produced and why those implementations were selected;
-3. document the Task 1 accuracy regression observed with the Qualcomm Qwen3-VL-4B-Instruct W4A16 deployment, together with the controlled tests that localize the problem.
+1. provide a complete, copy-and-run procedure for reproducing the current 350-image Qualcomm results on a Dragonwing IQ-9075 EVK;
+2. pin the model artifacts, library versions, native bridge revision, runtime environment, and benchmark commands used by the validated baseline;
+3. document the current latency bottlenecks in SigLIP2 and Qwen3-VL-Reranker-2B, including how the deployed artifacts were produced and why those implementations were selected;
+4. preserve the controlled Orin-versus-EVK Task 1 accuracy investigation, which shows that the remaining cross-platform F1 gap is concentrated in the Qwen3-VL-4B-Instruct deployment rather than in SigLIP2 retrieval or caller-side image preparation.
 
-The goal is to let Qualcomm engineers reproduce the baseline without changing its configuration, then investigate faster and more accurate replacement implementations. The target is to approach the accuracy/F1 and latency obtained on NVIDIA Jetson AGX Orin while preserving the benchmark contract defined below.
-
-> **Baseline rule:** do not alter the fixed commands, inputs, candidate policies, prompts, thresholds, or evaluation code when validating a replacement model. First reproduce the reference result; then change one implementation variable at a time.
+The goal is to let Qualcomm engineers reproduce the baseline, then investigate faster and more accurate replacement implementations. The target is to approach the accuracy/F1 and latency obtained on NVIDIA Jetson AGX Orin while preserving the benchmark contract defined below.
 
 ## Contents
 
@@ -24,7 +23,7 @@ The goal is to let Qualcomm engineers reproduce the baseline without changing it
 
 ## 1. Repository and asset layout
 
-Git contains all source code, small inputs, cached text embeddings, configuration files, logs, and reference results. Google Drive supplies the 350-image data and the fixed SigLIP2 and Qwen3-VL-Reranker-2B binaries. Qwen3-VL-4B-Instruct is downloaded directly from Qualcomm AI Hub through GenieX and is never supplied through Google Drive.
+Git contains all source code, small inputs, cached text embeddings, configuration files, logs, and reference results. The private asset package supplies the 350-image data, the fixed SigLIP2 and Qwen3-VL-Reranker-2B binaries, the Qualcomm ONNX Runtime/QNN wheels, and a pinned GenieX-compatible Qwen3-VL-4B-Instruct W4A16 bundle. Keeping these external artifacts in one versioned private package avoids depending on mutable online model names or wheel locations during reproduction.
 
 Download the private asset package from [Google Drive](https://drive.google.com/drive/folders/1gGnXaYtdx4e8cTYwCkAXPakYQqqiBwc5?usp=drive_link), then extract it at the repository root so that it creates exactly this layout:
 
@@ -34,15 +33,19 @@ external_assets/
 │   ├── task1_350/                         # 350 img_*.jpg files
 │   ├── task2_350/                         # Food-500 class/image hierarchy
 │   └── demo/                              # browser gallery, up to 80 images
+├── wheels/
+│   ├── onnxruntime-1.24.4-*.whl          # Qualcomm aarch64 wheel
+│   └── onnxruntime_qnn-2.1.0-*.whl       # ORT-QNN / QAIRT 2.45.40 wheel
 └── models/
     ├── siglip2_qcs9075_out/fp16_powfix_split_qairt245/
     │   ├── stage1/model.onnx
     │   ├── stage1/model.bin
     │   ├── stage2/model.onnx
     │   └── stage2/model.bin
-    └── Qwen3-VL-Reranker-2B-GGUF/
-        ├── Qwen3-VL-Reranker-2B-Q8_0-F16Emb-F16Cls-HTP.gguf
-        └── mmproj-Qwen3-VL-Reranker-2B-F16.gguf
+    ├── Qwen3-VL-Reranker-2B-GGUF/
+    │   ├── Qwen3-VL-Reranker-2B-Q8_0-F16Emb-F16Cls-HTP.gguf
+    │   └── mmproj-Qwen3-VL-Reranker-2B-F16.gguf
+    └── Qwen3-VL-4B-Instruct-GenieX-QAIRT-W4A16.zip
 ```
 
 Verify all versioned inputs and Drive-delivered model artifacts:
@@ -57,19 +60,19 @@ Every entry must be reported as `OK`. The expected SHA-256 values are committed 
 config/checksums/model_and_input_sha256.txt
 ```
 
-Qwen3-VL-4B-Instruct is intentionally absent from this checksum file because GenieX retrieves and manages it directly from Qualcomm AI Hub.
+The pinned Qwen3-VL-4B-Instruct bundle and Qualcomm wheel files should also be covered by the private package checksum manifest distributed with the assets. Do not silently replace them with newer artifacts when reproducing the baseline.
 
 ## 2. Repository map
 
 ```text
 benchmark_inputs/       Versioned lists, labels, captions, mappings, and frozen text embeddings
 config/                 Checksums, platform contract, model metadata, and benchmark settings
-external_assets/        Ignored Drive extraction target: images plus SigLIP2/reranker binaries
+external_assets/        Ignored private-asset target: images, wheels, and pinned model bundles
 model_build/            SigLIP2 graph/compile utilities and reranker MTMD/Q8 build code
 pipeline/               Task 1 and Task 2 evaluation code; calorie support used by the demo
 demo_web/               Browser demo server, backend, and static UI
 reference_results/      Archived summaries, JSON, CSV, checkpoints, and logs
-reports/                Accuracy-diagnostic manifests, raw outputs, and comparisons
+reports/                Optimization experiments, manifests, raw outputs, and comparisons
 scripts/                Fixed verification, benchmark, and demo entry points
 ```
 
@@ -83,26 +86,142 @@ Architecture:             aarch64
 GenieX:                   0.3.13
 QAIRT used by GenieX:     2.45.0.260326
 ONNX Runtime:             1.24.4
-onnxruntime-qnn:           2.1.0 / QAIRT 2.45.40
+onnxruntime-qnn:          2.1.0 / QAIRT 2.45.40
+llama.cpp revision:       4f31eedb0ccf546b7e8d6bb243b170f12522f54d
 ```
 
 Do not mix QAIRT 2.47 ONNX Runtime/QNN libraries with the GenieX 2.45 runtime used by this baseline.
 
-Create the Python environment:
+### 3.1 Install the system prerequisites
+
+Run once on the EVK:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  python3-venv python3-pip \
+  git cmake ninja-build build-essential pkg-config \
+  ocl-icd-opencl-dev
+```
+
+Run all remaining commands from the repository root. After opening a shell in the cloned repository, verify it before continuing:
+
+```bash
+test -f requirements.txt && test -d scripts && echo "Repository root: OK"
+```
+
+### 3.2 Create the Python environment
+
+`requirements.txt` may temporarily install the public ONNX Runtime package as a transitive dependency. The commands below intentionally replace it with the validated Qualcomm pair afterward.
 
 ```bash
 python3 -m venv .venv_ort_qnn_245
-.venv_ort_qnn_245/bin/python -m pip install --upgrade pip
-.venv_ort_qnn_245/bin/python -m pip install -r requirements.txt
+export EVK_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 
-# Install the Qualcomm-provided ONNX Runtime 1.24.4 and
-# ORT-QNN 2.1.0 / QAIRT 2.45.40 wheels into this environment.
+"$EVK_PYTHON" -m pip install --upgrade pip
+"$EVK_PYTHON" -m pip install -r requirements.txt
+```
 
+### 3.3 Install the Qualcomm ONNX Runtime and ORT-QNN wheels
+
+The private asset package must contain exactly one matching wheel for each component under `external_assets/wheels/`.
+
+```bash
+mapfile -t ORT_WHEELS < <(
+  find external_assets/wheels -maxdepth 1 -type f \
+    -name 'onnxruntime-1.24.4-*.whl' | sort
+)
+
+mapfile -t ORT_QNN_WHEELS < <(
+  find external_assets/wheels -maxdepth 1 -type f \
+    \( -name 'onnxruntime_qnn-2.1.0-*.whl' \
+       -o -name 'onnxruntime-qnn-2.1.0-*.whl' \) | sort
+)
+
+[ "${#ORT_WHEELS[@]}" -eq 1 ] || {
+  echo "ERROR: expected exactly one ONNX Runtime 1.24.4 wheel" >&2
+  printf '%s\n' "${ORT_WHEELS[@]}"
+  exit 1
+}
+
+[ "${#ORT_QNN_WHEELS[@]}" -eq 1 ] || {
+  echo "ERROR: expected exactly one ORT-QNN 2.1.0 wheel" >&2
+  printf '%s\n' "${ORT_QNN_WHEELS[@]}"
+  exit 1
+}
+
+# Remove the public/transitive ORT package before installing the validated pair.
+"$EVK_PYTHON" -m pip uninstall -y \
+  onnxruntime onnxruntime-gpu onnxruntime-qnn
+
+"$EVK_PYTHON" -m pip install --no-cache-dir \
+  "${ORT_WHEELS[0]}" \
+  "${ORT_QNN_WHEELS[0]}"
+```
+
+Verify the Python packages, QNN plugin, and HTP libraries before continuing:
+
+```bash
+"$EVK_PYTHON" - <<'PY'
+from importlib import metadata
+from pathlib import Path
+
+import onnxruntime as ort
+import onnxruntime_qnn as qnn
+
+try:
+    qnn_version = metadata.version("onnxruntime-qnn")
+except metadata.PackageNotFoundError:
+    qnn_version = metadata.version("onnxruntime_qnn")
+
+assert ort.__version__ == "1.24.4", ort.__version__
+assert qnn_version == "2.1.0", qnn_version
+
+provider = qnn.get_ep_name()
+devices = [device for device in ort.get_ep_devices() if device.ep_name == provider]
+if not devices:
+    ort.register_execution_provider_library(provider, qnn.get_library_path())
+    devices = [device for device in ort.get_ep_devices() if device.ep_name == provider]
+
+assert devices, f"{provider} was not discovered"
+assert Path(qnn.get_library_path()).is_file(), qnn.get_library_path()
+assert Path(qnn.get_qnn_htp_path()).is_file(), qnn.get_qnn_htp_path()
+
+print("ONNX Runtime:", ort.__version__)
+print("ORT-QNN:", qnn_version)
+print("QNN provider:", provider)
+print("QNN devices:", devices)
+print("QNN plugin:", qnn.get_library_path())
+print("QNN HTP backend:", qnn.get_qnn_htp_path())
+PY
+```
+
+A warning about `/sys/class/drm/card0/device/vendor` is not fatal on this EVK. The required condition is that the script reaches the final version, provider, device, and library lines without an assertion failure.
+
+### 3.4 Export the baseline paths
+
+```bash
 export TASK1_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 export TASK2_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 export GENIEX_QNN_BACKEND="$HOME/.local/share/geniex/qairt/htp-files/libQnnHtp.so"
 export DISHCOVERY_MODELS_DIR="$PWD/external_assets/models"
+
+for path in \
+  "$TASK1_PYTHON" \
+  "$TASK2_PYTHON" \
+  "$GENIEX_QNN_BACKEND" \
+  "$DISHCOVERY_MODELS_DIR"; do
+  test -e "$path" || { echo "ERROR: missing $path" >&2; exit 1; }
+done
 ```
+
+Confirm the pinned GenieX stack:
+
+```bash
+geniex --version
+```
+
+The output must identify GenieX `0.3.13` and QAIRT `2.45.0.260326`.
 
 The fixed platform policy is recorded in:
 
@@ -112,53 +231,133 @@ config/platform/evk_qairt_stack.json
 
 The Task 2 runner validates this contract strictly.
 
-## 4. Pull and start Qwen3-VL-4B-Instruct
+## 4. Import Qwen3-VL-4B-Instruct for Task 1
 
-After verifying the Drive assets, obtain the exact Task 1 VLM from Qualcomm AI Hub:
+Import the bundle supplied in `external_assets/models/`:
 
 ```bash
-# Authenticate with Qualcomm AI Hub first if GenieX requests it.
-geniex pull qwen3_vl_4b_instruct:w4a16 --model-hub aihub --model-type vlm
+export QWEN_GENIEX_BUNDLE="$PWD/external_assets/models/Qwen3-VL-4B-Instruct-GenieX-QAIRT-W4A16.zip"
+export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
 
-# Fixed model selection used by the benchmark runner.
-export GENIEX_TASK1_MODEL="qualcomm/qwen3_vl_4b_instruct:w4a16"
+test -f "$QWEN_GENIEX_BUNDLE" || {
+  echo "ERROR: missing pinned Qwen3-VL-4B-Instruct GenieX bundle" >&2
+  exit 1
+}
 
-geniex list
-geniex serve --host 127.0.0.1:18181
+if ! geniex list | grep -Fq "$GENIEX_TASK1_MODEL"; then
+  geniex pull "$GENIEX_TASK1_MODEL" \
+    --model-hub localfs \
+    --local-path "$QWEN_GENIEX_BUNDLE" \
+    --model-type vlm
+fi
+
+geniex list | grep -F "$GENIEX_TASK1_MODEL"
 ```
 
-`geniex list` must contain:
-
-```text
-qualcomm/qwen3_vl_4b_instruct:w4a16
-```
-
-Do not set `GENIEX_DATADIR` for this model and do not copy a Qwen binary into `external_assets/`. The pull command manages the AI Hub deployment. The exact model identity and command are recorded in:
-
-```text
-config/model_artifacts/task1_qwen3_vl_aihub_w4a16.json
-```
-
-The archived diagnostic reports refer to the locally resolved artifact as:
+The final command must print:
 
 ```text
 local/qwen3vl-4b-qairt-w4a16
 ```
 
-The reproduction procedure must nevertheless use the pinned AI Hub selection shown above.
+Do not update or replace the model bundle during a baseline reproduction. Record a new artifact name and hash when evaluating a replacement.
 
 ## 5. Build the Qwen3-VL-Reranker-2B MTMD/llama.cpp bridge
 
 The reference reranker is not executed through ordinary causal-generation logits. It is a rank-pooling model whose two-output classifier must be preserved. The native bridge combines MTMD multimodal processing with llama.cpp rank pooling.
 
-Build it against the recorded llama.cpp revision and ABI-compatible GenieX libraries:
+### 5.1 Clone the exact llama.cpp revision
+
+Run from the repository root:
 
 ```bash
-export LLAMA_CPP_SOURCE=/path/to/llama.cpp-at-4f31eedb0ccf546b7e8d6bb243b170f12522f54d
-export GENIEX_LLAMA_LIB_DIR="$HOME/.local/share/geniex/llama_cpp"
+mkdir -p third_party
 
-./model_build/qwen3_vl_reranker/build.sh
+if [ ! -d third_party/llama.cpp/.git ]; then
+  git clone https://github.com/ggml-org/llama.cpp.git third_party/llama.cpp
+fi
+
+git -C third_party/llama.cpp fetch --all --tags
+git -C third_party/llama.cpp checkout --detach \
+  4f31eedb0ccf546b7e8d6bb243b170f12522f54d
+
+export LLAMA_CPP_SOURCE="$PWD/third_party/llama.cpp"
+
+test "$(git -C "$LLAMA_CPP_SOURCE" rev-parse HEAD)" = \
+  "4f31eedb0ccf546b7e8d6bb243b170f12522f54d" \
+  && echo "llama.cpp revision: OK"
 ```
+
+### 5.2 Locate the ABI-compatible GenieX libraries
+
+```bash
+export GENIEX_LLAMA_LIB_DIR="$HOME/.local/share/geniex/llama_cpp"
+export QAIRT_HTP_DIR="$HOME/.local/share/geniex/qairt/htp-files"
+
+test -d "$GENIEX_LLAMA_LIB_DIR" || {
+  echo "ERROR: GenieX llama.cpp library directory not found" >&2
+  exit 1
+}
+
+test -d "$QAIRT_HTP_DIR" || {
+  echo "ERROR: GenieX QAIRT HTP directory not found" >&2
+  exit 1
+}
+
+ls "$GENIEX_LLAMA_LIB_DIR"/libllama.so* >/dev/null
+ls "$GENIEX_LLAMA_LIB_DIR"/libggml-opencl.so >/dev/null
+ls "$GENIEX_LLAMA_LIB_DIR"/libggml-htp-v*.so >/dev/null
+```
+
+When GenieX is installed in a non-standard directory, locate the libraries and update the two variables before building:
+
+```bash
+find "$HOME/.local/share/geniex" -type f \
+  \( -name 'libllama.so*' -o -name 'libQnnHtp.so' \) \
+  -printf '%h\n' 2>/dev/null | sort -u
+```
+
+### 5.3 Build and validate the bridge
+
+```bash
+rm -rf model_build/qwen3_vl_reranker/build
+./model_build/qwen3_vl_reranker/build.sh
+
+export RERANKER_BIN="$PWD/model_build/qwen3_vl_reranker/build/qwen3-vl-reranker-mtmd"
+
+test -x "$RERANKER_BIN" || {
+  echo "ERROR: Task 2 bridge was not created" >&2
+  exit 1
+}
+
+if ldd "$RERANKER_BIN" | grep -q 'not found'; then
+  ldd "$RERANKER_BIN" | grep 'not found'
+  echo "ERROR: Task 2 bridge has missing shared libraries" >&2
+  exit 1
+fi
+```
+
+### 5.4 Export the Task 2 runtime library paths and check devices
+
+These exports are required at runtime, not only while building:
+
+```bash
+export LD_LIBRARY_PATH="$GENIEX_LLAMA_LIB_DIR:$QAIRT_HTP_DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export ADSP_LIBRARY_PATH="$GENIEX_LLAMA_LIB_DIR;$QAIRT_HTP_DIR"
+export DSP_LIBRARY_PATH="$ADSP_LIBRARY_PATH"
+
+"$RERANKER_BIN" --list-devices
+```
+
+The device list must include all three backends:
+
+```text
+GPUOpenCL   QUALCOMM Adreno(TM) 663
+HTP0        Hexagon
+CPU         CPU
+```
+
+Warnings stating that `libOpenCL.so.1` has no version information are non-fatal when `GPUOpenCL` is present in the device list.
 
 At runtime:
 
@@ -170,7 +369,33 @@ At runtime:
 
 ## 6. Run the exact 350-image benchmarks
 
-Keep the GenieX server running and execute the fixed runners without changing their arguments.
+Run the two tasks sequentially. **The GenieX server is required for Task 1 and must be stopped before Task 2.** Task 2 does not use the GenieX HTTP server; it directly loads the GenieX llama.cpp/QAIRT libraries through the native reranker bridge.
+
+Before starting, export the shared baseline variables from the repository root:
+
+```bash
+export TASK1_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
+export TASK2_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
+export GENIEX_QNN_BACKEND="$HOME/.local/share/geniex/qairt/htp-files/libQnnHtp.so"
+export DISHCOVERY_MODELS_DIR="$PWD/external_assets/models"
+export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
+```
+
+### 6.1 Task 1 — start and keep `geniex serve` active
+
+Open **Terminal A** in the repository root, then run:
+
+```bash
+test -f requirements.txt && test -d scripts || {
+  echo "ERROR: Terminal A is not in the repository root" >&2
+  exit 1
+}
+
+export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
+geniex serve --host 127.0.0.1:18181
+```
+
+Leave Terminal A open. Then run Task 1 in **Terminal B**, from the repository root:
 
 ```bash
 # Task 1: first 350 images, seed 7, legacy fixed Top-20 policy.
@@ -179,7 +404,50 @@ python3 scripts/run_350_benchmarks.py task1 \
 
 python3 scripts/verify_metrics.py task1 \
   run_outputs/task1_350/eval_first_350_samples.json
+```
 
+Expected verification output:
+
+```text
+f1: actual=0.660054 expected=0.660054 delta=+0.000000
+precision: actual=0.757764 expected=0.757764 delta=+0.000000
+recall: actual=0.584665 expected=0.584665 delta=+0.000000
+```
+
+### 6.2 Stop `geniex serve` before Task 2
+
+Return to Terminal A and press:
+
+```text
+Ctrl+C
+```
+
+Confirm that no GenieX server remains active:
+
+```bash
+if pgrep -af 'geniex serve'; then
+  echo "ERROR: stop geniex serve before running Task 2" >&2
+  exit 1
+fi
+```
+
+Stopping the server releases the VLM resources before the Task 2 reranker opens its own HTP/OpenCL sessions.
+
+### 6.3 Task 2 — run with the GenieX server stopped
+
+In Terminal B, export the native reranker runtime paths if they are not already present:
+
+```bash
+export GENIEX_LLAMA_LIB_DIR="$HOME/.local/share/geniex/llama_cpp"
+export QAIRT_HTP_DIR="$HOME/.local/share/geniex/qairt/htp-files"
+export LD_LIBRARY_PATH="$GENIEX_LLAMA_LIB_DIR:$QAIRT_HTP_DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export ADSP_LIBRARY_PATH="$GENIEX_LLAMA_LIB_DIR;$QAIRT_HTP_DIR"
+export DSP_LIBRARY_PATH="$ADSP_LIBRARY_PATH"
+```
+
+Run and verify Task 2:
+
+```bash
 # Task 2: first 350 images, seed 42, class_caption evaluation,
 # SigLIP Top-5, guarded Q8 reranker Top-5, gap 3.0,
 # and five independent reranker calls.
@@ -188,6 +456,13 @@ python3 scripts/run_350_benchmarks.py task2 \
 
 python3 scripts/verify_metrics.py task2 \
   run_outputs/task2_350/eval_first_350_caption_alignment.json
+```
+
+Expected verification output:
+
+```text
+top1_caption_accuracy: actual=0.677143 expected=0.677143 delta=+0.000000
+class_top1_accuracy: actual=0.877143 expected=0.877143 delta=+0.000000
 ```
 
 Expected metrics:
@@ -265,7 +540,7 @@ For every candidate optimization, record at least:
 - Task 1 micro-F1, precision, recall, and candidate recall;
 - Task 2 caption and class accuracy;
 - guarded-row and reranked-pair counts;
-- failures, malformed outputs, timeouts, and restarts.
+- failures, malformed outputs, schema errors, and restarts.
 
 A faster artifact is not a valid replacement until it stays within the stated accuracy tolerance under the unchanged benchmark protocol.
 
@@ -531,26 +806,30 @@ A speedup that changes ranking behavior or loses Task 2 accuracy is not a valid 
 
 ## 11. Problem statement
 
-The official Qualcomm AI Hub Qwen3-VL-4B-Instruct W4A16 artifact, executed through GenieX/QAIRT on the Dragonwing IQ-9075 EVK, has a reproducible quality and output-calibration regression on Task 1 ingredient recognition.
+Task 1 remains materially less accurate on the Dragonwing IQ-9075 EVK than on the NVIDIA Jetson AGX Orin, even though the current EVK result is now fully reproducible with the default benchmark command.
 
-The investigation compares the same pipeline, dataset, ground truth, Top-20 candidate size, and fusion configuration across:
+The comparison uses the same first 350 images, the same 626 ground-truth ingredient instances, the same Top-20 candidate policy, and the same fusion and final-selection configuration.
 
-| Platform | Qwen deployment | F1 | Precision | Recall | TP | FP | FN |
+| Platform / run | Qwen deployment | F1 | Precision | Recall | TP | FP | FN |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Jetson AGX Orin | TensorRT Edge-LLM, INT4 weights / FP16 activations | 0.7579 | 0.7879 | 0.7300 | 457 | 123 | 169 |
-| Dragonwing IQ-9075 EVK | Qualcomm AI Hub QAIRT W4A16 through GenieX | 0.6521 | 0.7558 | 0.5735 | 359 | 116 | 267 |
+| Dragonwing IQ-9075 EVK — current reproduced baseline | GenieX / QAIRT, W4A16 | 0.660054 | 0.757764 | 0.584665 | 366 | 117 | 260 |
+| Dragonwing IQ-9075 EVK — archived 15-second-timeout diagnostic | GenieX / QAIRT, W4A16 | 0.6521 | 0.7558 | 0.5735 | 359 | 116 | 267 |
 
-The archived EVK diagnostic run loses approximately:
+Relative to the Orin result, the **current reproduced EVK baseline** loses approximately:
 
 ```text
-Absolute F1:            -0.1057
-Relative F1:            approximately -14%
-Recall:                 -0.1565
-True positives:         -98
-False negatives:        +98
+Absolute F1:            -0.097846
+Relative F1:            -12.91%
+Precision:              -0.030136
+Recall:                 -0.145335
+True positives:         -91
+False negatives:        +91
 ```
 
-The current immutable repository runner expects Task 1 F1 `0.660054`. The `0.6521` value above belongs to the archived diagnostic run in `reports/task1_evk_timeout15/`. These are separate recorded runs and should not be treated as conflicting benchmark expectations.
+The archived `0.6521` run is retained only as diagnostic evidence. Removing the old timeout behavior recovers seven true positives and raises EVK F1 to `0.660054`, but it does not close the main Orin-versus-EVK accuracy gap.
+
+Two separately obtained GenieX-compatible Qwen3-VL-4B-Instruct W4A16 packages were tested and produced the same current EVK metrics. The observed gap is therefore not explained by choosing one of those two download/import routes.
 
 ## 12. Task 1 pipeline under investigation
 
@@ -599,26 +878,33 @@ reports/orin_task1_legacy_fixed_top20.json
 ### Qualcomm EVK VLM deployment
 
 ```text
+Model:             Qwen3-VL-4B-Instruct
 Resolved artifact: local/qwen3vl-4b-qairt-w4a16
 Runtime:           GenieX / QAIRT
 Weights:           W4
 Activations:       A16
 Image size:        512 x 512
 Padding:           white
-Timeout:           15 seconds in the archived full run
 ```
 
-Archived result:
+Current reproduced result:
+
+```text
+run_outputs/task1_350/eval_first_350_samples.json
+reference_results/task1_350/
+```
+
+Historical timeout diagnostic:
 
 ```text
 reports/task1_evk_timeout15/eval_first_350_samples.json
 ```
 
-## 13. Failure pattern in the full EVK run
+## 13. Failure pattern and current interpretation
 
-The primary final-metric failure is lost recall: the EVK emits fewer final ingredients and misses many labels recovered by the Orin pipeline.
+The primary final-metric difference is lost recall: the EVK emits fewer correct final ingredients and misses many labels recovered by the Orin pipeline.
 
-Qwen executed on 179 of the 350 EVK rows. Among those calls:
+The current no-timeout baseline confirms that request interruption was responsible for only a small part of the original loss. The archived timeout run contained:
 
 ```text
 Timeout fallbacks:                    9
@@ -631,9 +917,11 @@ Mean non-zero candidate count:     12.78
 Median non-zero candidate count:      18
 ```
 
-Raw Qwen responses are often excessively broad, while timeout or empty fallbacks remove Qwen evidence entirely. Both behaviors damage ranking and fusion. A response that marks almost every candidate as non-zero does not necessarily produce more final labels: it can flatten relative ranking, destabilize row normalization, and interact poorly with the final threshold selector.
+After the timeout behavior was removed, EVK F1 improved from `0.6521` to `0.660054`, while Orin remained at `0.7579`. This shows that timeout handling was a secondary issue rather than the root cause of the cross-platform gap.
 
-For rows where Qwen ran on both platforms, paired final micro-F1 was approximately `0.68` on Orin and `0.51` on EVK. When Qwen was skipped, the two pipelines were nearly equivalent. The major divergence is therefore concentrated in the Qwen-executed portion of Task 1.
+The remaining diagnostic pattern is that successful EVK Qwen responses are frequently much broader than the corresponding Orin responses. Marking almost every candidate as non-zero can flatten relative ranking, destabilize row normalization, and interact poorly with the final threshold selector.
+
+For rows where Qwen ran on both platforms in the archived paired trace, final micro-F1 was approximately `0.68` on Orin and `0.51` on EVK. When Qwen was skipped, the two pipelines were nearly equivalent. The major divergence is therefore concentrated in the Qwen-executed portion of Task 1.
 
 ## 14. Diagnostic Test 1 — Determine whether SigLIP2 explains the gap
 
@@ -658,7 +946,7 @@ Rows where both ran Qwen:     176
 
 ### Result
 
-SigLIP2 does not explain the approximately 0.106 F1 gap:
+SigLIP2 does not explain the current approximately `0.098` F1 gap:
 
 - 92% of all truth labels are available to the EVK Qwen stage;
 - candidate sets are almost identical;
@@ -666,7 +954,7 @@ SigLIP2 does not explain the approximately 0.106 F1 gap:
 - Qwen skip/run decisions match on more than 96% of rows;
 - the large quality difference appears mainly after Qwen executes.
 
-The later identical-pixel experiment also freezes the candidate lists exactly and reaches the same conclusion.
+The identical-pixel experiment below also freezes the candidate lists exactly and reaches the same conclusion.
 
 ## 15. Diagnostic Test 2 — Inspect representative Qwen failures
 
@@ -725,7 +1013,7 @@ roti
 yogurt
 ```
 
-The archived EVK run timed out, stored `{}`, and fell back to `roti`. With the corrected greedy 96-token request used in the next test, the call completed but classified all 20 candidates as non-zero:
+The archived EVK run timed out and fell back to `roti`. A later completed deterministic call classified all 20 candidates as non-zero:
 
 ```json
 {
@@ -750,11 +1038,11 @@ The corresponding Orin response was substantially more selective:
 
 ### Result
 
-Preventing a timeout does not remove the quality regression. Successful EVK inference can still produce saturated candidate lists.
+Completing the EVK request does not by itself remove the quality regression. Successful EVK inference can still produce saturated candidate lists.
 
-## 16. Diagnostic Test 3 — Correct and freeze GenieX generation parameters
+## 16. Diagnostic Test 3 — Freeze generation parameters
 
-The diagnostic server request was corrected to use explicit token limits for both API conventions and deterministic greedy decoding:
+A historical diagnostic request used explicit token limits for both API conventions and deterministic decoding:
 
 ```json
 {
@@ -765,15 +1053,17 @@ The diagnostic server request was corrected to use explicit token limits for bot
 }
 ```
 
+This block documents a controlled experiment; it is **not** an additional reproduction step. The current repository code already implements the validated default behavior and the normal Task 1 benchmark command reproduces `0.660054`.
+
 ### Result
 
-The corrected request did not eliminate overprediction:
+The controlled request did not eliminate overprediction:
 
 - `img_011027.jpg` remained saturated;
-- `img_003871.jpg` no longer timed out but classified all 20 candidates as non-zero;
+- `img_003871.jpg` completed but classified all 20 candidates as non-zero;
 - the later 100-image controlled EVK run still had a median of 19 non-zero candidates.
 
-The original token/request configuration was therefore not the primary cause of the accuracy loss.
+Generation-parameter handling was therefore not the primary cause of the remaining accuracy loss.
 
 ## 17. Diagnostic Test 4 — Identical-pixel cross-platform comparison
 
@@ -910,28 +1200,25 @@ The shuffled- and blank-image F1 values are diagnostic only. They compare predic
 ### Result
 
 Replacing the image changed the predicted non-zero set on 91% of rows. Present recall fell from `0.7177` to approximately `0.18`, and the blank image produced an empty output on 72 rows.
-Therefore, the Qwen visual input is neither disconnected nor completely ignored. The EVK deployment responds materially to the image.
 
+Therefore, the Qwen visual input is neither disconnected nor completely ignored. The EVK deployment responds materially to the image.
 
 ## 19. Consolidated conclusion
 
 The retained tests establish that:
 
-1. the Qualcomm EVK Task 1 result is substantially worse than the Orin result;
-2. the regression is concentrated after the Qwen stage, not in SigLIP2 retrieval;
-3. the corrected deterministic GenieX request does not solve the problem;
-4. successful EVK calls frequently classify 19 or 20 of 20 candidates as non-zero;
-5. identical preprocessed image bytes, prompts, and candidate lists do not make EVK and Orin agree;
-6. JPEG recompression, caller-side resize, padding, candidate retrieval, candidate order, skip logic, and prompt construction are not the primary cross-platform cause;
-7. the visual path is active and the image is not ignored;
-8. the EVK output is much more sensitive to prompt-example IDs and candidate positions;
-9. the Orin TensorRT Edge-LLM deployment is substantially more selective and accurate under the same controlled inputs.
+1. the current Qualcomm EVK Task 1 baseline (`0.660054`) is substantially worse than the Orin result (`0.7579`);
+2. removing the old timeout behavior makes the EVK baseline fully reproducible and improves it over the archived `0.6521` run, but does not close the cross-platform gap;
+3. two separately obtained GenieX-compatible Qwen3-VL-4B-Instruct W4A16 packages produce the same EVK result;
+4. the regression is concentrated after the Qwen stage, not in SigLIP2 retrieval;
+5. successful EVK calls frequently classify 19 or 20 of 20 candidates as non-zero;
+6. identical preprocessed image bytes, prompts, and candidate lists do not make EVK and Orin agree;
+7. JPEG recompression, caller-side resize, padding, candidate retrieval, candidate order, skip logic, and prompt construction are not the primary cross-platform cause;
+8. the visual path is active and the image is not ignored;
+9. the EVK output is much more sensitive to prompt-example IDs and candidate positions;
+10. the Orin TensorRT Edge-LLM deployment is substantially more selective and accurate under the same controlled inputs.
 
-The practical problem is localized to the Qualcomm Qwen3-VL-4B-Instruct W4A16 QAIRT/GenieX artifact and deployment stack:
-
-```text
-local/qwen3vl-4b-qairt-w4a16
-```
+The practical problem is localized to the Qualcomm Qwen3-VL-4B-Instruct W4A16 GenieX/QAIRT deployment route, rather than to SigLIP2 or to the external image preparation performed by the pipeline.
 
 The observed behavior is consistent with poor calibration or excessive numeric drift in the multimodal model:
 
@@ -939,11 +1226,11 @@ The observed behavior is consistent with poor calibration or excessive numeric d
 - related ingredients are not discriminated reliably;
 - prompt-token patterns overpower visual selectivity;
 - output logits enter an enumeration-like mode;
-- response length, JSON formatting, and timeout behavior become unstable.
+- response length and JSON/schema compliance become less stable.
 
 ### Important attribution limit
 
-The evidence shows that the tested Qualcomm W4A16 artifact is not accuracy-equivalent to the Orin INT4/FP16 TensorRT Edge-LLM artifact. It strongly implicates the Qualcomm quantized deployment, but it does **not** isolate W4 weight quantization as the only possible cause.
+The evidence shows that the tested Qualcomm W4A16 deployment is not accuracy-equivalent to the Orin INT4/FP16 TensorRT Edge-LLM artifact. It strongly implicates the Qualcomm quantized deployment, but it does **not** isolate W4 weight quantization as the only possible cause.
 
 Remaining internal causes include:
 
@@ -961,16 +1248,24 @@ No unquantized BF16/FP16 Qwen3-VL-4B reference was run with the exact same-pixel
 
 The safe conclusion is:
 
-> The official Qualcomm AI Hub QAIRT W4A16 Qwen3-VL-4B-Instruct artifact, as executed through GenieX on the IQ-9075 EVK, has a reproducible Task 1 accuracy and output-calibration regression. It is materially worse than the tested TensorRT Edge-LLM INT4/FP16 deployment on Jetson AGX Orin. Vendor-level instrumentation is required to determine whether the root cause is quantization, calibration, conversion, multimodal integration, runtime execution, or a combination of these factors.
+> The tested Qualcomm QAIRT W4A16 Qwen3-VL-4B-Instruct deployment, as executed through GenieX on the IQ-9075 EVK, has a reproducible Task 1 accuracy and output-calibration regression relative to the tested TensorRT Edge-LLM INT4/FP16 deployment on Jetson AGX Orin. Vendor-level instrumentation is required to determine whether the root cause is quantization, calibration, conversion, multimodal integration, runtime execution, or a combination of these factors.
 
 ## 20. Accuracy-investigation artifacts
 
-### Full 350-image comparison
+### Current full 350-image comparison
 
 ```text
 Orin result:
 reports/orin_task1_legacy_fixed_top20.json
 
+EVK reproduced baseline:
+run_outputs/task1_350/eval_first_350_samples.json
+reference_results/task1_350/
+```
+
+### Historical timeout diagnostic
+
+```text
 EVK result:
 reports/task1_evk_timeout15/eval_first_350_samples.json
 
@@ -978,7 +1273,7 @@ EVK prediction table:
 reports/task1_evk_timeout15/eval_first_350_samples_predictions.csv
 ```
 
-### Corrected deterministic single-image runs
+### Deterministic single-image runs
 
 ```text
 reports/task1_evk_greedy96/img_011027.json
@@ -1038,7 +1333,7 @@ Peak and incremental memory
 Task 1 F1 / precision / recall
 Task 2 caption / class accuracy
 Candidate recall and guarded-row counts
-Timeout, parser, schema, and restart statistics
+Failure, parser, schema, and restart statistics
 ```
 
 The desired outcome is to approach the Jetson AGX Orin accuracy and latency while maintaining reproducibility and making every implementation difference explicit.
