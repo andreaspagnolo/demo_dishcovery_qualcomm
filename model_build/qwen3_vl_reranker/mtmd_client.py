@@ -59,7 +59,7 @@ class MtmdRerankerClient:
         image_max_tokens: int = 512,
         max_batch_candidates: int = 4,
         force_individual_calls: bool = False,
-        backend_dir: str | Path = "/home/ubuntu/.local/share/geniex/llama_cpp",
+        backend_dir: str | Path = Path.home() / ".local/share/geniex/llama_cpp",
         image_size: int = 384,
         startup_timeout_sec: float = 300.0,
         request_timeout_sec: float = 60.0,
@@ -168,8 +168,22 @@ class MtmdRerankerClient:
         if self._process.stdout is None:
             self._stop_process(graceful=False)
             raise MtmdWorkerError("mtmd reranker stdout is unavailable")
+        deadline = time.monotonic() + self.startup_timeout_sec
+        ignored_stdout: list[str] = []
         try:
-            ready_line = self._readline_with_timeout(self.startup_timeout_sec)
+            while True:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError
+                ready_line = self._readline_with_timeout(remaining)
+                if not ready_line:
+                    break
+                try:
+                    ready = json.loads(ready_line)
+                    break
+                except json.JSONDecodeError:
+                    # FastRPC/driver diagnostics can precede the bridge JSON.
+                    ignored_stdout.append(ready_line.rstrip())
         except TimeoutError as exc:
             diagnostics = self._stderr_tail()
             self._stop_process(graceful=False)
@@ -188,13 +202,6 @@ class MtmdRerankerClient:
             raise MtmdWorkerError(
                 f"mtmd reranker failed during initialization (exit code {code}){detail}"
             )
-        try:
-            ready = json.loads(ready_line)
-        except json.JSONDecodeError as exc:
-            self._stop_process(graceful=False)
-            raise MtmdWorkerError(
-                f"Invalid mtmd initialization response: {ready_line.rstrip()}"
-            ) from exc
         if ready.get("ready") is not True:
             diagnostics = self._stderr_tail()
             self._stop_process(graceful=False)

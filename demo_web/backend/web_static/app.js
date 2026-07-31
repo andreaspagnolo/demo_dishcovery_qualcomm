@@ -140,7 +140,7 @@ const state = {
   sampleCount: 0,
   videoStream: null,
   busy: false,
-  soundEnabled: true,
+  soundEnabled: false,
   ttsAudio: null,
   ttsObjectUrl: "",
   imageReadyTimer: null,
@@ -2464,7 +2464,7 @@ function bindEvents() {
 
 function init() {
   bindEvents();
-  setSoundState(true);
+  setSoundState(false);
   setSelectedTask("task1");
   setDefaultNutritionRange();
   resetHistoryForm();

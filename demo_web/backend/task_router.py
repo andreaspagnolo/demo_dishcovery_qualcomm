@@ -26,6 +26,26 @@ TASK2_RERANKER_BACKEND = "mtmd"
 TASK2_RERANKER_COMPUTE = "hybrid"
 
 
+def siglip_qnn_backend_args() -> list[str]:
+    """Use the same pinned QNN backend as the reproducibility runners.
+
+    The browser demo imports both pipelines in-process, so unlike
+    ``scripts/run_350_benchmarks.py`` it cannot receive this argument from a
+    subprocess command line. Read the documented environment variable and
+    turn it into the equivalent pipeline argument instead.
+    """
+    backend = os.environ.get("GENIEX_QNN_BACKEND", "").strip()
+    if not backend:
+        raise RuntimeError(
+            "GENIEX_QNN_BACKEND is required for the web demo; set it to "
+            "GenieX's qairt/htp-files/libQnnHtp.so as documented in README.md"
+        )
+    path = Path(backend).expanduser().resolve()
+    if not path.is_file():
+        raise FileNotFoundError(f"GENIEX_QNN_BACKEND does not exist: {path}")
+    return ["--siglip-qnn-backend-path", str(path)]
+
+
 @dataclass
 class TaskRouterConfig:
     hf_token: str | None = None
@@ -327,7 +347,7 @@ class TaskRouter:
         if self._task1_runtime is not None:
             return self._task1_runtime
         module = self._load_module("demo_backend_task1", TASK1_SCRIPT)
-        args = self._parse_module_args(module, TASK1_SCRIPT, [])
+        args = self._parse_module_args(module, TASK1_SCRIPT, siglip_qnn_backend_args())
         self._apply_hf_env_to_current_process()
         self._task1_module = module
         self._task1_base_args = args
@@ -361,6 +381,7 @@ class TaskRouter:
             "--torch-dtype",
             "float32",
         ]
+        argv.extend(siglip_qnn_backend_args())
         args = self._parse_module_args(module, TASK2_SCRIPT, argv)
         self._apply_hf_env_to_current_process()
         runtime = WarmTask2Runtime(module, args, shared_embedder=self._shared_task1_siglip_for_task2(args))

@@ -519,7 +519,7 @@ Latency values are reference evidence, not a strict pass/fail requirement when p
 The browser demo retains the current default policy: Task 1 preload, SigLIP-guarded Q8 MTMD Task 2 when requested, and gallery images from `external_assets/images/demo`.
 
 ```bash
-python3 scripts/start_demo.py
+.venv_ort_qnn_245/bin/python scripts/start_demo.py
 ```
 
 Open:
