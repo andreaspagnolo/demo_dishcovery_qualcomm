@@ -40,8 +40,8 @@ target_link_libraries(qwen3-vl-reranker-mtmd PRIVATE
     dl
     pthread
 )
-# Ubuntu's ICD loader on the IQ-9075 image exports unversioned OpenCL symbols,
-# while Qualcomm's prebuilt libggml-opencl records OPENCL_1.x symbol versions.
+# The Qualcomm OpenCL runtime on the IQ-9075 exports unversioned symbols, while
+# Qualcomm's prebuilt libggml-opencl records OPENCL_1.x symbol versions.
 # The dynamic loader resolves them (with the same harmless warning GenieX
 # emits), but GNU ld otherwise rejects the executable at link time.
 target_link_options(qwen3-vl-reranker-mtmd PRIVATE "-Wl,--allow-shlib-undefined")

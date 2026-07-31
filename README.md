@@ -23,9 +23,23 @@ The goal is to let Qualcomm engineers reproduce the baseline, then investigate f
 
 ## 1. Repository and asset layout
 
-Git contains all source code, small inputs, cached text embeddings, configuration files, logs, and reference results. The private asset package supplies the 350-image data, the fixed SigLIP2 and Qwen3-VL-Reranker-2B binaries, the Qualcomm ONNX Runtime/QNN wheels, and a pinned GenieX-compatible Qwen3-VL-4B-Instruct W4A16 bundle. Keeping these external artifacts in one versioned private package avoids depending on mutable online model names or wheel locations during reproduction.
+Git contains all source code, small inputs, cached text embeddings, configuration files, logs, and reference results. The linked private Drive archive supplies the 350-image data and the fixed SigLIP2 and Qwen3-VL-Reranker-2B artifacts. Section 3.3 downloads the exact Qualcomm ONNX Runtime/QNN wheels from official PyPI URLs and verifies their hashes. The GenieX-compatible Qwen3-VL-4B-Instruct W4A16 bundle is supplied separately and is needed only when the pinned local GenieX model alias is not already installed.
 
-Download the private asset package from [Google Drive](https://drive.google.com/drive/folders/1gGnXaYtdx4e8cTYwCkAXPakYQqqiBwc5?usp=drive_link), then extract it at the repository root so that it creates exactly this layout:
+Download `dishcovery_350_assets_siglip_reranker.zip` from [Google Drive](https://drive.google.com/drive/folders/1gGnXaYtdx4e8cTYwCkAXPakYQqqiBwc5?usp=drive_link) and save it in the repository root. Extract it from there:
+
+```bash
+(
+set -e
+ASSET_ARCHIVE="dishcovery_350_assets_siglip_reranker.zip"
+test -f "$ASSET_ARCHIVE" || {
+  echo "ERROR: save $ASSET_ARCHIVE in the repository root first" >&2
+  exit 1
+}
+unzip -q "$ASSET_ARCHIVE"
+)
+```
+
+After completing Sections 3.3 and 4, the external assets have this layout:
 
 ```text
 external_assets/
@@ -34,8 +48,8 @@ external_assets/
 │   ├── task2_350/                         # Food-500 class/image hierarchy
 │   └── demo/                              # browser gallery, up to 80 images
 ├── wheels/
-│   ├── onnxruntime-1.24.4-*.whl          # Qualcomm aarch64 wheel
-│   └── onnxruntime_qnn-2.1.0-*.whl       # ORT-QNN / QAIRT 2.45.40 wheel
+│   ├── onnxruntime-1.24.4-*.whl          # downloaded in Section 3.3
+│   └── onnxruntime_qnn-2.1.0-*.whl       # downloaded in Section 3.3
 └── models/
     ├── siglip2_qcs9075_out/fp16_powfix_split_qairt245/
     │   ├── stage1/model.onnx
@@ -45,7 +59,7 @@ external_assets/
     ├── Qwen3-VL-Reranker-2B-GGUF/
     │   ├── Qwen3-VL-Reranker-2B-Q8_0-F16Emb-F16Cls-HTP.gguf
     │   └── mmproj-Qwen3-VL-Reranker-2B-F16.gguf
-    └── Qwen3-VL-4B-Instruct-GenieX-QAIRT-W4A16.zip
+    └── Qwen3-VL-4B-Instruct-GenieX-QAIRT-W4A16.zip  # separate; optional if already imported
 ```
 
 Verify all versioned inputs and Drive-delivered model artifacts:
@@ -60,7 +74,7 @@ Every entry must be reported as `OK`. The expected SHA-256 values are committed 
 config/checksums/model_and_input_sha256.txt
 ```
 
-The pinned Qwen3-VL-4B-Instruct bundle and Qualcomm wheel files should also be covered by the private package checksum manifest distributed with the assets. Do not silently replace them with newer artifacts when reproducing the baseline.
+The exact wheel filenames and official SHA-256 values are pinned in Section 3.3. If a Qwen bundle is required for first-time import, use the separately supplied pinned bundle; do not silently replace any baseline artifact with a newer version.
 
 ## 2. Repository map
 
@@ -100,64 +114,96 @@ Run once on the EVK:
 sudo apt update
 sudo apt install -y \
   python3-venv python3-pip \
-  git cmake ninja-build build-essential pkg-config \
-  ocl-icd-opencl-dev
+  git curl unzip cmake ninja-build build-essential pkg-config \
+  clinfo qcom-adreno-cl1
 ```
+
+The validated Qualcomm OpenCL package is `qcom-adreno-cl1` (`1.855.3+rev2+repack1` in the clean-room run). Do **not** install `ocl-icd-opencl-dev`: it conflicts with and removes the Qualcomm package, leaving only a generic OpenCL loader with no Adreno platform.
+
+Verify the package and GPU immediately:
+
+```bash
+dpkg-query -W -f='${Package} ${Version}\n' qcom-adreno-cl1
+clinfo -l
+```
+
+The first command records the installed package version; the clean-room run used `1.855.3+rev2+repack1`. The `clinfo -l` output must include `QUALCOMM Snapdragon(TM)` and `QUALCOMM Adreno(TM) 663`.
 
 Run all remaining commands from the repository root. After opening a shell in the cloned repository, verify it before continuing:
 
 ```bash
-test -f requirements.txt && test -d scripts && echo "Repository root: OK"
+(
+test -f requirements.txt && test -d scripts || {
+  echo "ERROR: change to the cloned repository root first" >&2
+  exit 1
+}
+echo "Repository root: OK ($PWD)"
+)
 ```
+
+Parenthesized validation blocks intentionally run in a subshell: an `exit 1` stops that block without closing the interactive terminal. Paste each fenced Bash block as one unit and keep every line-ending `\` intact.
 
 ### 3.2 Create the Python environment
 
 `requirements.txt` may temporarily install the public ONNX Runtime package as a transitive dependency. The commands below intentionally replace it with the validated Qualcomm pair afterward.
 
 ```bash
-python3 -m venv .venv_ort_qnn_245
 export EVK_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 
+(
+set -e
+python3 -m venv .venv_ort_qnn_245
 "$EVK_PYTHON" -m pip install --upgrade pip
 "$EVK_PYTHON" -m pip install -r requirements.txt
+)
 ```
 
 ### 3.3 Install the Qualcomm ONNX Runtime and ORT-QNN wheels
 
-The private asset package must contain exactly one matching wheel for each component under `external_assets/wheels/`.
+The Drive archive does not contain these wheels. Download the exact CPython 3.12/AArch64 files from their official PyPI file URLs, verify their hashes, and install them only into `.venv_ort_qnn_245`:
 
 ```bash
-mapfile -t ORT_WHEELS < <(
-  find external_assets/wheels -maxdepth 1 -type f \
-    -name 'onnxruntime-1.24.4-*.whl' | sort
-)
-
-mapfile -t ORT_QNN_WHEELS < <(
-  find external_assets/wheels -maxdepth 1 -type f \
-    \( -name 'onnxruntime_qnn-2.1.0-*.whl' \
-       -o -name 'onnxruntime-qnn-2.1.0-*.whl' \) | sort
-)
-
-[ "${#ORT_WHEELS[@]}" -eq 1 ] || {
-  echo "ERROR: expected exactly one ONNX Runtime 1.24.4 wheel" >&2
-  printf '%s\n' "${ORT_WHEELS[@]}"
+(
+set -e
+test -x "$EVK_PYTHON" || {
+  echo "ERROR: missing $EVK_PYTHON; complete Section 3.2 first" >&2
   exit 1
 }
 
-[ "${#ORT_QNN_WHEELS[@]}" -eq 1 ] || {
-  echo "ERROR: expected exactly one ORT-QNN 2.1.0 wheel" >&2
-  printf '%s\n' "${ORT_QNN_WHEELS[@]}"
-  exit 1
-}
+WHEEL_DIR="external_assets/wheels"
+ORT_WHEEL="onnxruntime-1.24.4-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+QNN_WHEEL="onnxruntime_qnn-2.1.0-cp312-cp312-manylinux_2_34_aarch64.whl"
 
-# Remove the public/transitive ORT package before installing the validated pair.
+ORT_URL="https://files.pythonhosted.org/packages/aa/60"
+ORT_URL+="/c4d1c8043eb42f8a9aa9e931c8c293d289c48ff463267130eca97d13357f/$ORT_WHEEL"
+QNN_URL="https://files.pythonhosted.org/packages/d8/71"
+QNN_URL+="/17a145e8c4dc4a5de64ed3784382233845293445341bdb56c5d097827efd/$QNN_WHEEL"
+
+mkdir -p "$WHEEL_DIR"
+curl --fail --location --retry 3 \
+  --output "$WHEEL_DIR/$ORT_WHEEL" \
+  "$ORT_URL"
+curl --fail --location --retry 3 \
+  --output "$WHEEL_DIR/$QNN_WHEEL" \
+  "$QNN_URL"
+
+printf '%s  %s\n' \
+  '1a5c5a544b22f90859c88617ecb30e161ee3349fcc73878854f43d77f00558b5' \
+  "$WHEEL_DIR/$ORT_WHEEL" \
+  '5c8a3f5d95f05722f8b923212754fc76435b2132c64ae97478d569855c1ee2a8' \
+  "$WHEEL_DIR/$QNN_WHEEL" \
+  | sha256sum --check
+
 "$EVK_PYTHON" -m pip uninstall -y \
   onnxruntime onnxruntime-gpu onnxruntime-qnn
 
-"$EVK_PYTHON" -m pip install --no-cache-dir \
-  "${ORT_WHEELS[0]}" \
-  "${ORT_QNN_WHEELS[0]}"
+"$EVK_PYTHON" -m pip install --no-index --no-deps \
+  "$WHEEL_DIR/$ORT_WHEEL" \
+  "$WHEEL_DIR/$QNN_WHEEL"
+)
 ```
+
+Both checksum lines must report `OK`. The local-wheel install is deliberately isolated from package indexes; its dependencies are installed and pinned by `requirements.txt` in Section 3.2.
 
 Verify the Python packages, QNN plugin, and HTP libraries before continuing:
 
@@ -206,6 +252,7 @@ export TASK2_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 export GENIEX_QNN_BACKEND="$HOME/.local/share/geniex/qairt/htp-files/libQnnHtp.so"
 export DISHCOVERY_MODELS_DIR="$PWD/external_assets/models"
 
+(
 for path in \
   "$TASK1_PYTHON" \
   "$TASK2_PYTHON" \
@@ -213,6 +260,7 @@ for path in \
   "$DISHCOVERY_MODELS_DIR"; do
   test -e "$path" || { echo "ERROR: missing $path" >&2; exit 1; }
 done
+)
 ```
 
 Confirm the pinned GenieX stack:
@@ -233,18 +281,22 @@ The Task 2 runner validates this contract strictly.
 
 ## 4. Import Qwen3-VL-4B-Instruct for Task 1
 
-Import the bundle supplied in `external_assets/models/`:
+The Qwen bundle is not in the linked Drive archive. If the pinned alias is already present in `geniex list`, reuse it. Otherwise, place the separately supplied bundle at the path below and import it once:
 
 ```bash
 export QWEN_GENIEX_BUNDLE="$PWD/external_assets/models/Qwen3-VL-4B-Instruct-GenieX-QAIRT-W4A16.zip"
 export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
 
-test -f "$QWEN_GENIEX_BUNDLE" || {
-  echo "ERROR: missing pinned Qwen3-VL-4B-Instruct GenieX bundle" >&2
-  exit 1
-}
+(
+set -e
+if geniex list | grep -Fq "$GENIEX_TASK1_MODEL"; then
+  echo "Reusing installed model: $GENIEX_TASK1_MODEL"
+else
+  test -f "$QWEN_GENIEX_BUNDLE" || {
+    echo "ERROR: missing pinned Qwen3-VL-4B-Instruct GenieX bundle" >&2
+    exit 1
+  }
 
-if ! geniex list | grep -Fq "$GENIEX_TASK1_MODEL"; then
   geniex pull "$GENIEX_TASK1_MODEL" \
     --model-hub localfs \
     --local-path "$QWEN_GENIEX_BUNDLE" \
@@ -252,9 +304,12 @@ if ! geniex list | grep -Fq "$GENIEX_TASK1_MODEL"; then
 fi
 
 geniex list | grep -F "$GENIEX_TASK1_MODEL"
+)
 ```
 
-The final command must print:
+The installed GenieX model is user-scoped under the current account, so a fresh repository clone can reuse it without copying or downloading the 4.1 GiB model again.
+
+The final command output must include:
 
 ```text
 local/qwen3vl-4b-qairt-w4a16
@@ -271,6 +326,10 @@ The reference reranker is not executed through ordinary causal-generation logits
 Run from the repository root:
 
 ```bash
+export LLAMA_CPP_SOURCE="$PWD/third_party/llama.cpp"
+
+(
+set -e
 mkdir -p third_party
 
 if [ ! -d third_party/llama.cpp/.git ]; then
@@ -281,11 +340,13 @@ git -C third_party/llama.cpp fetch --all --tags
 git -C third_party/llama.cpp checkout --detach \
   4f31eedb0ccf546b7e8d6bb243b170f12522f54d
 
-export LLAMA_CPP_SOURCE="$PWD/third_party/llama.cpp"
-
 test "$(git -C "$LLAMA_CPP_SOURCE" rev-parse HEAD)" = \
-  "4f31eedb0ccf546b7e8d6bb243b170f12522f54d" \
-  && echo "llama.cpp revision: OK"
+  "4f31eedb0ccf546b7e8d6bb243b170f12522f54d" || {
+  echo "ERROR: unexpected llama.cpp revision" >&2
+  exit 1
+}
+echo "llama.cpp revision: OK"
+)
 ```
 
 ### 5.2 Locate the ABI-compatible GenieX libraries
@@ -294,6 +355,8 @@ test "$(git -C "$LLAMA_CPP_SOURCE" rev-parse HEAD)" = \
 export GENIEX_LLAMA_LIB_DIR="$HOME/.local/share/geniex/llama_cpp"
 export QAIRT_HTP_DIR="$HOME/.local/share/geniex/qairt/htp-files"
 
+(
+set -e
 test -d "$GENIEX_LLAMA_LIB_DIR" || {
   echo "ERROR: GenieX llama.cpp library directory not found" >&2
   exit 1
@@ -307,12 +370,14 @@ test -d "$QAIRT_HTP_DIR" || {
 ls "$GENIEX_LLAMA_LIB_DIR"/libllama.so* >/dev/null
 ls "$GENIEX_LLAMA_LIB_DIR"/libggml-opencl.so >/dev/null
 ls "$GENIEX_LLAMA_LIB_DIR"/libggml-htp-v*.so >/dev/null
+echo "GenieX native libraries: OK"
+)
 ```
 
 When GenieX is installed in a non-standard directory, locate the libraries and update the two variables before building:
 
 ```bash
-find "$HOME/.local/share/geniex" -type f \
+find -L "$HOME/.local/share/geniex" -type f \
   \( -name 'libllama.so*' -o -name 'libQnnHtp.so' \) \
   -printf '%h\n' 2>/dev/null | sort -u
 ```
@@ -320,10 +385,12 @@ find "$HOME/.local/share/geniex" -type f \
 ### 5.3 Build and validate the bridge
 
 ```bash
+export RERANKER_BIN="$PWD/model_build/qwen3_vl_reranker/build/qwen3-vl-reranker-mtmd"
+
+(
+set -e
 rm -rf model_build/qwen3_vl_reranker/build
 ./model_build/qwen3_vl_reranker/build.sh
-
-export RERANKER_BIN="$PWD/model_build/qwen3_vl_reranker/build/qwen3-vl-reranker-mtmd"
 
 test -x "$RERANKER_BIN" || {
   echo "ERROR: Task 2 bridge was not created" >&2
@@ -335,6 +402,8 @@ if ldd "$RERANKER_BIN" | grep -q 'not found'; then
   echo "ERROR: Task 2 bridge has missing shared libraries" >&2
   exit 1
 fi
+echo "Task 2 bridge linkage: OK"
+)
 ```
 
 ### 5.4 Export the Task 2 runtime library paths and check devices
@@ -346,7 +415,18 @@ export LD_LIBRARY_PATH="$GENIEX_LLAMA_LIB_DIR:$QAIRT_HTP_DIR${LD_LIBRARY_PATH:+:
 export ADSP_LIBRARY_PATH="$GENIEX_LLAMA_LIB_DIR;$QAIRT_HTP_DIR"
 export DSP_LIBRARY_PATH="$ADSP_LIBRARY_PATH"
 
-"$RERANKER_BIN" --list-devices
+(
+set -e
+DEVICE_LIST=$("$RERANKER_BIN" --list-devices)
+printf '%s\n' "$DEVICE_LIST"
+for backend in GPUOpenCL HTP0 CPU; do
+  grep -Fq "$backend" <<<"$DEVICE_LIST" || {
+    echo "ERROR: missing Task 2 backend: $backend" >&2
+    exit 1
+  }
+done
+echo "Task 2 backends: OK"
+)
 ```
 
 The device list must include all three backends:
@@ -371,7 +451,7 @@ At runtime:
 
 Run the two tasks sequentially. **The GenieX server is required for Task 1 and must be stopped before Task 2.** Task 2 does not use the GenieX HTTP server; it directly loads the GenieX llama.cpp/QAIRT libraries through the native reranker bridge.
 
-Before starting, export the shared baseline variables from the repository root:
+Open Terminal B in the repository root, export the shared baseline variables below, and keep that terminal open for both benchmark commands:
 
 ```bash
 export TASK1_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
@@ -386,6 +466,8 @@ export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
 Open **Terminal A** in the repository root, then run:
 
 ```bash
+(
+set -e
 test -f requirements.txt && test -d scripts || {
   echo "ERROR: Terminal A is not in the repository root" >&2
   exit 1
@@ -393,18 +475,30 @@ test -f requirements.txt && test -d scripts || {
 
 export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
 geniex serve --host 127.0.0.1:18181
+)
 ```
 
 Leave Terminal A open. Then run Task 1 in **Terminal B**, from the repository root:
 
 ```bash
+(
+set -e
 # Task 1: first 350 images, seed 7, legacy fixed Top-20 policy.
-python3 scripts/run_350_benchmarks.py task1 \
+"$TASK1_PYTHON" scripts/run_350_benchmarks.py task1 \
   --qnn-backend-path "$GENIEX_QNN_BACKEND"
 
-python3 scripts/verify_metrics.py task1 \
+"$TASK1_PYTHON" scripts/verify_metrics.py task1 \
   run_outputs/task1_350/eval_first_350_samples.json
+)
 ```
+
+The runner writes progress to `run_outputs/task1_350/run.log`. To watch it without interrupting inference, open another terminal in the repository root and run:
+
+```bash
+tail -f run_outputs/task1_350/run.log
+```
+
+Pressing `Ctrl+C` in the monitoring terminal stops only `tail`.
 
 Expected verification output:
 
@@ -425,10 +519,13 @@ Ctrl+C
 Confirm that no GenieX server remains active:
 
 ```bash
-if pgrep -af 'geniex serve'; then
+(
+if pgrep -af '[g]eniex serve'; then
   echo "ERROR: stop geniex serve before running Task 2" >&2
   exit 1
 fi
+echo "GenieX server stopped: OK"
+)
 ```
 
 Stopping the server releases the VLM resources before the Task 2 reranker opens its own HTP/OpenCL sessions.
@@ -448,15 +545,26 @@ export DSP_LIBRARY_PATH="$ADSP_LIBRARY_PATH"
 Run and verify Task 2:
 
 ```bash
+(
+set -e
 # Task 2: first 350 images, seed 42, class_caption evaluation,
 # SigLIP Top-5, guarded Q8 reranker Top-5, gap 3.0,
 # and five independent reranker calls.
-python3 scripts/run_350_benchmarks.py task2 \
+"$TASK2_PYTHON" scripts/run_350_benchmarks.py task2 \
   --qnn-backend-path "$GENIEX_QNN_BACKEND"
 
-python3 scripts/verify_metrics.py task2 \
+"$TASK2_PYTHON" scripts/verify_metrics.py task2 \
   run_outputs/task2_350/eval_first_350_caption_alignment.json
+)
 ```
+
+The clean-room Task 2 run took about 50 minutes. To monitor it safely, open another terminal in the repository root and run:
+
+```bash
+tail -f run_outputs/task2_350/run.log
+```
+
+Pressing `Ctrl+C` in the monitoring terminal stops only `tail`.
 
 Expected verification output:
 
@@ -516,7 +624,23 @@ Latency values are reference evidence, not a strict pass/fail requirement when p
 
 ## 7. Run the browser demo
 
-The browser demo retains the current default policy: Task 1 preload, SigLIP-guarded Q8 MTMD Task 2 when requested, and gallery images from `external_assets/images/demo`.
+The browser demo retains the current default policy: Task 1 preload, SigLIP-guarded Q8 MTMD Task 2 when requested, and gallery images from `external_assets/images/demo`. It requires two terminals: start GenieX in Terminal A first, then start the web server in Terminal B.
+
+From the repository root, start GenieX in Terminal A and leave it running:
+
+```bash
+(
+set -e
+test -f requirements.txt && test -d scripts || {
+  echo "ERROR: Terminal A is not in the repository root" >&2
+  exit 1
+}
+export GENIEX_TASK1_MODEL="local/qwen3vl-4b-qairt-w4a16"
+geniex serve --host 127.0.0.1:18181
+)
+```
+
+Wait until Terminal A reports `Local hosting on http://127.0.0.1:18181/`. Only then, from the repository root in Terminal B, start the web server:
 
 ```bash
 .venv_ort_qnn_245/bin/python scripts/start_demo.py
@@ -527,6 +651,8 @@ Open:
 ```text
 http://127.0.0.1:8787
 ```
+
+Use `Ctrl+C` in each terminal to stop the web server and GenieX when finished.
 
 ## 8. Validation requirements for replacement implementations
 

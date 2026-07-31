@@ -2,6 +2,10 @@
 external_assets/models/*
 !external_assets/models/.gitkeep
 external_assets/images/
+external_assets/wheels/
+third_party/
+model_build/qwen3_vl_reranker/build/
+demo_runs/
 run_outputs/
 .venv*/
 __pycache__/
