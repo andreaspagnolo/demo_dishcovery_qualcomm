@@ -1,0 +1,30 @@
+{
+  "schema_version": "dishcovery_qairt_speech_selection_v1",
+  "selected_on": "2026-09-02",
+  "device": "Dragonwing IQ-9075 EVK",
+  "chipset": "Qualcomm QCS9075",
+  "qai_hub_models_version": "0.58.0",
+  "qairt_version": "2.45.0.260326154327",
+  "default_model_root": "external_assets/models/qualcomm-ai-hub/v0.58.0",
+  "stt": {
+    "model_id": "whisper_base",
+    "display_name": "Whisper-Base",
+    "source_checkpoint": "openai/whisper-base",
+    "support_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+    "catalog_url": "https://aihub.qualcomm.com/models/whisper_base",
+    "runtime": "qnn_context_binary",
+    "precision": "float",
+    "language_policy": "force English transcription",
+    "selection_reason": "Closest Qualcomm-supported architecture to the previous faster-whisper base.en model."
+  },
+  "tts": {
+    "model_id": "pipertts_en",
+    "display_name": "PiperTTS-EN",
+    "source_checkpoint": "rhasspy/piper-checkpoints en_US/kusal/medium",
+    "catalog_url": "https://aihub.qualcomm.com/models/pipertts_en",
+    "runtime": "voice_ai",
+    "precision": "float",
+    "sample_rate_hz": 22050,
+    "selection_reason": "Same Piper model family as the previous en_US-lessac-medium voice and supported on IQ-9075."
+  }
+}

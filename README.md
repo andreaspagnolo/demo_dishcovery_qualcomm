@@ -2,12 +2,13 @@
 
 ## Reproduction baseline and optimization targets
 
-This repository is the fixed Qualcomm baseline for the Dishcovery Task 1 and Task 2 pipelines. It has four purposes:
+This repository is the fixed Qualcomm baseline for the Dishcovery Task 1 and Task 2 pipelines and the NPU-backed browser speech path. It has five purposes:
 
 1. provide a complete, copy-and-run procedure for reproducing the current 350-image Qualcomm results on a Dragonwing IQ-9075 EVK;
 2. pin the model artifacts, library versions, native bridge revision, runtime environment, and benchmark commands used by the validated baseline;
 3. document the current latency bottlenecks in SigLIP2 and Qwen3-VL-Reranker-2B, including how the deployed artifacts were produced and why those implementations were selected;
-4. preserve the controlled Orin-versus-EVK Task 1 accuracy investigation, which shows that the remaining cross-platform F1 gap is concentrated in the Qwen3-VL-4B-Instruct deployment rather than in SigLIP2 retrieval or caller-side image preparation.
+4. preserve the controlled Orin-versus-EVK Task 1 accuracy investigation, which shows that the remaining cross-platform F1 gap is concentrated in the Qwen3-VL-4B-Instruct deployment rather than in SigLIP2 retrieval or caller-side image preparation;
+5. reproduce the browser voice-command and spoken-result path with Qualcomm Whisper-Base and PiperTTS-EN contexts on the IQ-9075 HTP.
 
 The goal is to let Qualcomm engineers reproduce the baseline, then investigate faster and more accurate replacement implementations. The target is to approach the accuracy/F1 and latency obtained on NVIDIA Jetson AGX Orin while preserving the benchmark contract defined below.
 
@@ -76,6 +77,8 @@ config/checksums/model_and_input_sha256.txt
 
 The exact wheel filenames and official SHA-256 values are pinned in Section 3.3. If a Qwen bundle is required for first-time import, use the separately supplied pinned bundle; do not silently replace any baseline artifact with a newer version.
 
+Speech assets are not part of the private Drive package. Section 3.4 downloads the version-pinned public Qualcomm bundles into the ignored `external_assets/models/` tree, validates their metadata, generates ONNX Runtime EPContext wrappers, pins the Whisper support-file revision, and writes a SHA-256 manifest next to the models.
+
 ## 2. Repository map
 
 ```text
@@ -101,6 +104,9 @@ GenieX:                   0.3.13
 QAIRT used by GenieX:     2.45.0.260326
 ONNX Runtime:             1.24.4
 onnxruntime-qnn:          2.1.0 / QAIRT 2.45.40
+Qualcomm speech bundle:   AI Hub Models 0.58.0 / QAIRT 2.45.0.260326
+Speech STT:               Whisper-Base, QNN encoder and decoder on HTP
+Speech TTS:               PiperTTS-EN Kusal, QNN neural stages on HTP
 llama.cpp revision:       4f31eedb0ccf546b7e8d6bb243b170f12522f54d
 ```
 
@@ -244,19 +250,72 @@ PY
 
 A warning about `/sys/class/drm/card0/device/vendor` is not fatal on this EVK. The required condition is that the script reaches the final version, provider, device, and library lines without an assertion failure.
 
-### 3.4 Export the baseline paths
+
+### 3.4 Download the Qualcomm speech models
+
+The browser demo defaults to Qualcomm speech inference on HTP:
+
+- [Whisper-Base](https://aihub.qualcomm.com/models/whisper_base) is the closest available model to the former `faster-whisper base.en` backend. The decoder is forced to English so the command behavior remains equivalent.
+- [PiperTTS-EN](https://aihub.qualcomm.com/models/pipertts_en) stays in the same Piper family as the former Lessac voice. The Qualcomm export uses the Kusal English voice.
+
+The checked-in selection record is `config/model_artifacts/qairt_speech_models.json`. It pins AI Hub Models 0.58.0, the QCS9075 float artifacts, and QAIRT 2.45.0.260326 so they match the ONNX Runtime/QNN environment installed above. As with Qwen3-VL-Instruct-4B, the model files are downloaded into the ignored `external_assets/models/` tree rather than committed to Git.
+
+Create a separate, version-pinned downloader environment. Keeping the AI Hub downloader separate prevents its Python dependencies from replacing the validated Qualcomm runtime installed in `.venv_ort_qnn_245`:
+
+```bash
+python3 -m venv .venv_qaihm
+export QAIHM_PYTHON="$PWD/.venv_qaihm/bin/python"
+export QAIHM_CLI="$PWD/.venv_qaihm/bin/qai-hub-models"
+
+"$QAIHM_PYTHON" -m pip install --upgrade pip
+"$QAIHM_PYTHON" -m pip install "qai-hub-models==0.58.0"
+
+"$QAIHM_PYTHON" -c \
+  "import importlib.metadata; assert importlib.metadata.version(\"qai-hub-models\") == \"0.58.0\""
+test -x "$QAIHM_CLI" || { echo "ERROR: qai-hub-models CLI is missing" >&2; exit 1; }
+```
+
+Download and prepare the models in the repository model directory:
+
+```bash
+export DISHCOVERY_SPEECH_MODEL_ROOT="$PWD/external_assets/models/qualcomm-ai-hub/v0.58.0"
+
+"$QAIHM_PYTHON" scripts/download_qairt_speech_models.py \
+  --qaihm-cli "$QAIHM_CLI"
+
+test -f "$DISHCOVERY_SPEECH_MODEL_ROOT/speech_models.json" || {
+  echo "ERROR: speech model manifest was not created" >&2
+  exit 1
+}
+```
+
+The downloader selects `Dragonwing IQ-9075 EVK`, requests the QAIRT 2.45 build, generates strict external EPContext wrappers, downloads the Whisper tokenizer/configuration from the pinned `openai/whisper-base` revision, and records per-file SHA-256 values. It is idempotent: complete bundles and support files are reused, while wrappers and the manifest are regenerated. The expected model size is approximately 276 MB.
+
+`external_assets/models/qualcomm-ai-hub/v0.58.0` is the default. For a deliberately different storage location, pass `--output-root PATH` to the downloader and the same path through `DISHCOVERY_SPEECH_MODEL_ROOT` or `--speech-model-root` when running the demo.
+
+Run the actual HTP round-trip acceptance test before starting the web app:
+
+```bash
+"$EVK_PYTHON" scripts/smoke_test_qairt_speech.py
+```
+
+The test synthesizes `find ingredients`, transcribes the generated WAV, normalizes capitalization and punctuation, and exits nonzero unless the command matches. It also reports model-load and inference timings. The generated WAV is written to `run_outputs/speech_smoke/find-ingredients.wav`.
+
+### 3.5 Export the baseline paths
 
 ```bash
 export TASK1_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 export TASK2_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 export GENIEX_QNN_BACKEND="$HOME/.local/share/geniex/qairt/htp-files/libQnnHtp.so"
 export DISHCOVERY_MODELS_DIR="$PWD/external_assets/models"
+export DISHCOVERY_SPEECH_MODEL_ROOT="$PWD/external_assets/models/qualcomm-ai-hub/v0.58.0"
 
 (
 for path in \
   "$TASK1_PYTHON" \
   "$TASK2_PYTHON" \
   "$GENIEX_QNN_BACKEND" \
+  "$DISHCOVERY_SPEECH_MODEL_ROOT" \
   "$DISHCOVERY_MODELS_DIR"; do
   test -e "$path" || { echo "ERROR: missing $path" >&2; exit 1; }
 done
@@ -626,6 +685,8 @@ Latency values are reference evidence, not a strict pass/fail requirement when p
 
 The browser demo retains the current default policy: Task 1 preload, SigLIP-guarded Q8 MTMD Task 2 when requested, and gallery images from `external_assets/images/demo`. It requires two terminals: start GenieX in Terminal A first, then start the web server in Terminal B.
 
+Speech defaults to Whisper-Base and PiperTTS-EN QNN contexts on HTP. The browser records PCM WAV, maps the transcript through the existing command parser, and plays the synthesized result audio.
+
 From the repository root, start GenieX in Terminal A and leave it running:
 
 ```bash
@@ -643,7 +704,13 @@ geniex serve --host 127.0.0.1:18181
 Wait until Terminal A reports `Local hosting on http://127.0.0.1:18181/`. Only then, from the repository root in Terminal B, start the web server:
 
 ```bash
-.venv_ort_qnn_245/bin/python scripts/start_demo.py
+export EVK_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
+export DISHCOVERY_SPEECH_MODEL_ROOT="$PWD/external_assets/models/qualcomm-ai-hub/v0.58.0"
+
+"$EVK_PYTHON" scripts/smoke_test_qairt_speech.py \
+  --model-root "$DISHCOVERY_SPEECH_MODEL_ROOT"
+
+"$EVK_PYTHON" scripts/start_demo.py
 ```
 
 Open:
@@ -653,6 +720,31 @@ http://127.0.0.1:8787
 ```
 
 Use `Ctrl+C` in each terminal to stop the web server and GenieX when finished.
+
+The `/api/config` response reports `available: true` for both `voice` and `tts` when the runtime, model paths, and QAIRT minor match. The first speech request creates and retains the QNN sessions; later requests reuse them.
+
+Available voice commands are:
+
+```text
+find ingredients
+describe the dish
+estimate calories
+execute both
+```
+
+Use command-line overrides only when a fallback is intentional:
+
+```bash
+# Original faster-whisper plus Lessac Piper files from external_assets/models/.
+"$EVK_PYTHON" scripts/start_demo.py \
+  --stt-backend whisper \
+  --tts-backend piper
+
+# Start the image demo while explicitly disabling spoken output.
+"$EVK_PYTHON" scripts/start_demo.py --tts-backend disabled
+```
+
+`--speech-model-root`, `--stt-model`, `--tts-model`, `--speech-qnn-backend-path`, `--speech-qnn-shared-memory`, and `--stt-max-decode-tokens` are available for controlled experiments. The reproducible baseline uses their documented defaults.
 
 ## 8. Validation requirements for replacement implementations
 

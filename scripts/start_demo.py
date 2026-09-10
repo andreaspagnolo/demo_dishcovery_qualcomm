@@ -38,6 +38,11 @@ os.environ["GENIEX_QNN_BACKEND"] = str(GENIEX_QNN_BACKEND)
 os.environ.pop("ADSP_LIBRARY_PATH", None)
 os.environ.pop("LD_LIBRARY_PATH", None)
 
-raise SystemExit(
-    subprocess.call([sys.executable, str(ROOT / "demo_web/server.py"), *sys.argv[1:]], cwd=ROOT)
-)
+try:
+    exit_code = subprocess.call(
+        [sys.executable, str(ROOT / "demo_web/server.py"), *sys.argv[1:]],
+        cwd=ROOT,
+    )
+except KeyboardInterrupt:
+    exit_code = 130
+raise SystemExit(exit_code)

@@ -7,9 +7,6 @@ import json
 import mimetypes
 import os
 import random
-import shutil
-import subprocess
-import tempfile
 import threading
 import time
 import traceback
@@ -25,7 +22,13 @@ from urllib.parse import parse_qs, urlparse
 from backend.command_parser import CommandParseError, DemoCommand, TaskName, parse_command
 from backend.history import ResultHistory
 from backend.nutrition import NutritionStore, parse_date
-from backend.stt import DEFAULT_WHISPER_MODEL, SpeechToText
+from backend.qairt_speech import (
+    DEFAULT_SPEECH_MODEL_ROOT,
+    piper_bundle_path,
+    whisper_bundle_path,
+)
+from backend.stt import DEFAULT_STT_BACKEND, DEFAULT_WHISPER_MODEL, SpeechToText
+from backend.tts import TextToSpeech
 from backend.task_router import TaskRouter, TaskRouterConfig
 
 
@@ -519,6 +522,32 @@ class DemoController:
                 diagnostics_power_interval_ms=DIAGNOSTICS_POWER_INTERVAL_MS,
             )
         )
+        self.speech_model_root = args.speech_model_root.expanduser()
+        self.stt_model = (
+            args.stt_model
+            if args.stt_model is not None
+            else (
+                str(whisper_bundle_path(self.speech_model_root))
+                if args.stt_backend == "qairt"
+                else DEFAULT_WHISPER_MODEL
+            )
+        )
+        self.tts_model = (
+            args.tts_model
+            if args.tts_model is not None
+            else (
+                piper_bundle_path(self.speech_model_root)
+                if args.tts_backend == "qairt"
+                else DEFAULT_PIPER_MODEL
+            )
+        )
+        self._tts = TextToSpeech(
+            backend=args.tts_backend,
+            model=self.tts_model,
+            config=args.tts_config,
+            qnn_backend_path=args.speech_qnn_backend_path,
+            qnn_shared_memory=args.speech_qnn_shared_memory,
+        )
         self._stt: SpeechToText | None = None
 
     def start_preload(self) -> None:
@@ -558,6 +587,8 @@ class DemoController:
                 "targets": list(self.preload_targets),
                 "events": [event.to_dict() for event in self.preload_events[-20:]],
             }
+        tts_available, tts_message = self._tts.availability()
+        stt = self._load_stt()
         return {
             "ok": True,
             "task2": {
@@ -572,56 +603,41 @@ class DemoController:
             "active_jobs": active,
             "sample_images": len(self.sample_paths),
             "tts": {
-                "available": self.tts_available(),
-                "engine": "piper",
+                "available": tts_available,
+                "engine": self._tts.backend_label(),
+                "model": str(self.tts_model),
+                "message": tts_message,
             },
             "voice": {
-                "engine": "server_whisper_wav",
-                "model": DEFAULT_WHISPER_MODEL,
+                "available": stt.is_available(),
+                "engine": stt.backend_label(),
+                "model": str(self.stt_model),
+                "message": stt.availability_message(),
             },
         }
 
     def tts_available(self) -> bool:
-        return (
-            DEFAULT_PIPER_MODEL.exists()
-            and shutil.which("piper") is not None
-        )
+        return self._tts.is_available()
 
     def synthesize_tts(self, text: str) -> bytes:
         clean = normalize_tts_text(text)
         if not clean:
             raise ValueError("TTS text is empty")
-        if not self.tts_available():
-            raise RuntimeError(
-                f"Local Piper TTS is unavailable: command='piper', model={DEFAULT_PIPER_MODEL}"
-            )
         with self.tts_lock:
-            with tempfile.NamedTemporaryFile(prefix="dishcovery_web_tts_", suffix=".wav", delete=False) as handle:
-                wav_path = Path(handle.name)
-            try:
-                cmd = ["piper", "--model", str(DEFAULT_PIPER_MODEL), "--output_file", str(wav_path)]
-                if DEFAULT_PIPER_CONFIG.exists():
-                    cmd.extend(["--config", str(DEFAULT_PIPER_CONFIG)])
-                subprocess.run(cmd, input=clean + "\n", text=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                return wav_path.read_bytes()
-            except subprocess.CalledProcessError as exc:
-                message = (exc.stderr or exc.stdout or "").strip() or "no Piper output"
-                raise RuntimeError(f"Piper TTS failed: {message}") from exc
-            finally:
-                try:
-                    wav_path.unlink()
-                except OSError:
-                    pass
+            return self._tts.synthesize_wav(clean)
 
     def _load_stt(self) -> SpeechToText:
         if self._stt is None:
             self._stt = SpeechToText(
-                backend="whisper",
-                model=DEFAULT_WHISPER_MODEL,
+                backend=self.args.stt_backend,
+                model=self.stt_model,
                 listen_seconds=WEB_VOICE_SECONDS,
                 sample_rate=WEB_STT_SAMPLE_RATE,
                 device="auto",
                 vad_enabled=False,
+                qnn_backend_path=self.args.speech_qnn_backend_path,
+                qnn_shared_memory=self.args.speech_qnn_shared_memory,
+                max_decode_tokens=self.args.stt_max_decode_tokens,
             )
         return self._stt
 
@@ -630,7 +646,7 @@ class DemoController:
         audio_path = save_data_url_audio(str(payload.get("audio_data") or ""), run_dir)
         try:
             with self.stt_lock:
-                transcript = self._load_stt()._transcribe_whisper_wav(audio_path)
+                transcript = self._load_stt().transcribe_wav(audio_path)
         except Exception:
             raise
         transcript = " ".join(str(transcript or "").strip().split())
@@ -987,6 +1003,41 @@ def parse_args() -> argparse.Namespace:
         default=list(DEFAULT_PRELOAD_BACKENDS),
         help="Warm these backends at startup; defaults to Task1 on the Dragonwing NPU.",
     )
+    parser.add_argument(
+        "--speech-model-root",
+        type=Path,
+        default=DEFAULT_SPEECH_MODEL_ROOT,
+        help="Qualcomm AI Hub model root created by scripts/download_qairt_speech_models.py.",
+    )
+    parser.add_argument(
+        "--stt-backend",
+        choices=("qairt", "whisper"),
+        default=DEFAULT_STT_BACKEND,
+        help="Use Qualcomm Whisper-Base on HTP or the legacy faster-whisper backend.",
+    )
+    parser.add_argument(
+        "--stt-model",
+        help="Override the Qualcomm Whisper bundle path or faster-whisper model name.",
+    )
+    parser.add_argument(
+        "--tts-backend",
+        choices=("qairt", "piper", "disabled"),
+        default="qairt",
+        help="Use Qualcomm PiperTTS-EN on HTP, legacy Piper, or disable TTS.",
+    )
+    parser.add_argument(
+        "--tts-model",
+        type=Path,
+        help="Override the Qualcomm Piper bundle path or legacy Piper ONNX path.",
+    )
+    parser.add_argument("--tts-config", type=Path, default=DEFAULT_PIPER_CONFIG)
+    parser.add_argument(
+        "--speech-qnn-backend-path",
+        type=Path,
+        help="Optional libQnnHtp.so override; defaults to the ORT-QNN 2.45 package.",
+    )
+    parser.add_argument("--speech-qnn-shared-memory", action="store_true")
+    parser.add_argument("--stt-max-decode-tokens", type=int, default=64)
     parser.add_argument("--sample-image-dir", type=Path, default=DEFAULT_SAMPLE_IMAGE_DIR)
     parser.add_argument("--sample-images-list", type=Path, default=DEFAULT_SAMPLE_IMAGES_LIST)
     parser.add_argument("--sample-image-count", type=int, default=DEFAULT_SAMPLE_IMAGE_COUNT)
