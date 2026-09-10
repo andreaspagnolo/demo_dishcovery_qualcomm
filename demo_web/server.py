@@ -1034,7 +1034,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--speech-qnn-backend-path",
         type=Path,
-        help="Optional libQnnHtp.so override; defaults to the ORT-QNN 2.45 package.",
+        help="Optional libQnnHtp.so override; defaults to GENIEX_QNN_BACKEND, then the ORT-QNN 2.45 package.",
     )
     parser.add_argument("--speech-qnn-shared-memory", action="store_true")
     parser.add_argument("--stt-max-decode-tokens", type=int, default=64)

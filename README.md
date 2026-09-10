@@ -706,6 +706,7 @@ Wait until Terminal A reports `Local hosting on http://127.0.0.1:18181/`. Only t
 ```bash
 export EVK_PYTHON="$PWD/.venv_ort_qnn_245/bin/python"
 export DISHCOVERY_SPEECH_MODEL_ROOT="$PWD/external_assets/models/qualcomm-ai-hub/v0.58.0"
+export GENIEX_QNN_BACKEND="$HOME/.local/share/geniex/qairt/htp-files/libQnnHtp.so"
 
 "$EVK_PYTHON" scripts/smoke_test_qairt_speech.py \
   --model-root "$DISHCOVERY_SPEECH_MODEL_ROOT"

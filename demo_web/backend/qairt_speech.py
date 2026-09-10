@@ -254,6 +254,10 @@ class QnnContextSessionFactory:
             )
         self.ort = ort
         self.qnn_ep = qnn_ep
+        # Image and speech sessions share a process. Loading the wheel's QNN
+        # libraries after GenieX's can fail with INCOMPATIBLE_BINARIES.
+        if backend_path is None:
+            backend_path = os.environ.get("GENIEX_QNN_BACKEND", "").strip() or None
         self.backend_path = (
             Path(backend_path).expanduser().resolve()
             if backend_path is not None

@@ -2,15 +2,20 @@ from __future__ import annotations
 
 import io
 import json
+import os
+import sys
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 import wave
 
 import numpy as np
 
 from demo_web.backend.qairt_speech import (
     QairtSpeechError,
+    QnnContextSessionFactory,
     _generate_path,
     _wav_bytes,
     generate_ep_context_wrappers,
@@ -76,6 +81,42 @@ class QairtSpeechBundleTests(unittest.TestCase):
                     expected_runtime="voice_ai",
                     required_contexts=("model.bin",),
                 )
+
+
+class QairtBackendSelectionTests(unittest.TestCase):
+    def test_speech_uses_shared_backend_unless_explicitly_overridden(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            package_backend = root / "wheel-libQnnHtp.so"
+            shared_backend = root / "geniex-libQnnHtp.so"
+            explicit_backend = root / "explicit-libQnnHtp.so"
+            for backend in (package_backend, shared_backend, explicit_backend):
+                backend.touch()
+            ep_name = "QNNExecutionProvider"
+            ort = SimpleNamespace(
+                get_ep_devices=lambda: [SimpleNamespace(ep_name=ep_name)]
+            )
+            qnn = SimpleNamespace(
+                get_ep_name=lambda: ep_name,
+                get_qnn_htp_path=lambda: str(package_backend),
+            )
+            cases = (
+                (str(shared_backend), None, shared_backend),
+                ("", None, package_backend),
+                (str(shared_backend), explicit_backend, explicit_backend),
+            )
+            with (
+                patch.dict(sys.modules, {"onnxruntime": ort, "onnxruntime_qnn": qnn}),
+                patch(
+                    "demo_web.backend.qairt_speech._qairt_package_version",
+                    return_value="2.45.40",
+                ),
+            ):
+                for shared, override, expected in cases:
+                    with self.subTest(shared=shared, override=override):
+                        with patch.dict(os.environ, {"GENIEX_QNN_BACKEND": shared}):
+                            factory = QnnContextSessionFactory(backend_path=override)
+                        self.assertEqual(factory.backend_path, expected.resolve())
 
 
 class QairtPiperHelpersTests(unittest.TestCase):
