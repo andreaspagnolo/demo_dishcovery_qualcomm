@@ -31,7 +31,7 @@ if not GENIEX_QNN_BACKEND.is_file():
     raise SystemExit(f"Missing GenieX QNN backend: {GENIEX_QNN_BACKEND}")
 
 os.environ.setdefault("DISHCOVERY_MODELS_DIR", str(ROOT / "external_assets/models"))
-os.environ.setdefault("GENIEX_TASK1_MODEL", "local/qwen3vl-4b-qairt-w4a16")
+os.environ.setdefault("GENIEX_TASK1_MODEL", "local/qwen3vl-4b-qairt-w8a16")
 os.environ["GENIEX_QNN_BACKEND"] = str(GENIEX_QNN_BACKEND)
 # ORT-QNN configures this path for its own QAIRT libraries. Inherited values
 # can mix QAIRT copies and make the HTP backend fail during device creation.

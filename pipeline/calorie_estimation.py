@@ -24,7 +24,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 _THIS_DIR = Path(__file__).resolve().parent
 ROOT = _THIS_DIR.parent
-DEFAULT_QWEN_MODEL = os.environ.get("GENIEX_TASK1_MODEL", "qualcomm/qwen3_vl_4b_instruct:w4a16")
+DEFAULT_QWEN_MODEL = os.environ.get("GENIEX_TASK1_MODEL", "local/qwen3vl-4b-qairt-w8a16")
 DEFAULT_CALORIES_CSV = ROOT / "benchmark_inputs/calorie_lookup.csv"
 DEFAULT_CLEANED_JSON = ROOT / "benchmark_inputs/task1_ingredient_mapping.json"
 DEFAULT_CAPTIONS = ROOT / "benchmark_inputs/captions_cleaned.txt"
@@ -279,7 +279,7 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_QWEN_MODEL,
         help=(
             "Qwen-VL instruction model used for dish composition estimation. "
-            "Default uses the Qualcomm QAIRT W4A16 GenieX model."
+            "Default uses the custom QAIRT W8A16 GenieX model (INT8 weights, INT16 activations)."
         ),
     )
     parser.add_argument(

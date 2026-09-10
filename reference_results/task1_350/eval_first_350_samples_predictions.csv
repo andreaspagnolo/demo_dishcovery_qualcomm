@@ -1,359 +1,353 @@
 image,truth,prediction,f1,siglip2_image_and_topk_sec,qwen_sec,fusion_and_selection_sec,total_image_sec,raw_qwen
-img_000011.jpg,crab|fish,crab,0.666667,1.269778,0.000006,0.000187,1.270011,{}
-img_000070.jpg,zucchini,cucumber|zucchini,0.666667,1.115047,11.793445,0.010785,12.919312,"{""present"":[1,2],""possible"":[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_000173.jpg,chokha|litti,litti,0.666667,1.086414,0.000010,0.000206,1.086662,{}
-img_000288.jpg,plum,plum,1.000000,1.092211,0.000008,0.000182,1.092435,{}
-img_000312.jpg,caviar,caviar|fish roe,0.666667,1.122209,4.482642,0.009449,5.614332,"{""present"":[1,2,4,7,9,10,12,14,15,16,17,18,19,20],""possible"":[3,5,6,8,11]}"
-img_000332.jpg,edamame,edamame,1.000000,1.259721,0.000006,0.000120,1.259873,{}
-img_000368.jpg,plum,plum,1.000000,1.168551,0.000006,0.000142,1.168723,{}
-img_000679.jpg,plum,plum,1.000000,1.085149,0.000007,0.000139,1.085324,{}
-img_000689.jpg,oyster,crawfish|oyster,0.666667,1.134304,1.658489,0.001373,2.794196,"{""present"":[1,4],""possible"":[2]}"
-img_000794.jpg,beef|chicken wings|fried roll|meatball|noodle,broth,0.000000,1.097206,4.824725,0.002227,5.924190,"{""present"":[1,2,4,8,10,12,14,15,16,17,18,19,20],""possible"":[13,14,15,16,17,18,20]}"
-img_000828.jpg,buckwheat,buckwheat,1.000000,1.084795,0.000007,0.000172,1.085005,{}
-img_000831.jpg,fish|pea|potato|tartar sauce,tartar sauce,0.400000,1.100835,4.477297,0.012583,5.590748,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_000852.jpg,edamame,edamame,1.000000,1.108804,0.000008,0.000229,1.109072,{}
-img_000913.jpg,walnut,walnut,1.000000,1.331748,0.000006,0.000135,1.331914,{}
-img_000966.jpg,lemon,lemon,1.000000,1.112659,0.000007,0.000134,1.112828,{}
-img_001048.jpg,buckwheat,bean sprout|buckwheat|cereal|granola|oatmeal|pomegranate seed|quinoa,0.250000,1.249370,4.137912,0.008883,5.396190,"{""present"":[2,4,8,9,13,18,20],""possible"":[10,11,12,14,15,16,17,19]}"
-img_001084.jpg,whole pig,whole pig,1.000000,1.252189,0.000006,0.000132,1.252352,{}
-img_001144.jpg,plum,plum,1.000000,1.084131,0.000008,0.000180,1.084350,{}
-img_001146.jpg,batter|bonito flake|cabbage|mayonnaise|octopus,fish ball,0.000000,1.274178,3.252939,0.002546,4.529688,"{""present"":[1,2,4,6,7,9,10,12,14,17,19,20]}"
-img_001172.jpg,cottage cheese,cottage cheese,1.000000,1.266355,4.824846,0.009046,6.100272,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_001174.jpg,almond|cracker|pretzel,pretzel,0.500000,1.094878,7.687808,0.011405,8.794119,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_001210.jpg,oyster,oyster,1.000000,1.264883,0.000006,0.000117,1.265032,{}
-img_001308.jpg,plum,plum,1.000000,1.257763,0.000006,0.000115,1.257908,{}
-img_001362.jpg,blackberry|blueberry|granola|raspberry,oatmeal,0.000000,1.102609,4.700577,0.009621,5.812835,"{""present"":[1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,4]}"
-img_001387.jpg,chickpea,chickpea,1.000000,1.259256,4.871863,0.000453,6.131599,"{""present"":[1,4],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_001407.jpg,chicken breast,ham,0.000000,1.286010,1.869904,0.000954,3.156893,"{""present"":[1],""possible"":[4,12]}"
-img_001462.jpg,plum,plum,1.000000,1.086850,0.000007,0.000126,1.087007,{}
-img_001488.jpg,bitter melon,bitter melon,1.000000,1.101559,0.000008,0.000171,1.101771,{}
-img_001507.jpg,chocolate ice cream|mint ice cream,chocolate ice cream|mint ice cream|soft serve ice cream,0.800000,1.104884,4.552835,0.008991,5.666744,"{""present"":[1,3,4],""possible"":[2,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_001558.jpg,edamame,edamame,1.000000,1.254822,0.000006,0.000118,1.254971,{}
-img_001586.jpg,pumpkin|thyme,loquat|pumpkin,0.500000,1.327832,2.342261,0.002092,3.672214,"{""present"":[1,4],""possible"":[2,4,14,17]}"
-img_001594.jpg,bok choy|broccoli|carrot|fish|meatball|noodle|squid,instant noodle,0.000000,1.087872,4.070336,0.067326,5.225561,"{""present"":[1,4,5,8,10,11,18,19,20],""possible"":[2,6,9,12,13,15,16,17]}"
-img_001647.jpg,edamame,edamame,1.000000,1.105282,0.000006,0.000117,1.105427,{}
-img_001718.jpg,edamame,edamame,1.000000,1.251990,0.000006,0.000146,1.252168,{}
-img_001764.jpg,cricket|grasshopper|mealworm,cricket|insect|mealworm,0.666667,1.255779,4.485862,0.009200,5.750868,"{""present"":[1,4,5,13,14,15,19,20],""possible"":[2,3,6,7,8,10,11,12,16,17,18]}"
-img_001771.jpg,cucumber|feta cheese|kale|quinoa|tomato,feta cheese|kale|tomato,0.750000,1.133658,4.266828,0.008163,5.408673,"{""present"":[1,2,5,10,11,13,17,19,20],""possible"":[4,6,7,8,9,12,14,15,16]}"
-img_001827.jpg,oyster,oyster,1.000000,1.256333,4.271629,0.000464,5.528451,"{""present"":[1],""possible"":[4,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_001892.jpg,avocado|broccoli|carrot|kiwi|pumpkin seed|turmeric,avocado|carrot|cucumber|pumpkin seed,0.600000,1.267897,4.320414,0.056418,5.644755,"{""present"":[2,4,10,13,15,16,17,18,19,20],""possible"":[1,3,5,6,7,8,11,12]}"
-img_001977.jpg,meat skewer|potato|sausage,sausage,0.500000,1.110943,4.233450,0.013247,5.357664,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_001993.jpg,buckwheat,buckwheat,1.000000,1.079772,0.000007,0.000148,1.079973,{}
-img_001999.jpg,plum,plum,1.000000,1.270267,0.000006,0.000119,1.270434,{}
-img_002044.jpg,black bean,black bean,1.000000,1.271462,4.736208,0.016004,6.023703,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_002051.jpg,walnut,walnut,1.000000,1.320696,0.000005,0.000146,1.320872,{}
-img_002216.jpg,walnut,walnut,1.000000,1.260586,1.666997,0.000674,2.928285,"{""present"":[1], ""possible"":[]}"
-img_002226.jpg,croissant|custard,custard,0.666667,1.268647,0.000007,0.000144,1.268862,{}
-img_002227.jpg,plum,plum,1.000000,1.173069,0.000007,0.000147,1.173250,{}
-img_002244.jpg,bitter melon,bitter melon,1.000000,1.102370,0.000008,0.000177,1.102587,{}
-img_002281.jpg,collard greens|fried chicken|green bean,collard greens,0.500000,1.102699,7.013200,0.014657,8.130591,"{""present"":[1,2,3,6,7,8,9,12,14,15,16,17,18,19,20],""possible"":[4]}
+img_000011.jpg,crab|fish,crab,0.666667,1.275430,0.000006,0.000211,1.275676,{}
+img_000070.jpg,zucchini,cucumber|zucchini,0.666667,1.145440,8.737445,0.003966,9.886893,"{""present"":[1,2]}"
+img_000173.jpg,chokha|litti,litti,0.666667,1.089302,0.000011,0.000199,1.089546,{}
+img_000288.jpg,plum,plum,1.000000,1.099184,0.000008,0.000185,1.099411,{}
+img_000312.jpg,caviar,caviar,1.000000,1.125027,2.529011,0.001228,3.655300,"{""present"":[1],""possible"":[2]}"
+img_000332.jpg,edamame,edamame,1.000000,1.287345,0.000006,0.000155,1.287532,{}
+img_000368.jpg,plum,plum,1.000000,1.200248,0.000007,0.000122,1.200404,{}
+img_000679.jpg,plum,plum,1.000000,1.096802,0.000008,0.000164,1.097007,{}
+img_000689.jpg,oyster,oyster,1.000000,1.155532,2.547203,0.001088,3.703857,"{""present"":[1],""possible"":[2]}"
+img_000794.jpg,beef|chicken wings|fried roll|meatball|noodle,broth,0.000000,1.120660,7.176889,0.001566,8.299150,"{""present"":[1,2,4,8,10,11,13,14,16,17,18,20],""possible"":[3,5,6,7,9]}"
+img_000828.jpg,buckwheat,buckwheat,1.000000,1.091136,0.000008,0.000191,1.091369,{}
+img_000831.jpg,fish|pea|potato|tartar sauce,tartar sauce,0.400000,1.115887,7.593051,0.001705,8.710676,"{""present"":[1,2,3,4,6,7,9,10,11,13,14,15,16,17,18,19,20],""possible"":[5]}"
+img_000852.jpg,edamame,edamame,1.000000,1.110123,0.000008,0.000194,1.110360,{}
+img_000913.jpg,walnut,walnut,1.000000,1.342453,0.000006,0.000112,1.342596,{}
+img_000966.jpg,lemon,lemon,1.000000,1.135456,0.000008,0.000161,1.135658,{}
+img_001048.jpg,buckwheat,cereal,0.000000,1.248924,2.730263,0.000821,3.980035,"{""present"":[4],""possible"":[12]}"
+img_001084.jpg,whole pig,whole pig,1.000000,1.300285,0.000006,0.000121,1.300437,{}
+img_001144.jpg,plum,plum,1.000000,1.091956,0.000008,0.000182,1.092178,{}
+img_001146.jpg,batter|bonito flake|cabbage|mayonnaise|octopus,fish ball|skewered meat,0.000000,1.284892,2.898694,0.001057,4.184670,"{""present"":[1,4],""possible"":[2]}"
+img_001172.jpg,cottage cheese,cottage cheese,1.000000,1.259912,2.169782,0.000607,3.430327,"{""present"":[1]}"
+img_001174.jpg,almond|cracker|pretzel,almond|pretzel|snack stick,0.666667,1.092436,2.970868,0.001556,4.064893,"{""present"":[1,3,4],""possible"":[2]}"
+img_001210.jpg,oyster,oyster,1.000000,1.260534,0.000006,0.000111,1.260677,{}
+img_001308.jpg,plum,plum,1.000000,1.281969,0.000006,0.000151,1.282151,{}
+img_001362.jpg,blackberry|blueberry|granola|raspberry,blackberry|blueberry|oatmeal|raspberry,0.750000,1.124254,8.201879,0.004236,9.330404,"{""present"":[1,2,3,4],""possible"":[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_001387.jpg,chickpea,chickpea,1.000000,1.250076,2.644867,0.000847,3.895817,"{""present"":[1],""possible"":[2]}"
+img_001407.jpg,chicken breast,cured ham|ham,0.000000,1.312763,2.975111,0.001141,4.289040,"{""present"":[1,4],""possible"":[2]}"
+img_001462.jpg,plum,plum,1.000000,1.095845,0.000009,0.000182,1.096071,{}
+img_001488.jpg,bitter melon,bitter melon,1.000000,1.111051,0.000041,0.000183,1.111308,{}
+img_001507.jpg,chocolate ice cream|mint ice cream,chocolate ice cream|mint ice cream,1.000000,1.110354,2.742725,0.001511,3.854625,"{""present"":[1,3],""possible"":[2]}"
+img_001558.jpg,edamame,edamame,1.000000,1.259701,0.000006,0.000111,1.259843,{}
+img_001586.jpg,pumpkin|thyme,pumpkin|thyme,1.000000,1.318690,2.924817,0.000931,4.244485,"{""present"":[1,2],""possible"":[4]}"
+img_001594.jpg,bok choy|broccoli|carrot|fish|meatball|noodle|squid,instant noodle,0.000000,1.097647,4.555395,0.001430,5.654522,"{""present"":[1,4,5,6,8,18,19,20],""possible"":[2]}"
+img_001647.jpg,edamame,edamame,1.000000,1.110896,0.000008,0.000161,1.111099,{}
+img_001718.jpg,edamame,edamame,1.000000,1.283535,0.000006,0.000111,1.283678,{}
+img_001764.jpg,cricket|grasshopper|mealworm,cricket|insect|mealworm,0.666667,1.284596,3.236899,0.001337,4.522859,"{""present"":[1,4,5],""possible"":[14]}"
+img_001771.jpg,cucumber|feta cheese|kale|quinoa|tomato,buckwheat|feta cheese|kale|olive|tomato,0.600000,1.139579,7.984360,0.014462,9.138431,"{""present"":[1,2,4,5,6],""possible"":[7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_001827.jpg,oyster,oyster,1.000000,1.247660,2.653911,0.000775,3.902372,"{""present"":[1],""possible"":[2]}"
+img_001892.jpg,avocado|broccoli|carrot|kiwi|pumpkin seed|turmeric,avocado|carrot|cucumber|kiwi|pumpkin|pumpkin seed|turmeric,0.769231,1.291247,8.346468,0.001304,9.639046,"{""present"":[1,2,3,4,10,13,15,17,20],""possible"":[5,6,7,8,9,11,12,14,16,18,19]}"
+img_001977.jpg,meat skewer|potato|sausage,sausage,0.500000,1.108390,13.001381,0.000673,14.110479,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,1"
+img_001993.jpg,buckwheat,buckwheat,1.000000,1.096893,0.000008,0.000219,1.097154,{}
+img_001999.jpg,plum,plum,1.000000,1.289592,0.000006,0.000110,1.289733,{}
+img_002044.jpg,black bean,black bean|tapioca pearl,0.666667,1.283500,2.901567,0.000959,4.186052,"{""present"":[1,6],""possible"":[2]}"
+img_002051.jpg,walnut,walnut,1.000000,1.317138,0.000007,0.000124,1.317294,{}
+img_002216.jpg,walnut,walnut,1.000000,1.286196,2.533930,0.000607,3.820759,"{""present"":[1],""possible"":[]}"
+img_002226.jpg,croissant|custard,custard,0.666667,1.296381,0.000007,0.000118,1.296547,{}
+img_002227.jpg,plum,plum,1.000000,1.202311,0.000006,0.000119,1.202463,{}
+img_002244.jpg,bitter melon,bitter melon,1.000000,1.120026,0.000008,0.000162,1.120229,{}
+img_002281.jpg,collard greens|fried chicken|green bean,collard greens,0.500000,1.106112,7.681470,0.001479,8.789096,"{""present"":[1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_002323.jpg,zucchini,zucchini,1.000000,1.260689,2.646721,0.000783,3.908220,"{""present"":[1],""possible"":[2]}"
+img_002347.jpg,plum,plum,1.000000,1.110119,0.000008,0.000186,1.110346,{}
+img_002388.jpg,apricot,apricot,1.000000,1.323770,0.000006,0.000133,1.323933,{}
+img_002441.jpg,chocolate cereal|milk,chocolate cereal|milk,1.000000,1.294356,2.903332,0.001185,4.198900,"{""present"":[1,3],""possible"":[4]}"
+img_002454.jpg,bitter melon,bitter melon,1.000000,1.095130,0.000008,0.000161,1.095331,{}
+img_002476.jpg,green pea|soy milk|syrup,green pea|tofu,0.400000,1.283755,2.888564,0.001316,4.173660,"{""present"":[1,4],""possible"":[2]}"
+img_002533.jpg,pork trotter,pork trotter,1.000000,1.262435,0.000006,0.000123,1.262589,{}
+img_002557.jpg,orange juice,orange juice,1.000000,1.290886,2.663402,0.000830,3.955144,"{""present"":[1],""possible"":[2]}"
+img_002576.jpg,lentil,lentil,1.000000,1.287043,2.898113,0.001623,4.186805,"{""present"":[1,4],""possible"":[2]}"
+img_002620.jpg,edamame,edamame,1.000000,1.090076,0.000008,0.000160,1.090278,{}
+img_002703.jpg,plum,plum,1.000000,1.293940,2.675749,0.000912,3.970654,"{""present"":[1],""possible"":[2]}"
+img_002721.jpg,walnut,walnut,1.000000,1.289265,0.000006,0.000108,1.289404,{}
+img_002750.jpg,oyster,oyster,1.000000,1.288378,2.675909,0.000949,3.965261,"{""present"":[1],""possible"":[2]}"
+img_002942.jpg,beef patty|burger bun|egg,beef patty|burger bun|egg|sesame seed,0.857143,1.108922,3.219597,0.001876,4.330429,"{""present"":[1,2,3,7],""possible"":[4]}"
+img_003048.jpg,oreo cookie,oreo cookie,1.000000,1.254596,0.000006,0.000125,1.254752,{}
+img_003196.jpg,plum,plum,1.000000,1.282058,0.000006,0.000343,1.282431,{}
+img_003211.jpg,black fungus,black fungus,1.000000,1.198896,0.000007,0.000127,1.199060,{}
+img_003274.jpg,clam|scallop|shrimp|spicy sauce,clam|scallop|shrimp,0.857143,1.291523,3.141745,0.001278,4.434570,"{""present"":[1,4,6],""possible"":[2]}"
+img_003310.jpg,eel,eel,1.000000,1.137708,2.759860,0.001316,3.898914,"{""present"":[1,4],""possible"":[2]}"
+img_003349.jpg,oyster,oyster,1.000000,1.109737,0.000008,0.000176,1.109954,{}
+img_003364.jpg,feta cheese|hummus|lobster|olive|pesto|tomato,crawfish|shrimp,0.000000,1.130398,6.770979,0.001880,7.903290,"{""present"":[1,4,17],""possible"":[2,3,5,8,10,11,12,13,14,16,18,20]}"
+img_003385.jpg,plum,plum,1.000000,1.151844,0.000007,0.000181,1.152061,{}
+img_003464.jpg,soft serve ice cream|sprinkle|waffle cone,soft serve ice cream,0.500000,1.121335,0.000009,0.000203,1.121597,{}
+img_003522.jpg,bacon,bacon|dried meat,0.666667,1.284114,2.911225,0.001321,4.196685,"{""present"":[1,4],""possible"":[2]}"
+img_003526.jpg,dosa|egg|sambal,batter|dosa|egg|rice,0.571429,1.108953,3.724589,0.001300,4.834876,"{""present"":[1,3,4,19],""possible"":[5,10]}"
+img_003567.jpg,yellow tomato,tomato|yellow tomato,0.666667,1.253565,2.894448,0.001291,4.149330,"{""present"":[1,2],""possible"":[4]}"
+img_003744.jpg,rice|roast duck,rice|roast duck,1.000000,1.107613,2.745040,0.001479,3.854164,"{""present"":[1,3],""possible"":[2]}"
+img_003815.jpg,jalapeño,jalapeño,1.000000,1.090552,0.000008,0.000178,1.090772,{}
+img_003832.jpg,carrot|okra|potato|steak|tomato,steak|tomato,0.571429,1.287421,3.508424,0.001362,4.797233,"{""present"":[1,5,9,17],""possible"":[2]}"
+img_003835.jpg,blueberry|orange|pancake|strawberry,blueberry|pancake|strawberry,0.857143,1.091605,2.966129,0.001315,4.059084,"{""present"":[1,5,6],""possible"":[4]}"
+img_003871.jpg,dal|roti|yogurt,dal|roti,0.800000,1.270771,2.900711,0.001404,4.172911,"{""present"":[1,2],""possible"":[4]}"
+img_003904.jpg,plum,plum,1.000000,1.264353,0.000006,0.000125,1.264508,{}
+img_003919.jpg,zucchini,cucumber,0.000000,1.139060,2.537604,0.001117,3.677813,"{""present"":[3],""possible"":[1]}"
+img_003945.jpg,oyster,oyster,1.000000,1.138437,2.400873,0.000913,3.540260,"{""present"":[1],""possible"":[]}"
+img_003997.jpg,lemon,lemon,1.000000,1.280956,0.000007,0.000115,1.281131,{}
+img_004236.jpg,coconut chutney|idli|sambar,idli,0.500000,1.105861,7.940230,0.010831,9.056955,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_004242.jpg,walnut,walnut,1.000000,1.093117,0.000009,0.000164,1.093329,{}
+img_004342.jpg,beef|beet|cabbage|dill|pea,beet|cabbage|pea,0.750000,1.295236,3.498331,0.001382,4.794978,"{""present"":[1,4,11],""possible"":[2,9]}"
+img_004360.jpg,meringue|strawberry|syrup,coffee|meringue|pancake|pancake mix|strawberry,0.500000,1.250399,8.346835,0.001386,9.598647,"{""present"":[1,2,4,7,10],""possible"":[3,5,6,8,9,11,12,13,14,15,16,17,18,19,20]}"
+img_004399.jpg,walnut,walnut,1.000000,1.257078,0.000006,0.000127,1.257236,{}
+img_004401.jpg,buckwheat,buckwheat,1.000000,1.098009,0.000009,0.000203,1.098255,{}
+img_004432.jpg,bitter melon,bitter melon,1.000000,1.283223,0.000006,0.000110,1.283365,{}
+img_004447.jpg,plum,plum,1.000000,1.243481,0.000006,0.000111,1.243622,{}
+img_004461.jpg,cauliflower|cucumber|eggplant|skewered meat|tofu,bamboo shoot|cucumber|meat skewer|skewer,0.222222,1.138906,8.223132,0.001646,9.363716,"{""present"":[1,4,16],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20]}"
+img_004481.jpg,plum,plum,1.000000,1.256326,0.000006,0.000128,1.256485,{}
+img_004615.jpg,plum,plum,1.000000,1.282596,2.645428,0.000821,3.928872,"{""present"":[1],""possible"":[2]}"
+img_004650.jpg,pine nut,pine nut,1.000000,1.282118,0.000006,0.000125,1.282275,{}
+img_004667.jpg,bitter melon,bitter melon,1.000000,1.148373,0.000008,0.000146,1.148557,{}
+img_004758.jpg,cucumber|grilled fish|rice,cucumber|grilled fish|rice,1.000000,1.143547,3.035418,0.001364,4.180363,"{""present"":[3,4,5],""possible"":[1]}"
+img_004907.jpg,buckwheat,buckwheat,1.000000,1.253820,0.000006,0.000111,1.253963,{}
+img_004923.jpg,lemon,lemon,1.000000,1.153920,2.517278,0.000927,3.672157,"{""present"":[3],""possible"":[1]}"
+img_005001.jpg,plum,plum,1.000000,1.293955,0.000008,0.000138,1.294153,{}
+img_005180.jpg,cured ham,cured ham,1.000000,1.282080,2.686796,0.000815,3.969717,"{""present"":[1],""possible"":[2]}"
+img_005218.jpg,edamame,edamame,1.000000,1.268396,0.000006,0.000123,1.268549,{}
+img_005231.jpg,walnut,walnut,1.000000,1.288464,0.000006,0.000108,1.288603,{}
+img_005258.jpg,barbecue sauce|pork rib|sesame seed,pork rib,0.500000,1.245513,0.000006,0.000116,1.245661,{}
+img_005392.jpg,pork chop,pork chop,1.000000,1.124863,2.521231,0.001261,3.647389,"{""present"":[1],""possible"":[4]}"
+img_005423.jpg,edamame,edamame,1.000000,1.096100,0.000008,0.000233,1.096374,{}
+img_005503.jpg,zucchini,zucchini,1.000000,1.283395,2.637351,0.000856,3.921631,"{""present"":[4],""possible"":[1]}"
+img_005532.jpg,edamame,edamame,1.000000,1.116445,0.000008,0.000186,1.116672,{}
+img_005594.jpg,plum,plum,1.000000,1.149257,0.000009,0.000164,1.149462,{}
+img_005663.jpg,basil|mozzarella cheese|pepperoni|pizza dough|tomato sauce,pepperoni|pizza dough,0.571429,1.145797,3.012142,0.001433,4.159438,"{""present"":[1,2,6],""possible"":[7]}"
+img_005717.jpg,avocado|egg|ham|tortilla,avocado|cured ham|cured meat|egg|tortilla,0.666667,1.105792,7.105189,0.001510,8.212524,"{""present"":[1,2,3,8,10],""possible"":[4,6,11,13,14,15,16,17,18,19,20]}"
+img_005779.jpg,pork belly|whole chicken,whole chicken,0.666667,1.255136,2.662114,0.000830,3.918106,"{""present"":[1],""possible"":[2]}"
+img_005784.jpg,lemon,lemon,1.000000,1.287673,0.000006,0.000136,1.287842,{}
+img_005785.jpg,bean sprout|broth|noodle|shrimp|spring roll,broth,0.333333,1.159228,7.982879,0.001364,9.143501,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_005848.jpg,instant noodle,instant noodle,1.000000,1.111222,2.517116,0.001095,3.629468,"{""present"":[1],""possible"":[4]}"
+img_005904.jpg,plum,plum,1.000000,1.137489,0.000008,0.000163,1.137693,{}
+img_005917.jpg,oyster,oyster,1.000000,1.291193,2.680685,0.000792,3.972698,"{""present"":[1],""possible"":[2]}"
+img_005933.jpg,plum,plum,1.000000,1.289157,0.000006,0.000131,1.289318,{}
+img_005998.jpg,shrimp,meat skewer|shrimp|skewer,0.500000,1.278375,2.892710,0.001337,4.172447,"{""present"":[1,4],""possible"":[2]}"
+img_006141.jpg,pomegranate seed,pomegranate,0.000000,1.256324,2.653070,0.000782,3.910202,"{""present"":[1],""possible"":[2]}"
+img_006188.jpg,plum,grape|plum,0.666667,1.118958,2.745991,0.001512,3.866497,"{""present"":[1,4],""possible"":[2]}"
+img_006284.jpg,bitter melon,bitter melon,1.000000,1.119515,0.000009,0.000164,1.119722,{}
+img_006356.jpg,walnut,walnut,1.000000,1.279289,0.000006,0.000124,1.279444,{}
+img_006364.jpg,napa cabbage,napa cabbage,1.000000,1.125987,0.000008,0.000216,1.126244,{}
+img_006458.jpg,walnut,walnut,1.000000,1.281833,2.688347,0.000848,3.971056,"{""present"":[1],""possible"":[2]}"
+img_006476.jpg,pasta,noodle,0.000000,1.095197,1.994793,0.000700,3.090725,"{""present"":[1]}"
+img_006503.jpg,plum,plum,1.000000,1.284581,0.000006,0.000114,1.284727,{}
+img_006585.jpg,plum,plum,1.000000,1.116632,0.000009,0.000161,1.116833,{}
+img_006620.jpg,egg|fig|oats|peanut|salmon|shrimp,peanut|salmon,0.500000,1.326429,8.092844,0.004809,9.424110,"{""present"":[1,4,7,10,12,13,17,20],""possible"":[2,3,5,6,8,9,11,14,15,16,18]}"
+img_006623.jpg,beer|snail,beer|snail,1.000000,1.265580,2.887570,0.001158,4.154336,"{""present"":[1,2],""possible"":[4]}"
+img_006831.jpg,apple,apple|cherry,0.666667,1.244084,2.873011,0.001400,4.118521,"{""present"":[1,6],""possible"":[4]}"
+img_006922.jpg,lemon,lemon,1.000000,1.205512,0.000006,0.000126,1.205671,{}
+img_006928.jpg,sour cream,sour cream,1.000000,1.257068,2.484057,0.000635,3.741785,"{""present"":[1],""possible"":[]}"
+img_006967.jpg,clam|fish|fish ball|shrimp|squid,clam|crab|fish|oyster|shrimp|squid,0.727273,1.162405,4.141560,0.001698,5.305717,"{""present"":[1,2,5,6,7,8,10],""possible"":[4]}"
+img_007076.jpg,oyster,oyster|quail,0.666667,1.112043,8.202012,0.003222,9.317311,"{""present"":[1,4,15],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,16,17,18,19,20]}"
+img_007083.jpg,ground beef,beef,0.000000,1.250019,2.663131,0.000816,3.913994,"{""present"":[2],""possible"":[1]}"
+img_007111.jpg,chestnut,chestnut,1.000000,1.141957,2.524190,0.000971,3.667152,"{""present"":[1],""possible"":[2]}"
+img_007153.jpg,plum,plum,1.000000,1.282354,0.000006,0.000124,1.282510,{}
+img_007169.jpg,red bean,red bean,1.000000,1.289709,2.650431,0.000807,3.940975,"{""present"":[1],""possible"":[2]}"
+img_007200.jpg,flax seed,flax seed,1.000000,1.285327,7.305280,0.001429,8.592063,"{""present"":[4],""possible"":[1,2,3,7,10,11,12,13,14,15,16,17,18,19,20]}"
+img_007412.jpg,fish|pea|sesame seed|sweet and sour sauce,fish|fish ball|pine nut|sweet and sour sauce|tapioca pearl,0.444444,1.096936,3.580325,0.002131,4.679427,"{""present"":[1,4,5,7,10],""possible"":[2]}"
+img_007508.jpg,plum,plum,1.000000,1.230031,0.000006,0.000124,1.230186,{}
+img_007536.jpg,shiitake mushroom,black fungus|shiitake mushroom,0.666667,1.101087,2.741799,0.001423,3.844342,"{""present"":[1,4],""possible"":[2]}"
+img_007608.jpg,bitter melon,bitter melon,1.000000,1.120969,0.000008,0.000190,1.121200,{}
+img_007617.jpg,cherry|fried chicken|syrup|waffle,cherry|syrup|waffle,0.857143,1.289337,3.769164,0.001161,5.059689,"{""present"":[1,2,16],""possible"":[4,7,9]}"
+img_007627.jpg,croquette|fried rice,croquette|fried rice,1.000000,1.116464,2.764921,0.001122,3.882541,"{""present"":[1,8],""possible"":[2]}"
+img_007683.jpg,blueberry|cream cheese frosting|lime|red velvet cake,blueberry|red velvet cake|strawberry,0.571429,1.273853,8.394711,0.001271,9.669862,"{""present"":[1,4,11,14,19],""possible"":[2,3,5,6,7,8,9,10,12,13,15,16,17,18,20]}"
+img_007718.jpg,plum,plum,1.000000,1.253860,0.000006,0.000122,1.254012,{}
+img_007759.jpg,plum,plum,1.000000,1.297496,0.000006,0.000122,1.297648,{}
+img_007771.jpg,bitter melon,bitter melon,1.000000,1.271372,0.000006,0.000120,1.271523,{}
+img_007777.jpg,pasta,dried fruit,0.000000,1.440666,2.857061,0.000752,4.298508,"{""present"":[1],""possible"":[2]}"
+img_007826.jpg,walnut,walnut,1.000000,1.113639,0.000009,0.000170,1.113907,{}
+img_007845.jpg,lemon,lemon,1.000000,1.281045,2.643807,0.000792,3.925669,"{""present"":[1],""possible"":[2]}"
+img_007859.jpg,oyster,oyster,1.000000,1.457546,2.979548,0.000778,4.437900,"{""present"":[1],""possible"":[11]}"
+img_007860.jpg,basil|ham|mozzarella cheese|mushroom|pizza dough|tomato sauce,mozzarella cheese|pizza dough,0.500000,1.129578,4.091647,0.001483,5.222742,"{""present"":[1,3,4,5,7,8,17],""possible"":[2]}"
+img_007861.jpg,zucchini,zucchini,1.000000,1.247136,2.533166,0.000664,3.780990,"{""present"":[1],""possible"":[]}"
+img_007873.jpg,plum,plum,1.000000,1.119167,0.000008,0.000182,1.119390,{}
+img_007968.jpg,spaghetti|tomato sauce,noodle|spaghetti,0.500000,1.286206,2.889556,0.001010,4.176810,"{""present"":[1,4],""possible"":[2]}"
+img_008040.jpg,pasta,potato,0.000000,1.264087,2.647537,0.000812,3.912463,"{""present"":[1],""possible"":[4]}"
+img_008043.jpg,insect,fried insect|insect,0.666667,1.275100,2.900631,0.001338,4.177094,"{""present"":[1,2],""possible"":[4]}"
+img_008101.jpg,lamb,duck|whole pig,0.000000,1.116298,2.754268,0.000998,3.871601,"{""present"":[1,4],""possible"":[2]}"
+img_008197.jpg,dried meat,beef|dried meat,0.666667,1.161491,2.315889,0.000771,3.478199,"{""present"":[1,4]}"
+img_008208.jpg,couscous,rice,0.000000,1.249898,2.766273,0.000787,4.016986,"{""present"":[11],""possible"":[1]}"
+img_008256.jpg,apple|banana|lychee|mangosteen,apple|banana|lychee|orange|orange juice|peach|strawberry,0.545455,1.131969,4.323080,0.001406,5.456528,"{""present"":[1,4,6,8,10,11,15],""possible"":[2]}"
+img_008291.jpg,egg tart|french fries|fried chicken,egg|egg tart|fried chicken|whole chicken,0.571429,1.120551,3.737362,0.001425,4.859372,"{""present"":[1,2,4,6,16],""possible"":[14]}"
+img_008302.jpg,blueberry|egg|maple syrup|milk|pancake mix|strawberry,blueberry|pancake|strawberry|syrup,0.400000,1.144254,8.250654,0.001797,9.396736,"{""present"":[2,4,5,6],""possible"":[1,3,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_008316.jpg,broccoli|carrot|egg|noodle|steak,steak,0.333333,1.086807,0.000009,0.000224,1.087073,{}
+img_008360.jpg,egg|steamed bun,steamed bun,0.666667,1.291858,2.658149,0.000851,3.950884,"{""present"":[2],""possible"":[1]}"
+img_008455.jpg,walnut,walnut,1.000000,1.290235,0.000006,0.000126,1.290391,{}
+img_008559.jpg,plum,plum,1.000000,1.282459,0.000007,0.000119,1.282613,{}
+img_008599.jpg,corn|dumpling wrapper|ground meat,corn|dumpling wrapper,0.800000,1.279660,3.240329,0.004130,4.524171,"{""present"":[1,4,16],""possible"":[2]}"
+img_008600.jpg,soda,soda,1.000000,1.265280,2.652478,0.000835,3.918618,"{""present"":[1],""possible"":[2]}"
+img_008637.jpg,plum,plum,1.000000,1.272022,0.000006,0.000122,1.272174,{}
+img_008645.jpg,bitter melon,bitter melon,1.000000,1.290697,0.000006,0.000151,1.290878,{}
+img_008650.jpg,cereal,cracker|tapioca pearl,0.000000,1.282332,2.904361,0.001034,4.187753,"{""present"":[1,4],""possible"":[2]}"
+img_008668.jpg,fried dough|skewer,fried dough,0.666667,1.254208,2.780831,0.000795,4.035862,"{""present"":[4],""possible"":[10]}"
+img_008756.jpg,honey,syrup,0.000000,1.098822,2.481899,0.001227,3.581982,"{""present"":[1],""possible"":[2]}"
+img_008812.jpg,dragon fruit|grape|orange,dragon fruit,0.500000,1.110199,0.000011,0.000203,1.110485,{}
+img_008837.jpg,green tea ice cream|red bean paste,green tea ice cream,0.666667,1.299200,0.000006,0.000132,1.299365,{}
+img_008853.jpg,mozzarella cheese|parmesan cheese|pizza dough|prosciutto|tomato,cured meat|mozzarella cheese|pizza dough|salami,0.444444,1.451777,4.094694,0.003875,5.550374,"{""present"":[1,4,6,10,15],""possible"":[2]}"
+img_008939.jpg,cranberry sauce|green bean|mashed potato|turkey,mashed potato|turkey,0.666667,1.087923,3.073418,0.001589,4.162961,"{""present"":[1,6,16],""possible"":[2]}"
+img_008998.jpg,pasta,noodle,0.000000,1.259563,2.659170,0.000798,3.919558,"{""present"":[1],""possible"":[4]}"
+img_009005.jpg,cured ham,cured ham|prosciutto,0.666667,1.162237,2.781977,0.002089,3.946333,"{""present"":[1,4],""possible"":[2]}"
+img_009026.jpg,pasta,noodle,0.000000,1.249031,2.676995,0.000833,3.926884,"{""present"":[1],""possible"":[2]}"
+img_009045.jpg,dried prune,dried prune,1.000000,1.303227,0.000006,0.000127,1.303384,{}
+img_009100.jpg,plum,plum,1.000000,1.291305,0.000006,0.000128,1.291464,{}
+img_009360.jpg,fig|matcha|yogurt,fig|pistachio,0.400000,1.154540,2.777030,0.001372,3.932973,"{""present"":[1,4],""possible"":[2]}"
+img_009394.jpg,broccoli|carrot|lamb chop|pumpkin,garlic|lamb chop,0.333333,1.100341,3.479132,0.001498,4.581006,"{""present"":[1,4,15,18],""possible"":[2]}"
+img_009531.jpg,oyster,oyster,1.000000,1.254623,2.668419,0.000804,3.923872,"{""present"":[1],""possible"":[2]}"
+img_009591.jpg,custard|strawberry|tart crust,custard|strawberry|tart crust,1.000000,1.101358,2.966638,0.001376,4.069407,"{""present"":[1,2,4],""possible"":[3]}"
+img_009646.jpg,bitter melon,bitter melon,1.000000,1.267161,0.000006,0.000124,1.267315,{}
+img_009683.jpg,cured meat|sausage,salami,0.000000,1.302730,3.392141,0.002318,4.697214,"{""present"":[1,4,16],""possible"":[13]}"
+img_009731.jpg,buckwheat,buckwheat,1.000000,1.259240,0.000006,0.000128,1.259400,{}
+img_009738.jpg,french fries|grilled chicken|wrap,french fries|grilled chicken|tortilla|wrap,0.857143,1.282493,8.345095,0.001788,9.629400,"{""present"":[3,4,5,11],""possible"":[1,2,6,7,8,9,10,12,13,14,15,16,17,18,19,20]}"
+img_009772.jpg,lemon,lemon,1.000000,1.298770,0.000007,0.000112,1.298944,{}
+img_009812.jpg,cocktail sauce|shrimp,shrimp,0.666667,1.121761,2.978434,0.001444,4.101678,"{""present"":[1,20],""possible"":[12]}"
+img_009922.jpg,bean sprout|cucumber|noodle|peanut sauce,bean sprout|cucumber|noodle,0.857143,1.257172,3.515854,0.001416,4.774470,"{""present"":[1,2,7],""possible"":[4,10]}"
+img_009938.jpg,plum,plum,1.000000,1.265976,0.000006,0.000113,1.266121,{}
+img_009952.jpg,plum,plum,1.000000,1.282709,0.000007,0.000119,1.282889,{}
+img_010038.jpg,plum,plum,1.000000,1.294993,0.000007,0.000110,1.295135,{}
+img_010094.jpg,plum,plum,1.000000,1.112227,0.000009,0.000186,1.112456,{}
+img_010136.jpg,oyster,oyster,1.000000,1.166739,0.000008,0.000193,1.166969,{}
+img_010295.jpg,plum,plum,1.000000,1.188541,0.000007,0.000152,1.188731,{}
+img_010313.jpg,plum,plum,1.000000,1.292076,0.000007,0.000154,1.292262,{}
+img_010363.jpg,bacon|baked bean|egg|hash brown|sausage|toast|tomato,hash brown|sausage,0.444444,1.122459,4.576301,0.001691,5.700520,"{""present"":[1,3,5,7,8,11,15,19],""possible"":[4]}"
+img_010538.jpg,oyster,oyster,1.000000,1.417314,2.870989,0.000810,4.289141,"{""present"":[1],""possible"":[2]}"
+img_010656.jpg,milk|rasgulla,milk,0.666667,1.340182,2.701490,0.000837,4.042537,"{""present"":[3],""possible"":[1]}"
+img_010725.jpg,buckwheat,buckwheat,1.000000,1.286623,0.000007,0.000124,1.286779,{}
+img_010749.jpg,radish,radish,1.000000,1.285725,0.000006,0.000123,1.285880,{}
+img_010770.jpg,cocoa powder|coffee|ladyfinger|mascarpone cheese,cream cheese frosting,0.000000,1.288023,2.681564,0.000834,3.970447,"{""present"":[4],""possible"":[2]}"
+img_010922.jpg,lemon,lemon,1.000000,1.294352,0.000034,0.000118,1.294546,{}
+img_010925.jpg,oyster,oyster,1.000000,1.142151,2.518444,0.001058,3.661686,"{""present"":[1],""possible"":[2]}"
+img_010956.jpg,plum,plum,1.000000,1.091463,0.000008,0.000160,1.091666,{}
+img_011027.jpg,coffee|sweet bun,coffee|red bean paste|sweet bun,0.800000,1.280297,3.135596,0.001083,4.417003,"{""present"":[1,4,5],""possible"":[2]}"
+img_011054.jpg,buckwheat,buckwheat,1.000000,1.258877,0.000007,0.000128,1.259037,{}
+img_011266.jpg,oyster,oyster,1.000000,1.188830,2.563048,0.000794,3.752722,"{""present"":[1],""possible"":[2]}"
+img_011439.jpg,plum,plum,1.000000,1.096821,0.000009,0.000167,1.097032,{}
+img_011499.jpg,curry sauce|naan,dal|naan,0.500000,1.298677,2.908483,0.001011,4.208196,"{""present"":[1,4],""possible"":[2]}"
+img_011608.jpg,gelatin|raspberry|tomato,raspberry|strawberry|tomato,0.666667,1.230840,3.056118,0.001290,4.288272,"{""present"":[1,2,4],""possible"":[7]}"
+img_011630.jpg,grapefruit|lime,grapefruit|lime,1.000000,1.090143,2.703887,0.001701,3.795767,"{""present"":[1,2],""possible"":[4]}"
+img_011637.jpg,coconut milk|mango|rice|tapioca pearl,tapioca pearl,0.400000,1.297931,0.000007,0.000127,1.298090,{}
+img_011739.jpg,pasta,potato,0.000000,1.098963,2.464981,0.001196,3.565175,"{""present"":[1],""possible"":[2]}"
+img_011886.jpg,plum,plum,1.000000,1.300293,0.000007,0.000113,1.300455,{}
+img_012005.jpg,fried insect,cricket|fried insect,0.666667,1.289408,2.903039,0.001125,4.193599,"{""present"":[1,4],""possible"":[2]}"
+img_012089.jpg,oyster,oyster,1.000000,1.286050,0.000007,0.000113,1.286194,{}
+img_012091.jpg,biscuit stick|chocolate coating,biscuit stick,0.666667,1.282533,0.000006,0.000125,1.282689,{}
+img_012095.jpg,dragon fruit|pineapple,dragon fruit|orange|pineapple,0.800000,1.091532,3.058608,0.001427,4.151600,"{""present"":[1,2,9],""possible"":[14]}"
+img_012108.jpg,banana|blueberry|french toast|maple syrup|powdered sugar,banana|blueberry|french toast|powdered sugar|toast,0.800000,1.092504,3.438127,0.010946,4.541610,"{""present"":[2,4,6,7,9],""possible"":[1]}"
+img_012114.jpg,pistachio,pistachio,1.000000,1.118881,2.529926,0.001085,3.649923,"{""present"":[1],""possible"":[2]}"
+img_012128.jpg,lemon|oyster|shrimp,oyster,0.500000,1.155344,3.254332,0.001328,4.411040,"{""present"":[1,4,5,7],""possible"":[2]}"
+img_012231.jpg,breadstick|tomato sauce,breadstick|fried bread,0.500000,1.408562,3.091123,0.001543,4.501256,"{""present"":[1,4],""possible"":[2]}"
+img_012263.jpg,breading|fried chicken,fried chicken,0.666667,1.290363,8.105615,0.001429,9.397433,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_012269.jpg,egg|hollandaise sauce|salmon|toast,coffee|fish roe|hollandaise sauce|salmon|toast,0.666667,1.112649,3.721232,0.001380,4.835293,"{""present"":[1,2,4,9,11],""possible"":[12]}"
+img_012433.jpg,walnut,walnut,1.000000,1.252220,0.000006,0.000111,1.252361,{}
+img_012441.jpg,snack stick,snack stick,1.000000,1.125215,2.505821,0.001182,3.632252,"{""present"":[1],""possible"":[4]}"
+img_012499.jpg,lemon,lemon,1.000000,1.335694,0.000006,0.000112,1.335837,{}
+img_012550.jpg,cabbage|creamy dressing,bean sprout|cabbage|creamy dressing,0.800000,1.283650,8.211414,0.007770,9.502859,"{""present"":[1,2,9],""possible"":[4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20]}"
+img_012619.jpg,plum,plum,1.000000,1.263914,0.000006,0.000125,1.264068,{}
+img_012626.jpg,dumpling|fufu,dumpling|rice cake,0.500000,1.294624,2.911695,0.000932,4.207275,"{""present"":[1,4],""possible"":[2]}"
+img_012628.jpg,plum,plum,1.000000,1.102068,0.000009,0.000191,1.102301,{}
+img_012629.jpg,black pepper|salmon,orange|salmon,0.500000,1.332596,2.962528,0.001306,4.296457,"{""present"":[1,4],""possible"":[2]}"
+img_012645.jpg,arugula|burrata|mozzarella cheese|pizza dough|salami|tomato sauce,arugula|burrata|mozzarella cheese|pizza dough|prosciutto,0.727273,1.126812,3.523819,0.001327,4.651988,"{""present"":[1,2,4,5,7],""possible"":[6]}"
+img_012677.jpg,pasta,noodle|pasta,0.666667,1.125541,2.783319,0.001519,3.910410,"{""present"":[1,2],""possible"":[3]}"
+img_012740.jpg,sea urchin,sea urchin,1.000000,1.117415,0.000009,0.000178,1.117634,{}
+img_012911.jpg,banana|chia seed|dried fruit|oatmeal,banana|chia seed|dried fruit|oatmeal,1.000000,1.108799,3.349826,0.001472,4.460131,"{""present"":[1,3,4,12],""possible"":[2]}"
+img_012915.jpg,black rice|cabbage|egg|tofu,black fungus|black rice|napa cabbage,0.285714,1.111645,3.263209,0.001334,4.376222,"{""present"":[1,2,4,6],""possible"":[3]}"
+img_012987.jpg,berry sauce|blueberry|cream puff,berry sauce|blackberry|blueberry|cream puff|raspberry,0.750000,1.114582,3.724716,0.001326,4.840697,"{""present"":[1,2,3,4,19],""possible"":[17]}"
+img_012990.jpg,bitter melon,bitter melon,1.000000,1.103244,0.000009,0.000230,1.103516,{}
+img_013120.jpg,bamboo shoot,bamboo shoot,1.000000,1.227064,0.000007,0.000138,1.227235,{}
+img_013223.jpg,plum,plum,1.000000,1.291583,0.000006,0.000161,1.291775,{}
+img_013305.jpg,fish|pounded yam,pounded yam|sweet bun,0.500000,1.290236,2.921001,0.001355,4.212618,"{""present"":[1,4],""possible"":[2]}"
+img_013310.jpg,beet|carrot|mayonnaise|potato,beet|dill,0.333333,1.087140,2.731552,0.001536,3.820260,"{""present"":[1,4],""possible"":[2]}"
+img_013355.jpg,quail egg,quail egg,1.000000,1.263204,2.647502,0.000798,3.911531,"{""present"":[1],""possible"":[2]}"
+img_013415.jpg,zucchini,pumpkin|zucchini,0.666667,1.340003,2.964732,0.001311,4.306071,"{""present"":[1,3],""possible"":[2]}"
+img_013441.jpg,starfruit,starfruit,1.000000,1.088678,0.000009,0.000161,1.088881,{}
+img_013451.jpg,cinnamon,cinnamon,1.000000,1.292339,0.000006,0.000110,1.292479,{}
+img_013485.jpg,lemon,lemon,1.000000,1.112470,0.000009,0.000213,1.112726,{}
+img_013504.jpg,loquat,loquat,1.000000,1.111656,0.000008,0.000163,1.111860,{}
+img_013509.jpg,garlic,garlic,1.000000,1.140968,0.000009,0.000191,1.141202,{}
+img_013651.jpg,chocolate chip,chocolate chip,1.000000,1.284289,2.631542,0.000817,3.916676,"{""present"":[1],""possible"":[2]}"
+img_013658.jpg,bok choy|broth|meatball|tofu,fish ball|meatball|noodle|tofu,0.500000,1.135216,4.697393,0.001761,5.834405,"{""present"":[1,3,4,6,13],""possible"":[2,10,18,20]}"
+img_013715.jpg,buckwheat,buckwheat,1.000000,1.104885,0.000009,0.000160,1.105086,{}
+img_013729.jpg,celery,celery,1.000000,1.115899,0.000009,0.000187,1.116131,{}
+img_013772.jpg,plum,plum,1.000000,1.283532,0.000007,0.000129,1.283693,{}
+img_013812.jpg,watermelon,watermelon,1.000000,1.277198,0.000006,0.000125,1.277354,{}
+img_013828.jpg,watermelon,watermelon,1.000000,1.151354,0.000009,0.000169,1.151564,{}
+img_013867.jpg,blackberry|blueberry|strawberry,blackberry|blueberry|pomegranate|raspberry|strawberry,0.750000,1.284745,3.767887,0.001395,5.054052,"{""present"":[1,2,4,6,11],""possible"":[3]}"
+img_013918.jpg,bitter melon,bitter melon,1.000000,1.259932,0.000006,0.000113,1.260075,{}
+img_013922.jpg,watermelon,watermelon,1.000000,1.295947,0.000006,0.000111,1.296088,{}
+img_014004.jpg,watermelon,watermelon,1.000000,1.293409,0.000007,0.000125,1.293565,{}
+img_014044.jpg,watermelon,watermelon,1.000000,1.287443,0.000006,0.000124,1.287598,{}
+img_014084.jpg,watermelon,watermelon,1.000000,1.296821,0.000007,0.000111,1.296965,{}
+img_014085.jpg,corn|fried plantain|steak,corn|steak,0.800000,1.297303,3.511351,0.001261,4.809940,"{""present"":[1,2,7,18],""possible"":[4]}"
+img_014133.jpg,duck,shredded chicken,0.000000,1.096611,2.486082,0.001187,3.583915,"{""present"":[1],""possible"":[4]}"
+img_014171.jpg,quail,quail,1.000000,1.290978,3.028219,0.001324,4.320547,"{""present"":[1,17],""possible"":[2]}"
+img_014226.jpg,plum,plum,1.000000,1.258436,0.000006,0.000149,1.258617,{}
+img_014296.jpg,puff pastry|sausage,olive|puff pastry,0.500000,1.280405,2.894503,0.000919,4.175854,"{""present"":[1,2],""possible"":[4]}"
+img_014321.jpg,pomegranate,pomegranate,1.000000,1.097725,2.473180,0.001199,3.572137,"{""present"":[1],""possible"":[2]}"
+img_014374.jpg,watermelon,watermelon,1.000000,1.289627,0.000006,0.000112,1.289771,{}
+img_014388.jpg,watermelon,watermelon,1.000000,1.136647,0.000009,0.000164,1.136853,{}
+img_014393.jpg,carrot|ham|mayonnaise|pea|potato,creamy dressing|mayonnaise|salami,0.250000,1.450314,3.478118,0.001387,4.929848,"{""present"":[1,4,10],""possible"":[2]}"
+img_014397.jpg,egg|sauerkraut,egg|radish,0.500000,1.260524,2.917136,0.000958,4.178644,"{""present"":[1,4],""possible"":[2]}"
+img_014410.jpg,watermelon,watermelon,1.000000,1.253982,0.000006,0.000123,1.254136,{}
+img_014469.jpg,edamame,edamame,1.000000,1.113098,0.000009,0.000177,1.113317,{}
+img_014488.jpg,watermelon,watermelon,1.000000,1.256960,0.000007,0.000130,1.257124,{}
+img_014516.jpg,watermelon,watermelon,1.000000,1.129670,0.000006,0.000126,1.129827,{}
+img_014542.jpg,watermelon,watermelon,1.000000,1.112961,0.000009,0.000164,1.113167,{}
+img_014591.jpg,watermelon,watermelon,1.000000,1.293186,0.000007,0.000119,1.293337,{}
+img_014610.jpg,rice|salmon|tempura|tuna,salmon|tuna,0.666667,1.287327,2.912288,0.001297,4.200938,"{""present"":[1,4],""possible"":[2]}"
+img_014626.jpg,lotus root,lotus root,1.000000,1.098909,0.000009,0.000187,1.099137,{}
+img_014687.jpg,watermelon,watermelon,1.000000,1.161661,0.000008,0.000159,1.161882,{}
+img_014711.jpg,dried meat,dried meat|mushroom,0.666667,1.147473,2.776757,0.000989,3.925303,"{""present"":[1,4],""possible"":[2]}"
+img_014774.jpg,rice cake|spicy sauce,squid,0.000000,1.252297,0.000007,0.000112,1.252443,{}
+img_014812.jpg,grape,cherry,0.000000,1.289751,0.000006,0.000129,1.289912,{}
+img_014821.jpg,watermelon,watermelon,1.000000,1.097139,0.000009,0.000179,1.097359,{}
+img_014840.jpg,egg|ham|ketchup|whole grain bread,cured ham|egg|whole grain bread,0.571429,1.142126,3.015092,0.001419,4.158672,"{""present"":[1,4,7],""possible"":[2]}"
+img_014853.jpg,fried bread|milk,custard|fried dough,0.000000,1.348781,8.451068,0.001887,9.801781,"{""present"":[4,5],""possible"":[1,2,3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
+img_014865.jpg,grape,green grape,0.000000,1.095936,2.493472,0.001191,3.590632,"{""present"":[1],""possible"":[2]}"
+img_014899.jpg,watermelon,watermelon,1.000000,1.307965,0.000007,0.000108,1.308105,{}
+img_014904.jpg,asparagus|cream sauce|gnocchi|steak,broccoli|gnocchi|mushroom|steak,0.500000,1.123704,3.969215,0.001533,5.094485,"{""present"":[1,4,6,7,18,20],""possible"":[5]}"
+img_014931.jpg,walnut,walnut,1.000000,1.127209,2.535381,0.001091,3.663748,"{""present"":[1],""possible"":[2]}"
+img_014961.jpg,apple,apple,1.000000,1.297020,0.000007,0.000129,1.297181,{}
+img_014968.jpg,apple,apple,1.000000,1.308036,0.000006,0.000131,1.308198,{}
+img_014973.jpg,jackfruit,jackfruit,1.000000,1.139886,2.514657,0.001132,3.655710,"{""present"":[1],""possible"":[2]}"
+img_014993.jpg,apple,apple,1.000000,1.092688,0.000009,0.000166,1.092898,{}
+img_015015.jpg,crawfish,crawfish,1.000000,1.297524,0.000007,0.000131,1.297687,{}
+img_015023.jpg,date,date,1.000000,1.285421,2.643061,0.000814,3.929322,"{""present"":[1],""possible"":[4]}"
+img_015028.jpg,watermelon,watermelon,1.000000,1.117160,0.000008,0.000179,1.117380,{}
+img_015039.jpg,apple,apple,1.000000,1.287990,0.000006,0.000125,1.288146,{}
+img_015056.jpg,pear,apple|pear,0.666667,1.331330,2.958846,0.001307,4.291513,"{""present"":[1,5],""possible"":[2]}"
+img_015070.jpg,apple,apple,1.000000,1.092666,0.000008,0.000163,1.092870,{}
+img_015082.jpg,apple,apple,1.000000,1.339371,0.000006,0.000109,1.339512,{}
+img_015097.jpg,apple,apple,1.000000,1.105107,0.000009,0.000162,1.105311,{}
+img_015109.jpg,apple,apple,1.000000,1.255710,0.000006,0.000128,1.255869,{}
+img_015129.jpg,watermelon,watermelon,1.000000,1.285297,0.000006,0.000126,1.285454,{}
+img_015130.jpg,plum,plum,1.000000,1.294226,0.000006,0.000121,1.294379,{}
+img_015134.jpg,watermelon,watermelon,1.000000,1.290964,0.000007,0.000119,1.291147,{}
+img_015146.jpg,green grape,green grape,1.000000,1.284530,2.664543,0.000791,3.949889,"{""present"":[1],""possible"":[2]}"
+img_015172.jpg,apple,apple,1.000000,1.171327,0.000007,0.000166,1.171530,{}
+img_015177.jpg,apple,apple,1.000000,1.279345,0.000006,0.000126,1.279502,{}
+img_015199.jpg,apple,apple,1.000000,1.096829,0.000009,0.000190,1.097061,{}
+img_015204.jpg,watermelon,watermelon,1.000000,1.107323,0.000009,0.000241,1.107605,{}
+img_015210.jpg,watermelon,watermelon,1.000000,1.287564,0.000006,0.000112,1.287725,{}
+img_015212.jpg,barbecue sauce|coleslaw|french fries|pork rib,coleslaw|french fries|pork rib,0.857143,1.158972,3.406654,0.001298,4.566954,"{""present"":[1,3,5,12],""possible"":[2]}"
+img_015232.jpg,watermelon,watermelon,1.000000,1.256637,0.000006,0.000156,1.256825,{}
+img_015244.jpg,apple,apple,1.000000,1.111295,0.000008,0.000219,1.111555,{}
+img_015251.jpg,apple,apple,1.000000,1.289316,0.000006,0.000158,1.289505,{}
+img_015284.jpg,cashew,cashew,1.000000,1.294122,0.000006,0.000128,1.294282,{}
+img_015285.jpg,broth|shredded chicken,squid,0.000000,1.259568,13.273604,0.001512,14.534709,"{""present"":[16],""possible"":[1,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20]}
 
-```json
-{""present"":[1,2,3,6,7,8,9,12,14,15,16,17,18,19,20],""possible"":[4]}
-```"
-img_002323.jpg,zucchini,zucchini,1.000000,1.258587,4.405149,0.007923,5.671684,"{""present"":[1],""possible"":[4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_002347.jpg,plum,plum,1.000000,1.093670,0.000006,0.000147,1.093851,{}
-img_002388.jpg,apricot,apricot,1.000000,1.300739,0.000006,0.000137,1.300909,{}
-img_002441.jpg,chocolate cereal|milk,chocolate cereal|soy milk,0.500000,1.273886,1.824341,0.001342,3.099595,"{""present"":[1,4],""possible"":[2]}"
-img_002454.jpg,bitter melon,bitter melon,1.000000,1.088431,0.000006,0.000160,1.088622,{}
-img_002476.jpg,green pea|soy milk|syrup,green pea|tofu,0.400000,1.261233,1.804886,0.001412,3.067571,"{""present"":[1,4],""possible"":[2]}"
-img_002533.jpg,pork trotter,pork trotter,1.000000,1.264811,0.000006,0.000122,1.264965,{}
-img_002557.jpg,orange juice,orange|orange juice,0.666667,1.265858,2.768961,0.003598,4.038513,"{""present"":[1,4,2,10,15,20],""possible"":[18,19]}"
-img_002576.jpg,lentil,lentil,1.000000,1.258966,4.920394,0.027673,6.207059,"{""present"":[1,4],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_002620.jpg,edamame,edamame,1.000000,1.087203,0.000006,0.000123,1.087353,{}
-img_002703.jpg,plum,plum,1.000000,1.280560,4.393415,0.037441,5.711442,"{""present"":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_002721.jpg,walnut,walnut,1.000000,1.261672,0.000006,0.000163,1.261868,{}
-img_002750.jpg,oyster,oyster,1.000000,1.257395,4.554726,0.009014,5.821185,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_002942.jpg,beef patty|burger bun|egg,burger bun|egg,0.800000,1.093742,4.374991,0.003250,5.472007,"{""present"":[1,3,4,5,7,8,10,11,14],""possible"":[2,6,9,12,13,16,17,18,19,20]}"
-img_003048.jpg,oreo cookie,oreo cookie,1.000000,1.265721,0.000006,0.000121,1.265876,{}
-img_003196.jpg,plum,plum,1.000000,1.260955,0.000006,0.000326,1.261313,{}
-img_003211.jpg,black fungus,black fungus,1.000000,1.175007,0.000008,0.000158,1.175234,{}
-img_003274.jpg,clam|scallop|shrimp|spicy sauce,clam|scallop|shrimp,0.857143,1.270965,3.121945,0.003208,4.396143,"{""present"":[1,4,6,14],""possible"":[2,10,13,15,18,20]}"
-img_003310.jpg,eel,eel,1.000000,1.136804,4.763866,0.000502,5.901199,"{""present"":[1,4],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}}"
-img_003349.jpg,oyster,oyster,1.000000,1.106562,0.000008,0.000167,1.106771,{}
-img_003364.jpg,feta cheese|hummus|lobster|olive|pesto|tomato,crawfish,0.000000,1.122024,4.468511,0.009707,5.600274,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003385.jpg,plum,plum,1.000000,1.156551,0.000007,0.000138,1.156724,{}
-img_003464.jpg,soft serve ice cream|sprinkle|waffle cone,soft serve ice cream,0.500000,1.111029,0.000008,0.000187,1.111255,{}
-img_003522.jpg,bacon,bacon,1.000000,1.283487,8.043583,0.000403,9.327501,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_003526.jpg,dosa|egg|sambal,batter|egg,0.400000,1.103020,4.010450,0.003097,5.116592,"{""present"": [1, 4, 13, 14, 15, 16, 17, 18, 19, 20], ""possible"": [2]}"
-img_003567.jpg,yellow tomato,loquat|yellow tomato,0.666667,1.243496,4.744288,0.007604,5.995415,"{""present"":[1,4],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003744.jpg,rice|roast duck,rice|roast duck,1.000000,1.104493,4.471166,0.008503,5.584185,"{""present"":[1,3],""possible"":[2,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003815.jpg,jalapeño,jalapeño,1.000000,1.086144,0.000008,0.000171,1.086358,{}
-img_003832.jpg,carrot|okra|potato|steak|tomato,steak|tomato,0.571429,1.282611,4.588944,0.007685,5.879266,"{""present"":[1,5,9],""possible"":[2,4,6,7,8,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003835.jpg,blueberry|orange|pancake|strawberry,pancake,0.400000,1.087138,4.495915,0.009669,5.592747,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003871.jpg,dal|roti|yogurt,dal|roti,0.800000,1.270253,157.071228,0.000426,158.341932,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538"
-img_003904.jpg,plum,plum,1.000000,1.262394,0.000005,0.000119,1.262544,{}
-img_003919.jpg,zucchini,cucumber,0.000000,1.112211,4.532438,0.002969,5.647646,"{""present"":[3],""possible"":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003945.jpg,oyster,oyster,1.000000,1.106715,4.624937,0.029500,5.761185,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_003997.jpg,lemon,lemon,1.000000,1.246933,0.000006,0.000133,1.247096,{}
-img_004236.jpg,coconut chutney|idli|sambar,idli,0.500000,1.091464,6.817040,0.040190,7.948724,"{""present"":[1,2,3,4,8,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_004242.jpg,walnut,walnut,1.000000,1.084994,0.000005,0.000116,1.085136,{}
-img_004342.jpg,beef|beet|cabbage|dill|pea,beet|cabbage|pea,0.750000,1.257997,4.621890,0.006021,5.885936,"{""present"":[1,4,11,19,20],""possible"":[2,3,5,6,8,9,13,14,15,16,17,18,19,20]}"
-img_004360.jpg,meringue|strawberry|syrup,strawberry,0.500000,1.246767,2.929707,0.009913,4.186431,"{""present"":[1,2,3,7,8,10,15,17,18,20]}"
-img_004399.jpg,walnut,walnut,1.000000,1.251455,0.000006,0.000121,1.251609,{}
-img_004401.jpg,buckwheat,buckwheat,1.000000,1.083662,0.000007,0.000189,1.083887,{}
-img_004432.jpg,bitter melon,bitter melon,1.000000,1.278674,0.000006,0.000132,1.278836,{}
-img_004447.jpg,plum,plum,1.000000,1.212185,0.000005,0.000131,1.212344,{}
-img_004461.jpg,cauliflower|cucumber|eggplant|skewered meat|tofu,cucumber|eggplant|meat skewer|skewer,0.444444,1.114151,4.298864,0.010653,5.423697,"{""present"":[1,4,6,12,16,18,19,20],""possible"":[2,3,7,8,9,10,13,14,15,17]}"
-img_004481.jpg,plum,plum,1.000000,1.252680,0.000006,0.000119,1.252831,{}
-img_004615.jpg,plum,plum,1.000000,1.250979,4.798357,0.002047,6.051422,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_004650.jpg,pine nut,pine nut,1.000000,1.256424,0.000005,0.000111,1.256563,{}
-img_004667.jpg,bitter melon,bitter melon,1.000000,1.119190,0.000006,0.000136,1.119358,{}
-img_004758.jpg,cucumber|grilled fish|rice,cucumber|grilled fish|rice,1.000000,1.123462,2.677920,0.001838,3.803248,"{""present"":[3,4,5],""possible"":[1,2,8,17,19,20]}"
-img_004907.jpg,buckwheat,buckwheat,1.000000,1.249043,0.000006,0.000133,1.249210,{}
-img_004923.jpg,lemon,orange,0.000000,1.127359,1.397861,0.000446,2.525692,"{""present"":[],""possible"":[]}"
-img_005001.jpg,plum,plum,1.000000,1.272194,0.000006,0.000122,1.272346,{}
-img_005180.jpg,cured ham,cured ham|ham,0.666667,1.250165,4.766706,0.009561,6.026460,"{""present"":[1,4],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_005218.jpg,edamame,edamame,1.000000,1.265109,0.000006,0.000122,1.265262,{}
-img_005231.jpg,walnut,walnut,1.000000,1.283717,0.000006,0.000121,1.283869,{}
-img_005258.jpg,barbecue sauce|pork rib|sesame seed,pork rib,0.500000,1.226472,0.000006,0.000160,1.226663,{}
-img_005392.jpg,pork chop,pork chop,1.000000,1.104601,4.582147,0.009243,5.696023,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_005423.jpg,edamame,edamame,1.000000,1.086747,0.000009,0.000195,1.087014,{}
-img_005503.jpg,zucchini,zucchini,1.000000,1.275771,1.574005,0.000670,2.850472,"{""present"":[4],""possible"":[]}"
-img_005532.jpg,edamame,edamame,1.000000,1.099915,0.000007,0.000150,1.100100,{}
-img_005594.jpg,plum,plum,1.000000,1.140246,0.000005,0.000105,1.140377,{}
-img_005663.jpg,basil|mozzarella cheese|pepperoni|pizza dough|tomato sauce,pepperoni|pizza dough,0.571429,1.112014,4.384500,0.000595,5.497142,"{""present"":[1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_005717.jpg,avocado|egg|ham|tortilla,bacon|cured ham|quail egg|tortilla,0.250000,1.107957,4.596897,0.011452,5.716338,"{""present"":[1,4,6,8,12],""possible"":[2,3,5,7,9,10,11,13,14,15,16,17,18,19,20]}"
-img_005779.jpg,pork belly|whole chicken,whole chicken,0.666667,1.262206,4.561088,0.007545,5.830868,"{""present"":[1],""possible"":[2,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_005784.jpg,lemon,lemon,1.000000,1.253658,0.000006,0.000160,1.253848,{}
-img_005785.jpg,bean sprout|broth|noodle|shrimp|spring roll,broth|noodle,0.571429,1.126536,4.628676,0.042718,5.797988,"{""present"":[1,2,4,8,19],""possible"":[3,5,6,7,9,10,11,12,13,14,15,16,17,18,20]}"
-img_005848.jpg,instant noodle,instant noodle,1.000000,1.113413,4.441132,0.009417,5.563989,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_005904.jpg,plum,plum,1.000000,1.116813,0.000008,0.000199,1.117053,{}
-img_005917.jpg,oyster,oyster,1.000000,1.294546,1.696170,0.000826,2.991568,"{""present"":[1],""possible"":[2]}"
-img_005933.jpg,plum,plum,1.000000,1.264867,0.000006,0.000135,1.265033,{}
-img_005998.jpg,shrimp,meat skewer|shrimp|skewer,0.500000,1.256980,1.802860,0.001171,3.061038,"{""present"":[1,4],""possible"":[2]}"
-img_006141.jpg,pomegranate seed,pomegranate,0.000000,1.253518,4.772597,0.015431,6.041624,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_006188.jpg,plum,plum,1.000000,1.118913,4.317961,0.008040,5.444936,"{""present"":[1,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_006284.jpg,bitter melon,bitter melon,1.000000,1.116109,0.000008,0.000161,1.116309,{}
-img_006356.jpg,walnut,walnut,1.000000,1.270863,0.000006,0.000149,1.271048,{}
-img_006364.jpg,napa cabbage,napa cabbage,1.000000,1.107185,0.000007,0.000165,1.107384,{}
-img_006458.jpg,walnut,walnut,1.000000,1.270951,4.540608,0.010107,5.821695,"{""present"":[1],""possible"":[2,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_006476.jpg,pasta,noodle,0.000000,1.084791,4.448045,0.038018,5.570880,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_006503.jpg,plum,plum,1.000000,1.264999,0.000006,0.000126,1.265183,{}
-img_006585.jpg,plum,plum,1.000000,1.097260,0.000007,0.000185,1.097481,{}
-img_006620.jpg,egg|fig|oats|peanut|salmon|shrimp,peanut,0.285714,1.325036,4.365908,0.010867,5.701837,"{""present"":[1,4,5,7,8,10,12,13,17,19,20],""possible"":[2,6,11,14,15,18]}"
-img_006623.jpg,beer|snail,beer|snail,1.000000,1.274199,3.867619,0.002569,5.144412,"{""present"":[1,2,4,10,11,12,13,14,15,16,17,18,19,20]}"
-img_006831.jpg,apple,apple|cherry|plum|strawberry,0.400000,1.251395,2.176220,0.001308,3.428947,"{""present"":[1,4,6,12],""possible"":[14]}"
-img_006922.jpg,lemon,lemon,1.000000,1.200142,0.000006,0.000134,1.200308,{}
-img_006928.jpg,sour cream,sour cream,1.000000,1.230178,1.345858,0.000613,2.576684,"{""present"":[1]}"
-img_006967.jpg,clam|fish|fish ball|shrimp|squid,clam,0.333333,1.127301,3.936952,0.032342,5.096620,"{""present"":[1,4,5,6,7,8,10,12,13,15,16,17,18,19,20],""possible"":[2]}"
-img_007076.jpg,oyster,oyster,1.000000,1.133148,4.779667,0.010654,5.923498,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_007083.jpg,ground beef,beef,0.000000,1.264781,4.625722,0.003563,5.894091,"{""present"":[2,4,10,13,14,17,18,20],""possible"":[1,3,5,6,7,8,9,11,12,15,16]}"
-img_007111.jpg,chestnut,chestnut,1.000000,1.111336,4.518470,0.000449,5.630277,"{""present"":[1], ""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_007153.jpg,plum,plum,1.000000,1.273973,0.000006,0.000138,1.274143,{}
-img_007169.jpg,red bean,red bean,1.000000,1.262241,1.682269,0.000830,2.945364,"{""present"":[1], ""possible"":[4]}"
-img_007200.jpg,flax seed,buckwheat|rice,0.000000,1.249137,4.821989,0.000418,6.071575,"{""present"":[4],""possible"":[1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_007412.jpg,fish|pea|sesame seed|sweet and sour sauce,fish|fish ball|pine nut|sweet and sour sauce|tapioca pearl,0.444444,1.089125,4.559810,0.071625,5.720610,"{""present"":[1,4,5,7,10],""possible"":[2,3,6,8,9,11,12,13,14,15,16,17,18,19,20]}"
-img_007508.jpg,plum,plum,1.000000,1.273284,0.000006,0.000140,1.273456,{}
-img_007536.jpg,shiitake mushroom,shiitake mushroom,1.000000,1.087553,1.497049,0.001247,2.585878,"{""present"":[1],""possible"":[2]}"
-img_007608.jpg,bitter melon,bitter melon,1.000000,1.140226,0.000006,0.000135,1.140392,{}
-img_007617.jpg,cherry|fried chicken|syrup|waffle,waffle,0.400000,1.258776,7.279958,0.001653,8.540412,"{""present"": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], ""possible"": [1, 4, 5, 7, 15, 18]}"
-img_007627.jpg,croquette|fried rice,croquette,0.666667,1.104268,4.233374,0.002823,5.340513,"{""present"":[1,4,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_007683.jpg,blueberry|cream cheese frosting|lime|red velvet cake,red velvet cake,0.400000,1.287976,4.687185,0.002510,5.977700,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_007718.jpg,plum,plum,1.000000,1.260523,0.000006,0.000125,1.260682,{}
-img_007759.jpg,plum,plum,1.000000,1.290563,0.000006,0.000133,1.290726,{}
-img_007771.jpg,bitter melon,bitter melon,1.000000,1.248679,0.000006,0.000136,1.248846,{}
-img_007777.jpg,pasta,dried fruit,0.000000,1.416494,1.698615,0.000412,3.115548,"{""present"":[],""possible"":[]}"
-img_007826.jpg,walnut,walnut,1.000000,1.105741,0.000009,0.000235,1.106016,{}
-img_007845.jpg,lemon,lemon,1.000000,1.272571,4.747185,0.026896,6.046679,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_007859.jpg,oyster,oyster,1.000000,1.468579,1.840073,0.000649,3.309331,"{""present"":[1],""possible"":[]}"
-img_007860.jpg,basil|ham|mozzarella cheese|mushroom|pizza dough|tomato sauce,basil|mushroom|pizza dough,0.666667,1.103018,3.898025,0.008827,5.009895,"{""present"":[1,4,5,17,18,20],""possible"":[2,6,8,9,10,11,13,14,15,16]}"
-img_007861.jpg,zucchini,zucchini,1.000000,1.249292,4.810313,0.006470,6.066101,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_007873.jpg,plum,plum,1.000000,1.108446,0.000005,0.000120,1.108592,{}
-img_007968.jpg,spaghetti|tomato sauce,noodle|spaghetti,0.500000,1.249881,4.897643,0.002187,6.149736,"{""present"":[1,4],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_008040.jpg,pasta,potato,0.000000,1.272405,1.586443,0.000738,2.859610,"{""present"":[1],""possible"":[]}"
-img_008043.jpg,insect,insect,1.000000,1.263192,3.961119,0.032658,5.256997,"{""present"":[1,4,8,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_008101.jpg,lamb,whole pig,0.000000,1.112267,4.352847,0.031888,5.497026,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_008197.jpg,dried meat,dried meat,1.000000,1.162198,4.337248,0.034256,5.533729,"{""present"":[1,4,5,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_008208.jpg,couscous,rice,0.000000,1.246652,3.382378,0.013721,4.642810,"{""present"":[11],""possible"":[12,13,14,15,16,17,18,19,20]}"
-img_008256.jpg,apple|banana|lychee|mangosteen,lychee,0.400000,1.112570,4.190713,0.004022,5.307329,"{""present"":[1,4,6,7,8,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_008291.jpg,egg tart|french fries|fried chicken,egg tart|fried chicken,0.800000,1.118321,4.352755,0.027679,5.498786,"{""present"":[1,2,3,4,5,6,10,16,20],""possible"":[7,8,9,11,12,13,14,15,17,18]}"
-img_008302.jpg,blueberry|egg|maple syrup|milk|pancake mix|strawberry,blueberry|pancake|syrup,0.222222,1.144070,4.296931,0.001394,5.442420,"{""present"":[2,4,6,17,18,20],""possible"":[1,3,5,8,9,11,12,13,14,15,16,19]}"
-img_008316.jpg,broccoli|carrot|egg|noodle|steak,steak,0.333333,1.084195,0.000007,0.000150,1.084411,{}
-img_008360.jpg,egg|steamed bun,steamed bun,0.666667,1.295218,4.661783,0.040972,5.998002,"{""present"":[2,3,4,5,8,13,14,15,18,19,20],""possible"":[1,6,7,10,11,12,13,17]}"
-img_008455.jpg,walnut,walnut,1.000000,1.303252,0.000006,0.000130,1.303413,{}
-img_008559.jpg,plum,plum,1.000000,1.256155,0.000006,0.000143,1.256334,{}
-img_008599.jpg,corn|dumpling wrapper|ground meat,corn|dumpling wrapper,0.800000,1.254408,1.752027,0.001248,3.007710,"{""present"":[1,4],""possible"":[2]}"
-img_008600.jpg,soda,chicken feet|soda,0.666667,1.265142,1.754786,0.001362,3.021315,"{""present"":[1,4],""possible"":[2]}"
-img_008637.jpg,plum,plum,1.000000,1.258644,0.000006,0.000111,1.258784,{}
-img_008645.jpg,bitter melon,bitter melon,1.000000,1.276416,0.000005,0.000134,1.276579,{}
-img_008650.jpg,cereal,tapioca pearl,0.000000,1.266748,6.211665,0.010407,7.488846,"{""present"":[4,6,7,8,10,11,14,15,16,17,18,19,20],""possible"":[1,2,3,4,5,10,11,14,15,16,17,18,19,20]}"
-img_008668.jpg,fried dough|skewer,batter|biscuit stick|fried dough|wrap,0.333333,1.266407,4.458563,0.008675,5.733669,"{""present"":[1,4,18,20],""possible"":[2,3,4,6,7,9,10,11,12,13,14,15,16,17]}"
-img_008756.jpg,honey,meringue|syrup,0.000000,1.086443,1.585857,0.001479,2.673804,"{""present"":[1,4],""possible"":[2]}"
-img_008812.jpg,dragon fruit|grape|orange,dragon fruit,0.500000,1.094904,0.000008,0.000212,1.095156,{}
-img_008837.jpg,green tea ice cream|red bean paste,green tea ice cream,0.666667,1.307870,0.000006,0.000120,1.308022,{}
-img_008853.jpg,mozzarella cheese|parmesan cheese|pizza dough|prosciutto|tomato,pizza dough,0.333333,1.429799,3.199938,0.034639,4.664403,"{""present"":[1,4,15,16,17,18,19,20],""possible"":[2]}"
-img_008939.jpg,cranberry sauce|green bean|mashed potato|turkey,cranberry sauce|mashed potato|thyme|turkey,0.750000,1.083993,4.453708,0.010223,5.547947,"{""present"":[1,2,4,6,16],""possible"":[3,7,8,9,10,11,12,13,14,15,17,18,19,20]}"
-img_008998.jpg,pasta,noodle,0.000000,1.265611,4.674893,0.008071,5.948603,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_009005.jpg,cured ham,cured ham,1.000000,1.124263,1.523477,0.000834,2.648605,"{""present"":[1],""possible"":[2]}"
-img_009026.jpg,pasta,noodle,0.000000,1.251549,4.528741,0.010744,5.791061,"{""present"":[1],""possible"":[2,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_009045.jpg,dried prune,dried prune,1.000000,1.279165,0.000006,0.000119,1.279315,{}
-img_009100.jpg,plum,plum,1.000000,1.279206,0.000006,0.000161,1.279398,{}
-img_009360.jpg,fig|matcha|yogurt,fig,0.500000,1.123840,4.383804,0.029948,5.537620,"{""present"":[1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_009394.jpg,broccoli|carrot|lamb chop|pumpkin,garlic|lamb chop,0.333333,1.093911,1.611052,0.001643,2.706636,"{""present"":[1,4],""possible"":[2]}"
-img_009531.jpg,oyster,oyster,1.000000,1.293132,4.627453,0.001925,5.922536,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_009591.jpg,custard|strawberry|tart crust,custard|strawberry|tart crust,1.000000,1.088217,4.582120,0.011985,5.682358,"{""present"":[1,2,4,17],""possible"":[3,5,6,7,8,9,10,11,12,13,14,15,16,18,19,20]}"
-img_009646.jpg,bitter melon,bitter melon,1.000000,1.268550,0.000006,0.000118,1.268701,{}
-img_009683.jpg,cured meat|sausage,salami,0.000000,1.286014,4.810418,0.002759,6.099255,"{""present"":[1,4,13,14,15,16,17,18,19,20],""possible"":[2,3,5,6,7,8,9,10,11,12]}"
-img_009731.jpg,buckwheat,buckwheat,1.000000,1.264821,0.000006,0.000126,1.264978,{}
-img_009738.jpg,french fries|grilled chicken|wrap,grilled chicken,0.500000,1.255631,6.196577,0.028911,7.481147,"{""present"":[4,5,11,12,13,14,15,16,17,18,19,20],""possible"":[3]}
-
-{""present"":[4,5,11,12,13,14,15,16,17,18,19,20],""possible"":[3]}"
-img_009772.jpg,lemon,lemon,1.000000,1.350822,0.000006,0.000134,1.350986,{}
-img_009812.jpg,cocktail sauce|shrimp,cocktail sauce|shrimp,1.000000,1.104177,4.554418,0.007597,5.666226,"{""present"":[1,2,3,4,10,12,13,15,16,17,18,19,20],""possible"":[5,6,7,8,9,11,14]}"
-img_009922.jpg,bean sprout|cucumber|noodle|peanut sauce,noodle,0.400000,1.272944,4.636117,0.004139,5.913225,"{""present"":[1,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,2]}"
-img_009938.jpg,plum,plum,1.000000,1.260304,0.000006,0.000133,1.260467,{}
-img_009952.jpg,plum,plum,1.000000,1.260353,0.000006,0.000132,1.260516,{}
-img_010038.jpg,plum,plum,1.000000,1.269428,0.000006,0.000155,1.269614,{}
-img_010094.jpg,plum,plum,1.000000,1.097296,0.000006,0.000125,1.097450,{}
-img_010136.jpg,oyster,oyster,1.000000,1.134641,0.000007,0.000147,1.134824,{}
-img_010295.jpg,plum,plum,1.000000,1.169873,0.000008,0.000154,1.170096,{}
-img_010313.jpg,plum,plum,1.000000,1.277842,0.000006,0.000129,1.278002,{}
-img_010363.jpg,bacon|baked bean|egg|hash brown|sausage|toast|tomato,sausage,0.250000,1.103368,7.254833,0.002932,8.361157,"{""present"":[1,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,2,4,5,6,7,8,10,13,14,15,16,17,18,19,20]}"
-img_010538.jpg,oyster,oyster,1.000000,1.425108,2.029331,0.000963,3.455431,"{""present"":[1,4],""possible"":[2]}"
-img_010656.jpg,milk|rasgulla,milk|yellow tomato,0.500000,1.298175,1.831576,0.000890,3.130669,"{""present"":[3,4],""possible"":[2]}"
-img_010725.jpg,buckwheat,buckwheat,1.000000,1.265698,0.000006,0.000115,1.265842,{}
-img_010749.jpg,radish,radish,1.000000,1.283699,0.000006,0.000153,1.283884,{}
-img_010770.jpg,cocoa powder|coffee|ladyfinger|mascarpone cheese,cocoa powder|cream cheese frosting,0.333333,1.260704,4.741469,0.009746,6.011946,"{""present"":[1,4],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_010922.jpg,lemon,lemon,1.000000,1.267695,0.000007,0.000139,1.267867,{}
-img_010925.jpg,oyster,oyster,1.000000,1.112725,1.489820,0.001183,2.603757,"{""present"":[1],""possible"":[2]}"
-img_010956.jpg,plum,plum,1.000000,1.085840,0.000008,0.000180,1.086061,{}
-img_011027.jpg,coffee|sweet bun,breadstick|coffee|cream cheese frosting|custard|red bean paste|sweet bun,0.500000,1.293262,4.595156,0.001499,5.889944,"{""present"":[1,4,5,9,13,18],""possible"":[2,3,6,7,8,10,11,12,14,15,16,17,19]}"
-img_011054.jpg,buckwheat,buckwheat,1.000000,1.267090,0.000006,0.000159,1.267282,{}
-img_011266.jpg,oyster,oyster,1.000000,1.159304,4.648063,0.002644,5.810042,"{""present"":[1],""possible"":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_011439.jpg,plum,plum,1.000000,1.086796,0.000008,0.000209,1.087041,{}
-img_011499.jpg,curry sauce|naan,dal|naan,0.500000,1.291284,4.738111,0.002803,6.032226,"{""present"":[1,4,10,11,18,20],""possible"":[2,3,5,6,7,8,9,12,13,14,15,16,17,19]}"
-img_011608.jpg,gelatin|raspberry|tomato,raspberry|strawberry|tomato,0.666667,1.199786,4.675002,0.002123,5.876934,"{""present"":[1,2,4,14],""possible"":[3,5,6,7,8,9,10,11,12,13,15,16,17,18,19,20]}"
-img_011630.jpg,grapefruit|lime,grapefruit|lime|orange,0.800000,1.084299,4.601681,0.022174,5.708182,"{""present"":[1,2,4],""possible"":[3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_011637.jpg,coconut milk|mango|rice|tapioca pearl,tapioca pearl,0.400000,1.275529,0.000006,0.000119,1.275678,{}
-img_011739.jpg,pasta,potato,0.000000,1.084905,6.905478,0.002055,7.992468,"{""present"":[1,2,4,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2,3,5,6,10,11,12,13,14,15,16,17,18,19,20]}"
-img_011886.jpg,plum,plum,1.000000,1.264319,0.000006,0.000119,1.264470,{}
-img_012005.jpg,fried insect,cricket|fried insect,0.666667,1.258641,1.797722,0.001172,3.057562,"{""present"":[1,4],""possible"":[2]}"
-img_012089.jpg,oyster,oyster,1.000000,1.253072,0.000006,0.000153,1.253255,{}
-img_012091.jpg,biscuit stick|chocolate coating,biscuit stick,0.666667,1.261360,0.000007,0.000178,1.261570,{}
-img_012095.jpg,dragon fruit|pineapple,dragon fruit|orange|pineapple,0.800000,1.081981,4.586969,0.003231,5.672213,"{""present"":[1,2,9],""possible"":[3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20]}"
-img_012108.jpg,banana|blueberry|french toast|maple syrup|powdered sugar,maple syrup,0.333333,1.085843,4.463981,0.002069,5.551927,"{""present"":[1,2,4,6,7,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[3,5]}"
-img_012114.jpg,pistachio,pistachio,1.000000,1.110557,4.674782,0.014569,5.799935,"{""present"":[1,4,7,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2,3,5,6,8]}"
-img_012128.jpg,lemon|oyster|shrimp,oyster,0.500000,1.128436,4.281474,0.036383,5.446327,"{""present"":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_012231.jpg,breadstick|tomato sauce,breadstick,0.666667,1.430019,4.630493,0.025964,6.086527,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_012263.jpg,breading|fried chicken,fried chicken|pork cutlet,0.500000,1.262324,4.775183,0.010278,6.047812,"{""present"":[1,4,17,20],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,18,19]}"
-img_012269.jpg,egg|hollandaise sauce|salmon|toast,caviar|hollandaise sauce|salmon|toast,0.750000,1.116346,3.280619,0.002312,4.399298,"{""present"":[1,4,11,12],""possible"":[14,15,16,17,18,19,20]}"
-img_012433.jpg,walnut,walnut,1.000000,1.253325,0.000006,0.000124,1.253482,{}
-img_012441.jpg,snack stick,sausage|snack stick,0.666667,1.104708,4.598038,0.002622,5.705396,"{""present"":[1,4],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_012499.jpg,lemon,lemon,1.000000,1.308569,0.000006,0.000138,1.308740,{}
-img_012550.jpg,cabbage|creamy dressing,cabbage,0.666667,1.257628,1.612020,0.000766,2.870438,"{""present"":[2],""possible"":[]}"
-img_012619.jpg,plum,plum,1.000000,1.263575,0.000007,0.000135,1.263744,{}
-img_012626.jpg,dumpling|fufu,dumpling|dumpling wrapper|red bean paste|rice cake|steamed bun,0.285714,1.270844,4.593013,0.010319,5.874206,"{""present"":[1,2,3,4,5,7,10,13,16,17,19,20],""possible"":[6,8,9,11,12,14,15]}"
-img_012628.jpg,plum,plum,1.000000,1.095974,0.000007,0.000168,1.096172,{}
-img_012629.jpg,black pepper|salmon,salmon,0.666667,1.322467,4.132156,0.006981,5.461665,"{""present"":[1,2,3,4,6,10,11,12,13,14,15,16,17,18,19,20]}"
-img_012645.jpg,arugula|burrata|mozzarella cheese|pizza dough|salami|tomato sauce,pizza dough,0.285714,1.123100,4.144689,0.002034,5.269846,"{""present"":[1,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20]}"
-img_012677.jpg,pasta,noodle,0.000000,1.126382,1.485689,0.000737,2.612837,"{""present"":[1],""possible"":[]}"
-img_012740.jpg,sea urchin,sea urchin,1.000000,1.133101,0.000008,0.000181,1.133321,{}
-img_012911.jpg,banana|chia seed|dried fruit|oatmeal,banana|dried fruit,0.666667,1.106042,4.476846,0.030234,5.613154,"{""present"":[4,12],""possible"":[1,3,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20]}"
-img_012915.jpg,black rice|cabbage|egg|tofu,black rice,0.400000,1.117081,4.653133,0.002270,5.772518,"{""present"":[2,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,3,6]}"
-img_012987.jpg,berry sauce|blueberry|cream puff,blackberry|blueberry|puff pastry|soft serve ice cream|sour cream,0.250000,1.105756,4.667761,0.011260,5.784841,"{""present"":[1,4,14,18,20],""possible"":[2,3,5,6,7,8,9,10,11,12,13,15,16,17,19]}"
-img_012990.jpg,bitter melon,bitter melon,1.000000,1.098307,0.000008,0.000169,1.098516,{}
-img_013120.jpg,bamboo shoot,bamboo shoot,1.000000,1.217117,0.000007,0.000116,1.217265,{}
-img_013223.jpg,plum,plum,1.000000,1.265181,0.000006,0.000129,1.265341,{}
-img_013305.jpg,fish|pounded yam,dumpling|pounded yam|sweet bun,0.400000,1.271574,4.797501,0.024162,6.093265,"{""present"":[1,4,18],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20]}"
-img_013310.jpg,beet|carrot|mayonnaise|potato,beet,0.400000,1.085579,1.460726,0.001299,2.547628,"{""present"":[1],""possible"":[2]}"
-img_013355.jpg,quail egg,quail egg,1.000000,1.290084,1.562511,0.000609,2.853232,"{""present"":[1],""possible"":[]}"
-img_013415.jpg,zucchini,zucchini,1.000000,1.312903,1.836521,0.001116,3.150567,"{""present"":[1,4],""possible"":[2]}"
-img_013441.jpg,starfruit,starfruit,1.000000,1.082502,0.000007,0.000129,1.082662,{}
-img_013451.jpg,cinnamon,cinnamon,1.000000,1.283717,0.000007,0.000137,1.283886,{}
-img_013485.jpg,lemon,lemon,1.000000,1.096539,0.000008,0.000166,1.096741,{}
-img_013504.jpg,loquat,loquat,1.000000,1.104027,0.000008,0.000218,1.104285,{}
-img_013509.jpg,garlic,garlic,1.000000,1.138736,0.000007,0.000169,1.138943,{}
-img_013651.jpg,chocolate chip,chocolate chip,1.000000,1.277169,1.399511,0.000623,2.677330,"{""present"":[1]}"
-img_013658.jpg,bok choy|broth|meatball|tofu,fish ball|meatball|noodle,0.285714,1.103475,3.488124,0.009341,4.600965,"{""present"":[1,3,4,6,8,13,20],""possible"":[2,9,12,16,17,18,19]}"
-img_013715.jpg,buckwheat,buckwheat,1.000000,1.092569,0.000009,0.000169,1.092781,{}
-img_013729.jpg,celery,celery,1.000000,1.100942,0.000008,0.000232,1.101217,{}
-img_013772.jpg,plum,plum,1.000000,1.288932,0.000006,0.000136,1.289097,{}
-img_013812.jpg,watermelon,watermelon,1.000000,1.252551,0.000006,0.000135,1.252719,{}
-img_013828.jpg,watermelon,watermelon,1.000000,1.124177,0.000007,0.000162,1.124372,{}
-img_013867.jpg,blackberry|blueberry|strawberry,blackberry|blueberry|pomegranate|raspberry|strawberry,0.750000,1.280276,3.517734,0.008169,4.806227,"{""present"":[1,2,4,6,11],""possible"":[14,15,16,17,18,19,20]}"
-img_013918.jpg,bitter melon,bitter melon,1.000000,1.259851,0.000006,0.000117,1.260000,{}
-img_013922.jpg,watermelon,watermelon,1.000000,1.268967,0.000007,0.000115,1.269113,{}
-img_014004.jpg,watermelon,watermelon,1.000000,1.272092,0.000006,0.000136,1.272260,{}
-img_014044.jpg,watermelon,watermelon,1.000000,1.265294,0.000041,0.000149,1.265510,{}
-img_014084.jpg,watermelon,watermelon,1.000000,1.264518,0.000006,0.000130,1.264682,{}
-img_014085.jpg,corn|fried plantain|steak,ground beef|steak,0.400000,1.282130,4.806905,0.005999,6.095060,"{""present"":[1,4,18],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20]}"
-img_014133.jpg,duck,duck|fried chicken|shredded chicken,0.500000,1.086265,7.935630,0.039236,9.061154,"{""present"":[1,4,14],""possible"":[2,3,5,6,7,8,10,11,12,13,15,16,17,18,19,20]}
-
-{""present"":[1,4,14],""possible"":[2,3,5,6,7,8,10,11,12,13,15,16,17,18,19,20]}"
-img_014171.jpg,quail,duck|quail,0.666667,1.300649,1.739529,0.001030,3.041235,"{""present"":[1,4],""possible"":[2]}"
-img_014226.jpg,plum,plum,1.000000,1.255736,0.000006,0.000135,1.255902,{}
-img_014296.jpg,puff pastry|sausage,puff pastry|sausage,1.000000,1.251373,4.659523,0.010291,5.921215,"{""present"":[1,4],""possible"":[2,3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_014321.jpg,pomegranate,loquat|pomegranate,0.666667,1.087511,4.558010,0.009325,5.654869,"{""present"":[1,4],""possible"":[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_014374.jpg,watermelon,watermelon,1.000000,1.263037,0.000007,0.000133,1.263201,{}
-img_014388.jpg,watermelon,watermelon,1.000000,1.108788,0.000007,0.000141,1.108964,{}
-img_014393.jpg,carrot|ham|mayonnaise|pea|potato,mayonnaise,0.333333,1.429178,3.833884,0.002844,5.265934,"{""present"":[1,2,4,10,11,12,13,14,15,16,18,19,20]}"
-img_014397.jpg,egg|sauerkraut,egg|radish,0.500000,1.265625,4.831823,0.008610,6.106083,"{""present"":[1,4],""possible"":[2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_014410.jpg,watermelon,watermelon,1.000000,1.256337,0.000006,0.000135,1.256501,{}
-img_014469.jpg,edamame,edamame,1.000000,1.097724,0.000008,0.000185,1.097943,{}
-img_014488.jpg,watermelon,watermelon,1.000000,1.260789,0.000006,0.000137,1.260958,{}
-img_014516.jpg,watermelon,watermelon,1.000000,1.105105,0.000008,0.000153,1.105295,{}
-img_014542.jpg,watermelon,watermelon,1.000000,1.100541,0.000006,0.000112,1.100682,{}
-img_014591.jpg,watermelon,watermelon,1.000000,1.260354,0.000006,0.000142,1.260531,{}
-img_014610.jpg,rice|salmon|tempura|tuna,salmon|tuna,0.666667,1.254247,4.515455,0.009329,5.779059,"{""present"":[1,4,7,11,14,17,18,19,20],""possible"":[2,3,5,6,8,10,12,13,15]}"
-img_014626.jpg,lotus root,lotus root,1.000000,1.091466,0.000006,0.000136,1.091630,{}
-img_014687.jpg,watermelon,watermelon,1.000000,1.133527,0.000007,0.000148,1.133711,{}
-img_014711.jpg,dried meat,dried meat|mushroom,0.666667,1.144187,1.672465,0.001020,2.817722,"{""present"":[1,4],""possible"":[2]}"
-img_014774.jpg,rice cake|spicy sauce,squid,0.000000,1.247147,0.000006,0.000114,1.247293,{}
-img_014812.jpg,grape,cherry,0.000000,1.269691,0.000006,0.000115,1.269838,{}
-img_014821.jpg,watermelon,watermelon,1.000000,1.086152,0.000007,0.000171,1.086360,{}
-img_014840.jpg,egg|ham|ketchup|whole grain bread,whole grain bread,0.400000,1.134501,4.232455,0.009014,5.376003,"{""present"":[1,2,4,7,8,9,10,11,13,14,15,16,17,18,20],""possible"":[14,19]}"
-img_014853.jpg,fried bread|milk,custard|soy milk,0.000000,1.351692,1.910823,0.001043,3.263585,"{""present"":[1,4],""possible"":[2]}"
-img_014865.jpg,grape,green grape,0.000000,1.092906,1.415297,0.000881,2.509110,"{""present"":[1],""possible"":[]}"
-img_014899.jpg,watermelon,watermelon,1.000000,1.301991,0.000006,0.000119,1.302142,{}
-img_014904.jpg,asparagus|cream sauce|gnocchi|steak,gnocchi,0.400000,1.104015,4.500928,0.001986,5.606959,"{""present"":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2]}"
-img_014931.jpg,walnut,walnut,1.000000,1.120152,1.434378,0.000746,2.555308,"{""present"":[1],""possible"":[]}"
-img_014961.jpg,apple,apple,1.000000,1.294683,0.000007,0.000128,1.294842,{}
-img_014968.jpg,apple,apple,1.000000,1.308783,0.000006,0.000141,1.308954,{}
-img_014973.jpg,jackfruit,loquat,0.000000,1.115108,1.452489,0.000883,2.568510,"{""present"":[5],""possible"":[]}"
-img_014993.jpg,apple,apple,1.000000,1.087005,0.000008,0.000165,1.087211,{}
-img_015015.jpg,crawfish,crawfish,1.000000,1.312744,0.000007,0.000149,1.312927,{}
-img_015023.jpg,date,date,1.000000,1.258663,4.805940,0.000436,6.065064,"{""present"":[4],""possible"":[1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
-img_015028.jpg,watermelon,watermelon,1.000000,1.107217,0.000007,0.000127,1.107396,{}
-img_015039.jpg,apple,apple,1.000000,1.279423,0.000007,0.000133,1.279590,{}
-img_015056.jpg,pear,potato,0.000000,1.320946,4.861245,0.010586,6.192806,"{""present"":[8],""possible"":[1,2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_015070.jpg,apple,apple,1.000000,1.088500,0.000007,0.000124,1.088667,{}
-img_015082.jpg,apple,apple,1.000000,1.343128,0.000006,0.000117,1.343276,{}
-img_015097.jpg,apple,apple,1.000000,1.088340,0.000007,0.000148,1.088524,{}
-img_015109.jpg,apple,apple,1.000000,1.251003,0.000006,0.000135,1.251169,{}
-img_015129.jpg,watermelon,watermelon,1.000000,1.263600,0.000006,0.000132,1.263763,{}
-img_015130.jpg,plum,plum,1.000000,1.268173,0.000006,0.000136,1.268340,{}
-img_015134.jpg,watermelon,watermelon,1.000000,1.258489,0.000006,0.000131,1.258650,{}
-img_015146.jpg,green grape,green grape,1.000000,1.254275,4.661665,0.002438,5.918405,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_015172.jpg,apple,apple,1.000000,1.141901,0.000006,0.000115,1.142044,{}
-img_015177.jpg,apple,apple,1.000000,1.256415,0.000006,0.000113,1.256558,{}
-img_015199.jpg,apple,apple,1.000000,1.089146,0.000008,0.000170,1.089356,{}
-img_015204.jpg,watermelon,watermelon,1.000000,1.095361,0.000009,0.000170,1.095572,{}
-img_015210.jpg,watermelon,watermelon,1.000000,1.285511,0.000006,0.000135,1.285674,{}
-img_015212.jpg,barbecue sauce|coleslaw|french fries|pork rib,pork rib,0.400000,1.128828,6.276460,0.002980,7.408300,"{""present"":[1,3,5,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[2,4,6,7,10,11,13,16,17,18,19,20]}"
-img_015232.jpg,watermelon,watermelon,1.000000,1.253197,0.000006,0.000117,1.253344,{}
-img_015244.jpg,apple,apple,1.000000,1.092539,0.000008,0.000166,1.092745,{}
-img_015251.jpg,apple,apple,1.000000,1.283205,0.000007,0.000137,1.283376,{}
-img_015284.jpg,cashew,cashew,1.000000,1.271720,0.000007,0.000162,1.271915,{}
-img_015285.jpg,broth|shredded chicken,squid,0.000000,1.248328,4.280642,0.035926,5.564924,"{""present"":[16],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20]}"
-img_015286.jpg,chicken feet,chicken feet,1.000000,1.269397,0.000006,0.000129,1.269555,{}
-img_015301.jpg,durian,durian,1.000000,1.130461,0.000007,0.000155,1.130684,{}
-img_015320.jpg,apple,apple,1.000000,1.093823,0.000006,0.000139,1.093989,{}
-img_015326.jpg,sweet potato,chestnut|sweet potato,0.666667,1.288578,2.305542,0.001314,3.595463,"{""present"":[1,4,20],""possible"":[18,19]}"
-img_015327.jpg,mulberry,mulberry,1.000000,1.255410,4.607063,0.007712,5.870208,"{""present"":[1],""possible"":[2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_015328.jpg,apple,apple,1.000000,1.273273,0.000006,0.000126,1.273430,{}
-img_015337.jpg,apple,apple,1.000000,1.101056,0.000007,0.000142,1.101234,{}
-img_015339.jpg,apple,apple,1.000000,1.085487,0.000008,0.000187,1.085715,{}
-img_015352.jpg,apple,apple,1.000000,1.115705,0.000006,0.000137,1.115871,{}
-img_015353.jpg,apple,apple,1.000000,1.213732,0.000006,0.000117,1.213880,{}
-img_015360.jpg,peach,peach,1.000000,1.226599,0.000007,0.000135,1.226767,{}
-img_028669.jpg,cucumber|edamame|nori|peanut,edamame,0.400000,1.119453,4.618066,0.001279,5.738828,"{""present"":[1,2,3,4,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,4]}"
-img_036008.jpg,green pepper|rosemary|steak|tomato,pork chop|steak,0.333333,1.112734,1.653885,0.001479,2.768174,"{""present"":[1,4],""possible"":[2]}"
-img_040436.jpg,carrot|grilled eel|nori|rice|spinach,eel|grilled eel,0.285714,1.234219,5.165610,0.008637,6.408490,"{""present"":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],""possible"":[1,4,5]}"
-img_041439.jpg,banana|chocolate sauce|crepe|strawberry,banana|crepe|pancake mix|strawberry,0.750000,1.111299,4.614065,0.049030,5.774427,"{""present"":[1,4,5,6,18,20],""possible"":[2,3,7,8,9,10,11,12,13,14,15,16,17,19]}"
-img_042334.jpg,fish roe|nori|rice|salmon|tuna,fish roe,0.333333,1.270827,4.365328,0.001794,5.637977,"{""present"":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_049650.jpg,nori|rice|salmon|tuna|wasabi,fish roe|salmon,0.285714,1.086835,3.892210,0.005631,4.984703,"{""present"":[1,4,10],""possible"":[2,3,11,12,13,14,15,16,17,18,19,20]}"
-img_072067.jpg,broth|kimchi|noodle|nori|rice,broth|kimchi|noodle,0.750000,1.087929,4.193815,0.003933,5.285710,"{""present"":[1,2,3,6,10,14,17,19,20],""possible"":[4,5,11,12,13,15,16,18]}"
-img_086044.jpg,shaved ice|strawberry|syrup,powdered sugar|shaved ice|soft serve ice cream|strawberry,0.571429,1.104334,1.829496,0.002081,2.935944,"{""present"":[1,2,3,4,16]}"
-img_092746.jpg,bagel|egg,bagel|egg,1.000000,1.113051,4.670894,0.005193,5.789169,"{""present"":[1,2],""possible"":[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}"
-img_093955.jpg,corn|egg|nori|pork cutlet|rice,wasabi,0.000000,1.219257,4.728673,0.001500,5.949456,"{""present"":[1,4,13,14,15,16,17,18,19,20],""possible"":[2,3,5,6,7,8,9,10,11,12]}"
+{""present"":[16],""possible"":[1,4,5,6,7,8,9,10,11,12,13,14,15,17,"
+img_015286.jpg,chicken feet,chicken feet,1.000000,1.263304,0.000007,0.000113,1.263448,{}
+img_015301.jpg,durian,durian,1.000000,1.144539,0.000008,0.000207,1.144787,{}
+img_015320.jpg,apple,apple,1.000000,1.100343,0.000009,0.000183,1.100572,{}
+img_015326.jpg,sweet potato,sweet potato,1.000000,1.298100,2.679772,0.000858,3.978755,"{""present"":[1],""possible"":[2]}"
+img_015327.jpg,mulberry,mulberry,1.000000,1.287563,2.669470,0.000782,3.957842,"{""present"":[1],""possible"":[2]}"
+img_015328.jpg,apple,apple,1.000000,1.293761,0.000006,0.000122,1.293913,{}
+img_015337.jpg,apple,apple,1.000000,1.124871,0.000009,0.000169,1.125089,{}
+img_015339.jpg,apple,apple,1.000000,1.093408,0.000008,0.000161,1.093610,{}
+img_015352.jpg,apple,apple,1.000000,1.124572,0.000009,0.000169,1.124787,{}
+img_015353.jpg,apple,apple,1.000000,1.237073,0.000007,0.000129,1.237258,{}
+img_015360.jpg,peach,peach,1.000000,1.247224,0.000006,0.000124,1.247380,{}
+img_028669.jpg,cucumber|edamame|nori|peanut,beer|cucumber|edamame|green pepper,0.500000,1.146847,3.375871,0.001456,4.524207,"{""present"":[1,2,3,4],""possible"":[10]}"
+img_036008.jpg,green pepper|rosemary|steak|tomato,steak,0.400000,1.113861,3.621662,0.004971,4.740560,"{""present"":[1,4,5,6,7],""possible"":[15]}"
+img_040436.jpg,carrot|grilled eel|nori|rice|spinach,eel,0.000000,1.237649,8.396522,0.001539,9.635738,"{""present"":[1,4,5,6,15],""possible"":[2,3,7,8,9,10,11,12,13,14,16,17,18,19,20]}"
+img_041439.jpg,banana|chocolate sauce|crepe|strawberry,chocolate sauce|crepe|strawberry,0.857143,1.103718,2.987744,0.001479,4.092976,"{""present"":[1,2,5],""possible"":[6]}"
+img_042334.jpg,fish roe|nori|rice|salmon|tuna,fish roe|sea urchin,0.285714,1.273997,2.920602,0.001333,4.195959,"{""present"":[1,4],""possible"":[2]}"
+img_049650.jpg,nori|rice|salmon|tuna|wasabi,fish roe|salmon,0.285714,1.094812,3.081205,0.001757,4.177808,"{""present"":[1,4,10],""possible"":[2]}"
+img_072067.jpg,broth|kimchi|noodle|nori|rice,noodle|nori|rice,0.750000,1.093366,3.014523,0.001448,4.109374,"{""present"":[1,6,10],""possible"":[2]}"
+img_086044.jpg,shaved ice|strawberry|syrup,powdered sugar|shaved ice|strawberry,0.666667,1.115524,2.523870,0.001169,3.640598,"{""present"":[1,2,3]}"
+img_092746.jpg,bagel|egg,bagel|egg,1.000000,1.118131,2.782821,0.001292,3.902277,"{""present"":[1,2],""possible"":[4]}"
+img_093955.jpg,corn|egg|nori|pork cutlet|rice,bonito flake|wasabi,0.000000,1.255162,2.866940,0.001313,4.123442,"{""present"":[1,4],""possible"":[2]}"

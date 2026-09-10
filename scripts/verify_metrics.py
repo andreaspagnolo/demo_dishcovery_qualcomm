@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 EXPECTED = {
-    "task1": {"f1": 0.6600541027953111, "precision": 0.7577639751552795, "recall": 0.5846645367412141},
+    "task1": {"f1": 0.7061855670103093, "precision": 0.7639405204460966, "recall": 0.6565495207667732},
     "task2": {"top1_caption_accuracy": 0.6771428571428572, "class_top1_accuracy": 0.8771428571428571},
 }
 

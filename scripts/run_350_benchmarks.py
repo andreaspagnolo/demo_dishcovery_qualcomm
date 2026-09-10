@@ -20,7 +20,7 @@ INPUTS = ROOT / "benchmark_inputs"
 IMAGES = ROOT / "external_assets/images"
 MODELS = Path(os.environ.get("DISHCOVERY_MODELS_DIR", ROOT / "external_assets/models"))
 OUTPUT = ROOT / "run_outputs"
-TASK1_GENIEX_MODEL = os.environ.get("GENIEX_TASK1_MODEL", "qualcomm/qwen3_vl_4b_instruct:w4a16")
+TASK1_GENIEX_MODEL = os.environ.get("GENIEX_TASK1_MODEL", "local/qwen3vl-4b-qairt-w8a16")
 
 
 def required(value: str, name: str) -> str:

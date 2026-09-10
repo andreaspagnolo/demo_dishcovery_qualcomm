@@ -1,4 +1,5 @@
-# Large Drive-delivered SigLIP and reranker assets stay outside Git; hashes are committed in config/checksums/model_and_input_sha256.txt.
+# Large external model assets stay outside Git. SigLIP/reranker hashes are
+# versioned in config/checksums; custom Qwen checksums accompany its archive.
 external_assets/models/*
 !external_assets/models/.gitkeep
 external_assets/images/
@@ -11,3 +12,7 @@ run_outputs/
 __pycache__/
 *.py[cod]
 config/google_drive.env
+
+# Additional custom Qwen distribution files.
+Qwen3-VL-4B-Instruct-GenieX-QAIRT-W8A16.zip
+Qwen3-VL-4B-Instruct-GenieX-QAIRT-W8A16.zip.sha256

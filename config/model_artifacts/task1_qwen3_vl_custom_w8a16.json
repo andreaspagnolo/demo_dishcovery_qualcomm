@@ -1,0 +1,129 @@
+{
+  "schema_version": "dishcovery_task1_custom_w8a16_v1",
+  "status": "default_task1_benchmark_and_web_model",
+  "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+  "geniex_model_name": "local/qwen3vl-4b-qairt-w8a16",
+  "bundle_directory": "Qwen3-VL-4B-Instruct-GenieX-QAIRT-W8A16",
+  "distribution_archive": "Qwen3-VL-4B-Instruct-GenieX-QAIRT-W8A16.zip",
+  "distribution_checksum": "Qwen3-VL-4B-Instruct-GenieX-QAIRT-W8A16.zip.sha256",
+  "source": "Custom promotion of Qualcomm AIMET W4A16 text weight encodings to W8A16, recompiled for QCS9075. This is not the public AI Hub W4A16 bundle.",
+  "precision": {
+    "language_weights": "INT8 with 145 retained INT16 parameter-encoding exceptions",
+    "language_activations": "INT16",
+    "kv_cache": "INT8",
+    "qwen_visual_encoder": "W8A16 (INT8 weights / INT16 activations)",
+    "siglip2_recall": "split FP16 QNN, unchanged"
+  },
+  "checkpoint_provenance": {
+    "created_utc": "2026-09-03T10:07:56.582142+00:00",
+    "destination": "/mnt/evk_ssd/dishcovery/models/qwen3_vl_4b_instruct-aimet-w8a16",
+    "destination_args_sha256": "7c54c18746ed99be2d25f89935cd669fc938983b6258ab923d50b389c2d5e65a",
+    "destination_encoding_stats": {
+      "activation_encodings": {
+        "int16": 18303,
+        "int8": 1872
+      },
+      "param_encodings": {
+        "int16": 145,
+        "int8": 1873
+      }
+    },
+    "destination_model_encodings_sha256": "1c4ad2e0887fdb01e7bb8f2ca9dc3037751efcb995710802e151040c01eae80c",
+    "files": {
+      "args.json": 664,
+      "chat_template.jinja": 5292,
+      "config.json": 743,
+      "embedding_weights.raw": 1555824640,
+      "model.data": 16089874432,
+      "model.encodings": 64177508,
+      "model_dynamic.onnx": 79027037,
+      "tokenizer.json": 11422650,
+      "tokenizer_config.json": 710,
+      "vision_encoder.encodings": 15785687,
+      "vision_encoder.onnx": 1656377277
+    },
+    "hardlinked_immutable_files": [
+      "embedding_weights.raw",
+      "model.data",
+      "model_dynamic.onnx",
+      "vision_encoder.onnx"
+    ],
+    "method": "Promote symmetric per-channel text parameter encodings from W4 to W8; preserve float ONNX weights, calibrated activation encodings, and the already-W8A16 vision encoder.",
+    "precision": "w8a16",
+    "promotion": {
+      "new_offset": -128.0,
+      "old_offset": -8.0,
+      "promoted_parameter_entries": 1872,
+      "promoted_scale_values": 1105920,
+      "scale_factor": 0.058823529411764705
+    },
+    "schema_version": "dishcovery_qwen3_vl_4b_w8a16_checkpoint_v1",
+    "source": "/mnt/evk_ssd/dishcovery/qaihm_store/.qaihm/qai-hub-models/models/qwen3_vl_4b_instruct/v2/w4a16",
+    "source_encoding_stats": {
+      "activation_encodings": {
+        "int16": 18303,
+        "int8": 1872
+      },
+      "param_encodings": {
+        "int16": 145,
+        "int4": 1872,
+        "int8": 1
+      }
+    },
+    "source_model_encodings_sha256": "93d7b6cc1fc3ca9e6718933e47acef3f86dae6acbc63cba58147457c184c4f7d",
+    "source_precision": "w4a16",
+    "vision_encoder_encodings_sha256": "bb8837dd08953d535dec34088647a377e3c88f746de3626ba4a9df3345933da9"
+  },
+  "runtime": {
+    "geniex_version": "0.3.13",
+    "qairt_version": "2.45.0.260326",
+    "target_soc": "QCS9075",
+    "context_tokens": 4096,
+    "qwen_image_size": [
+      512,
+      512
+    ],
+    "server_url": "http://127.0.0.1:18181/v1/chat/completions"
+  },
+  "compile_jobs": {
+    "vision_encoder": "jp0j8w40g",
+    "part1_ar128": "jp8xdn2qg",
+    "part1_ar1": "jgk4w1vvp",
+    "part2_ar128": "j5qyxn0eg",
+    "part2_ar1": "jglx9d42g",
+    "part3_ar128": "j5679x2np",
+    "part3_ar1": "jp39ldnmp",
+    "part4_ar128": "jgor7xz1g",
+    "part4_ar1": "jpvdy8qzp"
+  },
+  "link_jobs": {
+    "vision_encoder": "jpez0qe8p",
+    "part1": "jgzmq6o4p",
+    "part2": "j5w70k24g",
+    "part3": "jg9m7rjm5",
+    "part4": "jp1jk9ynp"
+  },
+  "profile_jobs": {
+    "vision_encoder": "jgj76921g",
+    "part1_ar128": "jpez0qw8p",
+    "part1_ar1": "jgzmq6j4p",
+    "part2_ar128": "j5w70k34g",
+    "part2_ar1": "jg9m7rym5",
+    "part3_ar128": "jp1jk9wnp",
+    "part3_ar1": "jgd3ykq6p",
+    "part4_ar128": "j5741mln5",
+    "part4_ar1": "jp4167d2p"
+  },
+  "all_profiled_ops_on_npu": true,
+  "reference_report": "reference_results/task1_350/eval_first_350_samples.json",
+  "expected_metrics": {
+    "rows": 350,
+    "f1": 0.7061855670103093,
+    "precision": 0.7639405204460966,
+    "recall": 0.6565495207667732,
+    "tp": 411,
+    "fp": 127,
+    "fn": 215
+  },
+  "reproducibility_rule": "Use the complete exported W8A16/INT8-KV bundle and its distributed SHA-256 checksums. Do not substitute W4A16, W8/FP16, or the INT16-KV variant. Keep the fixed 350-image contract."
+}

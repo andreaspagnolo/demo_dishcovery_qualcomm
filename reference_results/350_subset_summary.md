@@ -1,25 +1,30 @@
 # EVK results on the 350-image difficulty subset
 
-Report date: 2026-07-22
+Default-model update: 2026-09-10
 
 This report records the EVK results obtained on the 350-image difficulty
-subset. The two tasks use the same image subset and ground-truth mapping, but
-their metrics are task-specific.
+subset. Each task uses its own fixed 350-image list and ground-truth mapping.
+Task 1 now uses the saved custom W8A16 result; Task 2 retains its Q8 Top-5 reference.
 
 ## Summary
 
 | Task | Configuration | Primary result |
 | --- | --- | ---: |
-| Task 1 — ingredient recognition | Legacy paper logic, fixed top-20 candidates | Micro-F1 **0.6601** |
+| Task 1 — ingredient recognition | Custom W8A16, legacy paper logic, fixed top-20 candidates | Micro-F1 **0.7062** |
 | Task 2 — caption retrieval | `siglip_guarded`, gap 3.0, SigLIP top-5, reranker top-5 | Caption accuracy **0.6771** |
+
+The raw W8A16 report is imported from the completed development-repository run;
+no new inference was run for this update. See [provenance](task1_350/reconstructed_command.md).
+The old W4A16 measurements remain in `task1_350_w4a16/`.
 
 ## Dataset and reproducibility
 
-- Images: `benchmark_inputs/task1_350/images.txt`
+- Task 1 images: `benchmark_inputs/task1_350/images.txt`
+- Task 2 images: `benchmark_inputs/task2_350/images.txt`
 - Image count: 350
 - Evaluation order: first 350 entries, seed 7 for Task 1 and seed 42 in the
   archived Task 2 evaluation artifact
-- Task 1 ground-truth map: `labels/image_ground_truth_rows.csv`
+- Task 1 ground-truth map: `benchmark_inputs/image_ground_truth_rows.csv`
 - The 350-image manifest SHA-256 is
   `ebbdde7f4b54b16c3d1d2cacef7eb06642617a4f46fffa26925a5e2ec2342f47`.
 
@@ -56,15 +61,15 @@ skip_vlm_visual_selector_max_labels=3
 
 | Metric | Value |
 | --- | ---: |
-| Micro-F1 | **0.660054** |
-| Precision | 0.757764 |
-| Recall | 0.584664 |
-| Row-average F1 | 0.762242 |
-| True positives | 366 |
-| False positives | 117 |
-| False negatives | 260 |
-| Exact-match rows | 208 / 350 |
-| Mean predicted labels | 1.38 |
+| Micro-F1 | **0.706186** |
+| Precision | 0.763941 |
+| Recall | 0.656550 |
+| Row-average F1 | 0.796384 |
+| True positives | 411 |
+| False positives | 127 |
+| False negatives | 215 |
+| Exact-match rows | 215 / 350 |
+| Mean predicted labels | 1.5371 |
 | Mean ground-truth labels | 1.7886 |
 | Top-20 recall | 0.920128 |
 | Top-20 all-truth rows | 317 / 350 |
@@ -73,10 +78,10 @@ skip_vlm_visual_selector_max_labels=3
 
 | Quantity | Value |
 | --- | ---: |
-| Mean SigLIP2 image/top-k time | 1.1998 s/image |
-| Mean Qwen time | 2.4788 s/image |
-| Mean total image time | 3.6837 s/image |
-| Total accounted evaluation time | 1293.68 s |
+| Mean SigLIP2 image/top-k time | 1.2116 s/image |
+| Mean Qwen time | 1.8990 s/image |
+| Mean total image time | 3.1115 s/image |
+| Total accounted evaluation time | 1094.22 s |
 | VLM-skipped rows | 171 / 350 (48.86%) |
 
 The raw result is available at
@@ -85,7 +90,7 @@ with predictions in
 [`eval_first_350_samples_predictions.csv`](task1_350/eval_first_350_samples_predictions.csv).
 
 The EVK models are not the Orin engines: the EVK uses QNN SigLIP2 and the
-Qualcomm QAIRT W4A16 Qwen3-VL model through GenieX. Therefore this score is an
+custom QAIRT W8A16 Qwen3-VL model through GenieX. Therefore this score is an
 EVK result under aligned task logic, not a bit-identical reproduction of the
 Orin TensorRT result.
 
@@ -138,7 +143,7 @@ The raw result is available at
 ## Interpretation
 
 Task 1 reaches high candidate recall (0.9201) but loses recall during the
-EVK Qwen selection and fusion stage, producing micro-F1 0.6601. Task 2
+EVK Qwen selection and fusion stage, producing micro-F1 0.7062. Task 2
 reranking improves caption accuracy from the SigLIP-only 0.5457 baseline to
 0.6771, while class-level accuracy reaches 0.8771.
 

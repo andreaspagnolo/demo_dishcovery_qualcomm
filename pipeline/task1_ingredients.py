@@ -46,7 +46,7 @@ DEFAULT_SIGLIP_BACKEND = "onnx"
 DEFAULT_SIGLIP_ONNX_PATH = MODEL_ROOT / "siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage1/model.onnx"
 DEFAULT_SIGLIP_ONNX_STAGE2_PATH = MODEL_ROOT / "siglip2_qcs9075_out/fp16_powfix_split_qairt245/stage2/model.onnx"
 DEFAULT_SIGLIP_ONNX_PROVIDER = "qnn"
-DEFAULT_QWEN_MODEL = os.environ.get("GENIEX_TASK1_MODEL", "qualcomm/qwen3_vl_4b_instruct:w4a16")
+DEFAULT_QWEN_MODEL = os.environ.get("GENIEX_TASK1_MODEL", "local/qwen3vl-4b-qairt-w8a16")
 TEXT_CACHE_VERSION = "orin_openclip_siglip2_v1"
 MAX_DISH_INGREDIENTS = 10
 LEGACY_TASK1_SINGLE_TOPK = 8
@@ -294,7 +294,7 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_QWEN_MODEL,
         help=(
             "Vision-language model used for close-choice scoring. "
-            "Default uses the Qualcomm QAIRT W4A16 GenieX model."
+            "Default uses the custom QAIRT W8A16 GenieX model (INT8 weights, INT16 activations)."
         ),
     )
     parser.add_argument(

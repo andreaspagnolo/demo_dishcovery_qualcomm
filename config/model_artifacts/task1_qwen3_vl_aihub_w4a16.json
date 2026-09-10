@@ -4,6 +4,11 @@
   "geniex_model_name": "qualcomm/qwen3_vl_4b_instruct:w4a16",
   "source": "Qualcomm AI Hub via GenieX; this model is intentionally not in the Google Drive package.",
   "precision": "w4a16",
-  "runtime": {"geniex_version": "0.3.13", "qairt_version": "2.45.0.260326", "server_url": "http://127.0.0.1:18181/v1/chat/completions"},
-  "reproducibility_rule": "Use the exact pull command and pinned runtime versions. Do not substitute a locally compiled or differently quantized Qwen artifact when reproducing the baseline."
+  "runtime": {
+    "geniex_version": "0.3.13",
+    "qairt_version": "2.45.0.260326",
+    "server_url": "http://127.0.0.1:18181/v1/chat/completions"
+  },
+  "reproducibility_rule": "Historical artifact only. The default benchmark and web model is described in task1_qwen3_vl_custom_w8a16.json.",
+  "status": "historical_w4a16_reference_only"
 }
