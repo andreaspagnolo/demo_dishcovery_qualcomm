@@ -9,6 +9,13 @@ Follow these steps to reproduce the two 350-image benchmarks and run the browser
 
 Both tasks use split FP16 SigLIP2 recall. The commands select the fixed image lists and inference settings automatically.
 
+**Reproduction status (2026-09-11):** Task 2 reproduced both expected accuracy
+values exactly. Task 1 completed, but produced F1 **0.702146**, precision
+**0.758813**, and recall **0.653355**. Its precision delta of -0.005128 exceeds
+the verifier's tolerance, so Task 1 verification fails. The historical target
+above remains unchanged pending a validated fix; these instructions are not
+yet a confirmed reproduction of both benchmarks.
+
 ## 1. Install prerequisites and clone the repository
 
 Run on the EVK as a regular user; use `sudo` only for system package installation:
@@ -31,6 +38,10 @@ cd demo_dishcovery_qualcomm
 ```
 
 Run every remaining command from this repository directory, using the same Linux user. When opening another terminal, open it in this directory. Run the code blocks in order; stop if a command fails.
+
+Wait for each command to exit before starting the next block. In particular,
+do not replace the ONNX Runtime wheels while the requirements installation is
+still active: concurrent pip installers can leave conflicting package files.
 
 ## 2. Download the assets from Google Drive
 
@@ -203,6 +214,11 @@ done
 
 The device list must include **GPUOpenCL**, **HTP0**, and **CPU**.
 
+Keep the environment assignments on separate lines as shown. Combining base
+paths and variables that reference them into one `export` command expands the
+references before the new paths are assigned, potentially leaving DSP paths
+empty and causing HTP initialization to fail.
+
 ## 6. Run and verify the 350-image benchmarks
 
 Run Task 1 first, stop its GenieX server, then run Task 2. Both terminal windows must be in the repository directory.
@@ -282,6 +298,10 @@ tail -f run_outputs/task1_350/run.log
 
 For Task 2, use `run_outputs/task2_350/run.log`. Complete reports and predictions are saved alongside the logs. Recorded reference reports are in `reference_results/task1_350/` and `reference_results/task2_350/`; measured latency depends on device load and temperature.
 
+Task 1's redirected output can arrive in buffered batches; an unchanged log
+alone does not indicate a stalled run. The 2026-09-11 reproduction took about
+19 minutes for Task 1 and 48 minutes for Task 2.
+
 ## 7. Run the browser demo
 
 The web app uses the same custom W8A16 Task 1 model and Q8 Task 2 reranker. Its voice input and output use Qualcomm Whisper-Base and PiperTTS-EN.
@@ -309,6 +329,10 @@ unset LD_LIBRARY_PATH ADSP_LIBRARY_PATH DSP_LIBRARY_PATH
 ```
 
 Once GenieX is ready, run the speech check and start the app in **Terminal B**:
+
+GenieX may print a missing-SoX warning. The demo's Qualcomm Piper/Whisper WAV
+path does not use SoX; the speech round-trip test passed without it. Use the
+smoke test's exit status to validate this path.
 
 ```bash
 (
